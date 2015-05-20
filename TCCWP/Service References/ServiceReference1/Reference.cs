@@ -17,35 +17,35 @@ namespace TCCWP.ServiceReference1 {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="CompositeType", Namespace="http://schemas.datacontract.org/2004/07/TCCWS")]
-    public partial class CompositeType : object, System.ComponentModel.INotifyPropertyChanged {
+    [System.Runtime.Serialization.DataContractAttribute(Name="Atualizacao", Namespace="http://schemas.datacontract.org/2004/07/TCCWS")]
+    public partial class Atualizacao : object, System.ComponentModel.INotifyPropertyChanged {
         
-        private bool BoolValueField;
+        private System.Collections.ObjectModel.ObservableCollection<TCCWP.ServiceReference1.ClienteWS> clientesField;
         
-        private string StringValueField;
+        private System.DateTime dtAtualizadoField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool BoolValue {
+        public System.Collections.ObjectModel.ObservableCollection<TCCWP.ServiceReference1.ClienteWS> clientes {
             get {
-                return this.BoolValueField;
+                return this.clientesField;
             }
             set {
-                if ((this.BoolValueField.Equals(value) != true)) {
-                    this.BoolValueField = value;
-                    this.RaisePropertyChanged("BoolValue");
+                if ((object.ReferenceEquals(this.clientesField, value) != true)) {
+                    this.clientesField = value;
+                    this.RaisePropertyChanged("clientes");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string StringValue {
+        public System.DateTime dtAtualizado {
             get {
-                return this.StringValueField;
+                return this.dtAtualizadoField;
             }
             set {
-                if ((object.ReferenceEquals(this.StringValueField, value) != true)) {
-                    this.StringValueField = value;
-                    this.RaisePropertyChanged("StringValue");
+                if ((this.dtAtualizadoField.Equals(value) != true)) {
+                    this.dtAtualizadoField = value;
+                    this.RaisePropertyChanged("dtAtualizado");
                 }
             }
         }
@@ -62,8 +62,8 @@ namespace TCCWP.ServiceReference1 {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Cliente", Namespace="http://schemas.datacontract.org/2004/07/TCCWS")]
-    public partial class Cliente : object, System.ComponentModel.INotifyPropertyChanged {
+    [System.Runtime.Serialization.DataContractAttribute(Name="ClienteWS", Namespace="http://schemas.datacontract.org/2004/07/TCCWS")]
+    public partial class ClienteWS : object, System.ComponentModel.INotifyPropertyChanged {
         
         private string BairroField;
         
@@ -82,6 +82,8 @@ namespace TCCWP.ServiceReference1 {
         private string NomeField;
         
         private string NumeroField;
+        
+        private int OrigemField;
         
         private string RuaField;
         
@@ -205,6 +207,19 @@ namespace TCCWP.ServiceReference1 {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Origem {
+            get {
+                return this.OrigemField;
+            }
+            set {
+                if ((this.OrigemField.Equals(value) != true)) {
+                    this.OrigemField = value;
+                    this.RaisePropertyChanged("Origem");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string Rua {
             get {
                 return this.RuaField;
@@ -244,29 +259,38 @@ namespace TCCWP.ServiceReference1 {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference1.IService1")]
     public interface IService1 {
         
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService1/Sincronizar", ReplyAction="http://tempuri.org/IService1/SincronizarResponse")]
+        System.IAsyncResult BeginSincronizar(System.Collections.ObjectModel.ObservableCollection<string> atualizacoes, System.DateTime ultimaAtualizacao, System.AsyncCallback callback, object asyncState);
+        
+        TCCWP.ServiceReference1.Atualizacao EndSincronizar(System.IAsyncResult result);
+        
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService1/GetData", ReplyAction="http://tempuri.org/IService1/GetDataResponse")]
         System.IAsyncResult BeginGetData(System.AsyncCallback callback, object asyncState);
         
         System.Collections.ObjectModel.ObservableCollection<string> EndGetData(System.IAsyncResult result);
-        
-        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService1/GetDataUsingDataContract", ReplyAction="http://tempuri.org/IService1/GetDataUsingDataContractResponse")]
-        System.IAsyncResult BeginGetDataUsingDataContract(TCCWP.ServiceReference1.CompositeType composite, System.AsyncCallback callback, object asyncState);
-        
-        TCCWP.ServiceReference1.CompositeType EndGetDataUsingDataContract(System.IAsyncResult result);
-        
-        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService1/InsertCliente", ReplyAction="http://tempuri.org/IService1/InsertClienteResponse")]
-        System.IAsyncResult BeginInsertCliente(TCCWP.ServiceReference1.Cliente cliente, System.AsyncCallback callback, object asyncState);
-        
-        int EndInsertCliente(System.IAsyncResult result);
-        
-        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService1/GetClientes", ReplyAction="http://tempuri.org/IService1/GetClientesResponse")]
-        System.IAsyncResult BeginGetClientes(System.AsyncCallback callback, object asyncState);
-        
-        System.Collections.ObjectModel.ObservableCollection<TCCWP.ServiceReference1.Cliente> EndGetClientes(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface IService1Channel : TCCWP.ServiceReference1.IService1, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class SincronizarCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public SincronizarCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public TCCWP.ServiceReference1.Atualizacao Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((TCCWP.ServiceReference1.Atualizacao)(this.results[0]));
+            }
+        }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -290,88 +314,19 @@ namespace TCCWP.ServiceReference1 {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class GetDataUsingDataContractCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        public GetDataUsingDataContractCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        public TCCWP.ServiceReference1.CompositeType Result {
-            get {
-                base.RaiseExceptionIfNecessary();
-                return ((TCCWP.ServiceReference1.CompositeType)(this.results[0]));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class InsertClienteCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        public InsertClienteCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        public int Result {
-            get {
-                base.RaiseExceptionIfNecessary();
-                return ((int)(this.results[0]));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class GetClientesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        public GetClientesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        public System.Collections.ObjectModel.ObservableCollection<TCCWP.ServiceReference1.Cliente> Result {
-            get {
-                base.RaiseExceptionIfNecessary();
-                return ((System.Collections.ObjectModel.ObservableCollection<TCCWP.ServiceReference1.Cliente>)(this.results[0]));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class Service1Client : System.ServiceModel.ClientBase<TCCWP.ServiceReference1.IService1>, TCCWP.ServiceReference1.IService1 {
+        
+        private BeginOperationDelegate onBeginSincronizarDelegate;
+        
+        private EndOperationDelegate onEndSincronizarDelegate;
+        
+        private System.Threading.SendOrPostCallback onSincronizarCompletedDelegate;
         
         private BeginOperationDelegate onBeginGetDataDelegate;
         
         private EndOperationDelegate onEndGetDataDelegate;
         
         private System.Threading.SendOrPostCallback onGetDataCompletedDelegate;
-        
-        private BeginOperationDelegate onBeginGetDataUsingDataContractDelegate;
-        
-        private EndOperationDelegate onEndGetDataUsingDataContractDelegate;
-        
-        private System.Threading.SendOrPostCallback onGetDataUsingDataContractCompletedDelegate;
-        
-        private BeginOperationDelegate onBeginInsertClienteDelegate;
-        
-        private EndOperationDelegate onEndInsertClienteDelegate;
-        
-        private System.Threading.SendOrPostCallback onInsertClienteCompletedDelegate;
-        
-        private BeginOperationDelegate onBeginGetClientesDelegate;
-        
-        private EndOperationDelegate onEndGetClientesDelegate;
-        
-        private System.Threading.SendOrPostCallback onGetClientesCompletedDelegate;
         
         private BeginOperationDelegate onBeginOpenDelegate;
         
@@ -426,17 +381,61 @@ namespace TCCWP.ServiceReference1 {
             }
         }
         
+        public event System.EventHandler<SincronizarCompletedEventArgs> SincronizarCompleted;
+        
         public event System.EventHandler<GetDataCompletedEventArgs> GetDataCompleted;
-        
-        public event System.EventHandler<GetDataUsingDataContractCompletedEventArgs> GetDataUsingDataContractCompleted;
-        
-        public event System.EventHandler<InsertClienteCompletedEventArgs> InsertClienteCompleted;
-        
-        public event System.EventHandler<GetClientesCompletedEventArgs> GetClientesCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> OpenCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> CloseCompleted;
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult TCCWP.ServiceReference1.IService1.BeginSincronizar(System.Collections.ObjectModel.ObservableCollection<string> atualizacoes, System.DateTime ultimaAtualizacao, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginSincronizar(atualizacoes, ultimaAtualizacao, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        TCCWP.ServiceReference1.Atualizacao TCCWP.ServiceReference1.IService1.EndSincronizar(System.IAsyncResult result) {
+            return base.Channel.EndSincronizar(result);
+        }
+        
+        private System.IAsyncResult OnBeginSincronizar(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            System.Collections.ObjectModel.ObservableCollection<string> atualizacoes = ((System.Collections.ObjectModel.ObservableCollection<string>)(inValues[0]));
+            System.DateTime ultimaAtualizacao = ((System.DateTime)(inValues[1]));
+            return ((TCCWP.ServiceReference1.IService1)(this)).BeginSincronizar(atualizacoes, ultimaAtualizacao, callback, asyncState);
+        }
+        
+        private object[] OnEndSincronizar(System.IAsyncResult result) {
+            TCCWP.ServiceReference1.Atualizacao retVal = ((TCCWP.ServiceReference1.IService1)(this)).EndSincronizar(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnSincronizarCompleted(object state) {
+            if ((this.SincronizarCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.SincronizarCompleted(this, new SincronizarCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void SincronizarAsync(System.Collections.ObjectModel.ObservableCollection<string> atualizacoes, System.DateTime ultimaAtualizacao) {
+            this.SincronizarAsync(atualizacoes, ultimaAtualizacao, null);
+        }
+        
+        public void SincronizarAsync(System.Collections.ObjectModel.ObservableCollection<string> atualizacoes, System.DateTime ultimaAtualizacao, object userState) {
+            if ((this.onBeginSincronizarDelegate == null)) {
+                this.onBeginSincronizarDelegate = new BeginOperationDelegate(this.OnBeginSincronizar);
+            }
+            if ((this.onEndSincronizarDelegate == null)) {
+                this.onEndSincronizarDelegate = new EndOperationDelegate(this.OnEndSincronizar);
+            }
+            if ((this.onSincronizarCompletedDelegate == null)) {
+                this.onSincronizarCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnSincronizarCompleted);
+            }
+            base.InvokeAsync(this.onBeginSincronizarDelegate, new object[] {
+                        atualizacoes,
+                        ultimaAtualizacao}, this.onEndSincronizarDelegate, this.onSincronizarCompletedDelegate, userState);
+        }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         System.IAsyncResult TCCWP.ServiceReference1.IService1.BeginGetData(System.AsyncCallback callback, object asyncState) {
@@ -480,142 +479,6 @@ namespace TCCWP.ServiceReference1 {
                 this.onGetDataCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetDataCompleted);
             }
             base.InvokeAsync(this.onBeginGetDataDelegate, null, this.onEndGetDataDelegate, this.onGetDataCompletedDelegate, userState);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult TCCWP.ServiceReference1.IService1.BeginGetDataUsingDataContract(TCCWP.ServiceReference1.CompositeType composite, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginGetDataUsingDataContract(composite, callback, asyncState);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        TCCWP.ServiceReference1.CompositeType TCCWP.ServiceReference1.IService1.EndGetDataUsingDataContract(System.IAsyncResult result) {
-            return base.Channel.EndGetDataUsingDataContract(result);
-        }
-        
-        private System.IAsyncResult OnBeginGetDataUsingDataContract(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            TCCWP.ServiceReference1.CompositeType composite = ((TCCWP.ServiceReference1.CompositeType)(inValues[0]));
-            return ((TCCWP.ServiceReference1.IService1)(this)).BeginGetDataUsingDataContract(composite, callback, asyncState);
-        }
-        
-        private object[] OnEndGetDataUsingDataContract(System.IAsyncResult result) {
-            TCCWP.ServiceReference1.CompositeType retVal = ((TCCWP.ServiceReference1.IService1)(this)).EndGetDataUsingDataContract(result);
-            return new object[] {
-                    retVal};
-        }
-        
-        private void OnGetDataUsingDataContractCompleted(object state) {
-            if ((this.GetDataUsingDataContractCompleted != null)) {
-                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
-                this.GetDataUsingDataContractCompleted(this, new GetDataUsingDataContractCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
-            }
-        }
-        
-        public void GetDataUsingDataContractAsync(TCCWP.ServiceReference1.CompositeType composite) {
-            this.GetDataUsingDataContractAsync(composite, null);
-        }
-        
-        public void GetDataUsingDataContractAsync(TCCWP.ServiceReference1.CompositeType composite, object userState) {
-            if ((this.onBeginGetDataUsingDataContractDelegate == null)) {
-                this.onBeginGetDataUsingDataContractDelegate = new BeginOperationDelegate(this.OnBeginGetDataUsingDataContract);
-            }
-            if ((this.onEndGetDataUsingDataContractDelegate == null)) {
-                this.onEndGetDataUsingDataContractDelegate = new EndOperationDelegate(this.OnEndGetDataUsingDataContract);
-            }
-            if ((this.onGetDataUsingDataContractCompletedDelegate == null)) {
-                this.onGetDataUsingDataContractCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetDataUsingDataContractCompleted);
-            }
-            base.InvokeAsync(this.onBeginGetDataUsingDataContractDelegate, new object[] {
-                        composite}, this.onEndGetDataUsingDataContractDelegate, this.onGetDataUsingDataContractCompletedDelegate, userState);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult TCCWP.ServiceReference1.IService1.BeginInsertCliente(TCCWP.ServiceReference1.Cliente cliente, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginInsertCliente(cliente, callback, asyncState);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        int TCCWP.ServiceReference1.IService1.EndInsertCliente(System.IAsyncResult result) {
-            return base.Channel.EndInsertCliente(result);
-        }
-        
-        private System.IAsyncResult OnBeginInsertCliente(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            TCCWP.ServiceReference1.Cliente cliente = ((TCCWP.ServiceReference1.Cliente)(inValues[0]));
-            return ((TCCWP.ServiceReference1.IService1)(this)).BeginInsertCliente(cliente, callback, asyncState);
-        }
-        
-        private object[] OnEndInsertCliente(System.IAsyncResult result) {
-            int retVal = ((TCCWP.ServiceReference1.IService1)(this)).EndInsertCliente(result);
-            return new object[] {
-                    retVal};
-        }
-        
-        private void OnInsertClienteCompleted(object state) {
-            if ((this.InsertClienteCompleted != null)) {
-                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
-                this.InsertClienteCompleted(this, new InsertClienteCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
-            }
-        }
-        
-        public void InsertClienteAsync(TCCWP.ServiceReference1.Cliente cliente) {
-            this.InsertClienteAsync(cliente, null);
-        }
-        
-        public void InsertClienteAsync(TCCWP.ServiceReference1.Cliente cliente, object userState) {
-            if ((this.onBeginInsertClienteDelegate == null)) {
-                this.onBeginInsertClienteDelegate = new BeginOperationDelegate(this.OnBeginInsertCliente);
-            }
-            if ((this.onEndInsertClienteDelegate == null)) {
-                this.onEndInsertClienteDelegate = new EndOperationDelegate(this.OnEndInsertCliente);
-            }
-            if ((this.onInsertClienteCompletedDelegate == null)) {
-                this.onInsertClienteCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnInsertClienteCompleted);
-            }
-            base.InvokeAsync(this.onBeginInsertClienteDelegate, new object[] {
-                        cliente}, this.onEndInsertClienteDelegate, this.onInsertClienteCompletedDelegate, userState);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult TCCWP.ServiceReference1.IService1.BeginGetClientes(System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginGetClientes(callback, asyncState);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Collections.ObjectModel.ObservableCollection<TCCWP.ServiceReference1.Cliente> TCCWP.ServiceReference1.IService1.EndGetClientes(System.IAsyncResult result) {
-            return base.Channel.EndGetClientes(result);
-        }
-        
-        private System.IAsyncResult OnBeginGetClientes(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            return ((TCCWP.ServiceReference1.IService1)(this)).BeginGetClientes(callback, asyncState);
-        }
-        
-        private object[] OnEndGetClientes(System.IAsyncResult result) {
-            System.Collections.ObjectModel.ObservableCollection<TCCWP.ServiceReference1.Cliente> retVal = ((TCCWP.ServiceReference1.IService1)(this)).EndGetClientes(result);
-            return new object[] {
-                    retVal};
-        }
-        
-        private void OnGetClientesCompleted(object state) {
-            if ((this.GetClientesCompleted != null)) {
-                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
-                this.GetClientesCompleted(this, new GetClientesCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
-            }
-        }
-        
-        public void GetClientesAsync() {
-            this.GetClientesAsync(null);
-        }
-        
-        public void GetClientesAsync(object userState) {
-            if ((this.onBeginGetClientesDelegate == null)) {
-                this.onBeginGetClientesDelegate = new BeginOperationDelegate(this.OnBeginGetClientes);
-            }
-            if ((this.onEndGetClientesDelegate == null)) {
-                this.onEndGetClientesDelegate = new EndOperationDelegate(this.OnEndGetClientes);
-            }
-            if ((this.onGetClientesCompletedDelegate == null)) {
-                this.onGetClientesCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetClientesCompleted);
-            }
-            base.InvokeAsync(this.onBeginGetClientesDelegate, null, this.onEndGetClientesDelegate, this.onGetClientesCompletedDelegate, userState);
         }
         
         private System.IAsyncResult OnBeginOpen(object[] inValues, System.AsyncCallback callback, object asyncState) {
@@ -694,6 +557,20 @@ namespace TCCWP.ServiceReference1 {
                     base(client) {
             }
             
+            public System.IAsyncResult BeginSincronizar(System.Collections.ObjectModel.ObservableCollection<string> atualizacoes, System.DateTime ultimaAtualizacao, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[2];
+                _args[0] = atualizacoes;
+                _args[1] = ultimaAtualizacao;
+                System.IAsyncResult _result = base.BeginInvoke("Sincronizar", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public TCCWP.ServiceReference1.Atualizacao EndSincronizar(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                TCCWP.ServiceReference1.Atualizacao _result = ((TCCWP.ServiceReference1.Atualizacao)(base.EndInvoke("Sincronizar", _args, result)));
+                return _result;
+            }
+            
             public System.IAsyncResult BeginGetData(System.AsyncCallback callback, object asyncState) {
                 object[] _args = new object[0];
                 System.IAsyncResult _result = base.BeginInvoke("GetData", _args, callback, asyncState);
@@ -703,44 +580,6 @@ namespace TCCWP.ServiceReference1 {
             public System.Collections.ObjectModel.ObservableCollection<string> EndGetData(System.IAsyncResult result) {
                 object[] _args = new object[0];
                 System.Collections.ObjectModel.ObservableCollection<string> _result = ((System.Collections.ObjectModel.ObservableCollection<string>)(base.EndInvoke("GetData", _args, result)));
-                return _result;
-            }
-            
-            public System.IAsyncResult BeginGetDataUsingDataContract(TCCWP.ServiceReference1.CompositeType composite, System.AsyncCallback callback, object asyncState) {
-                object[] _args = new object[1];
-                _args[0] = composite;
-                System.IAsyncResult _result = base.BeginInvoke("GetDataUsingDataContract", _args, callback, asyncState);
-                return _result;
-            }
-            
-            public TCCWP.ServiceReference1.CompositeType EndGetDataUsingDataContract(System.IAsyncResult result) {
-                object[] _args = new object[0];
-                TCCWP.ServiceReference1.CompositeType _result = ((TCCWP.ServiceReference1.CompositeType)(base.EndInvoke("GetDataUsingDataContract", _args, result)));
-                return _result;
-            }
-            
-            public System.IAsyncResult BeginInsertCliente(TCCWP.ServiceReference1.Cliente cliente, System.AsyncCallback callback, object asyncState) {
-                object[] _args = new object[1];
-                _args[0] = cliente;
-                System.IAsyncResult _result = base.BeginInvoke("InsertCliente", _args, callback, asyncState);
-                return _result;
-            }
-            
-            public int EndInsertCliente(System.IAsyncResult result) {
-                object[] _args = new object[0];
-                int _result = ((int)(base.EndInvoke("InsertCliente", _args, result)));
-                return _result;
-            }
-            
-            public System.IAsyncResult BeginGetClientes(System.AsyncCallback callback, object asyncState) {
-                object[] _args = new object[0];
-                System.IAsyncResult _result = base.BeginInvoke("GetClientes", _args, callback, asyncState);
-                return _result;
-            }
-            
-            public System.Collections.ObjectModel.ObservableCollection<TCCWP.ServiceReference1.Cliente> EndGetClientes(System.IAsyncResult result) {
-                object[] _args = new object[0];
-                System.Collections.ObjectModel.ObservableCollection<TCCWP.ServiceReference1.Cliente> _result = ((System.Collections.ObjectModel.ObservableCollection<TCCWP.ServiceReference1.Cliente>)(base.EndInvoke("GetClientes", _args, result)));
                 return _result;
             }
         }

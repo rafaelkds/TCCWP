@@ -13,14 +13,16 @@ namespace TCCWP
     {
         private static string caminhoDB = Path.Combine(Windows.Storage.ApplicationData.Current.LocalFolder.Path, "test.sqlite");
         
-        public static void Insert<T>(T objeto)
+        public static void Insert<T>(List<T> lista, Log log)
         {
             using (var dbConn = new SQLiteConnection(caminhoDB))
             {
                 dbConn.RunInTransaction(() =>
                 {
                     dbConn.CreateTable<T>();
-                    dbConn.Insert(objeto);
+                    dbConn.InsertAll(lista);
+                    dbConn.CreateTable<Log>();
+                    dbConn.Insert(log);
                 });
             }
         }
@@ -44,12 +46,52 @@ namespace TCCWP
                 return dbConn.Table<Cliente>().ToList();
             }
         }
-        /*
-        public static List<T> Query<T>()
+        
+        public static List<T> Query<T>(string query)
         {
             using (var dbConn = new SQLiteConnection(caminhoDB))
             {
-                return dbConn.Query<T>("");
+                TableMapping tm = new TableMapping(typeof(T));
+                dbConn.CreateTable<T>();
+                return new List<T>(dbConn.Query(tm, query).Cast<T>());
+            }
+        }
+
+        public static void Atualiza<T>(List<T> lista)
+        {
+            using (var dbConn = new SQLiteConnection(caminhoDB))
+            {
+                dbConn.RunInTransaction(() =>
+                {
+                    dbConn.CreateTable<T>();
+                    foreach (T objeto in lista)
+                        dbConn.InsertOrReplace(objeto);
+                });
+            }
+        }
+
+        public static void UltSinc(Sinc ultSinc)
+        {
+            using (var dbConn = new SQLiteConnection(caminhoDB))
+            {
+                dbConn.RunInTransaction(() =>
+                {
+                    dbConn.DropTable<Sinc>();
+                    dbConn.CreateTable<Sinc>();
+                    dbConn.Insert(ultSinc);
+                });
+            }
+        }
+        
+        /*
+        public static void NonQuer(string query)
+        {
+            using (var dbConn = new SQLiteConnection(caminhoDB))
+            {
+                dbConn.RunInTransaction(() =>
+                {
+                    dbConn.Execute(query);
+                });
             }
         }*/
     }

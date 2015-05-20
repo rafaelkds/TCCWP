@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/TCCWS" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/TCCWS" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:complexType name="CompositeType">
+  <xs:complexType name="Atualizacao">
     <xs:sequence>
-      <xs:element minOccurs="0" name="BoolValue" type="xs:boolean" />
-      <xs:element minOccurs="0" name="StringValue" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="clientes" nillable="true" type="tns:ArrayOfClienteWS" />
+      <xs:element minOccurs="0" name="dtAtualizado" type="xs:dateTime" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="CompositeType" nillable="true" type="tns:CompositeType" />
-  <xs:complexType name="Cliente">
+  <xs:element name="Atualizacao" nillable="true" type="tns:Atualizacao" />
+  <xs:complexType name="ArrayOfClienteWS">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ClienteWS" nillable="true" type="tns:ClienteWS" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfClienteWS" nillable="true" type="tns:ArrayOfClienteWS" />
+  <xs:complexType name="ClienteWS">
     <xs:sequence>
       <xs:element minOccurs="0" name="Bairro" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Cep" nillable="true" type="xs:string" />
@@ -18,15 +24,10 @@
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="Nome" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Numero" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Origem" type="xs:int" />
       <xs:element minOccurs="0" name="Rua" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Telefone" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="Cliente" nillable="true" type="tns:Cliente" />
-  <xs:complexType name="ArrayOfCliente">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Cliente" nillable="true" type="tns:Cliente" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfCliente" nillable="true" type="tns:ArrayOfCliente" />
+  <xs:element name="ClienteWS" nillable="true" type="tns:ClienteWS" />
 </xs:schema>

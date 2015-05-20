@@ -40,10 +40,7 @@ namespace TCCWP
             listClientes.ItemsSource = BancoDeDados.ListAllCliente();
         }
 
-        void GetClientesCompleted(object sender, GetClientesCompletedEventArgs e)
-        {
-            listClientes.ItemsSource = e.Result;
-        }
+        
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -67,6 +64,7 @@ namespace TCCWP
 
                 
                 Cliente c = new Cliente();
+                c.Origem = 1;
                 c.Nome = tbNome.Text;
                 c.Cpf = tbCpf.Text;
                 c.Rua = tbRua.Text;
@@ -80,8 +78,10 @@ namespace TCCWP
                 dbConn.Insert(c);
                 dbConn.Close();
                 */
-
-                BancoDeDados.Insert<Cliente>(c);
+                ControleCliente cc = new ControleCliente();
+                List<Cliente> lista = new List<Cliente>();
+                lista.Add(c);
+                cc.gravar(lista);
             }
             catch (Exception ex)
             {
@@ -89,13 +89,7 @@ namespace TCCWP
             }
         }
 
-        void InsertClienteCompleted(object sender, InsertClienteCompletedEventArgs e)
-        {
-            if (e.Result == 1)
-                MessageBox.Show("Gravou");
-            else
-                MessageBox.Show("Erro");
-        }
+        
 
     }
 }

@@ -10,6 +10,8 @@ namespace TCCWP
     {
         [SQLite.PrimaryKey, SQLite.AutoIncrement]
         public int Id { get; set; }
+        [SQLite.]
+        public int Origem { get; set; }
         public string Nome { get; set; }
         public string Cpf { get; set; }
         public string Rua { get; set; }
@@ -20,6 +22,5 @@ namespace TCCWP
         public string Complemento { get; set; }
         public string Telefone { get; set; }
         public string Email { get; set; }
-        public DateTime Alteracao { get; set; }
     }
 }

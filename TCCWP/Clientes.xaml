@@ -24,10 +24,10 @@
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{Binding Nome}"
+                                    <TextBlock Text="{Binding Id}"
 						TextWrapping="Wrap" FontSize="25" />
 
-                                    <TextBlock Text="{Binding Cpf}"
+                                    <TextBlock Text="{Binding Nome}"
 						TextWrapping="Wrap" FontSize="25" />
                                 </StackPanel>
                             </DataTemplate>

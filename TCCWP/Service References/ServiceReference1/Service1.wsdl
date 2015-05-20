@@ -8,79 +8,41 @@
       <xsd:import schemaLocation="http://localhost:12115/Service1.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/TCCWS" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="IService1_Sincronizar_InputMessage">
+    <wsdl:part name="parameters" element="tns:Sincronizar" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Sincronizar_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SincronizarResponse" />
+  </wsdl:message>
   <wsdl:message name="IService1_GetData_InputMessage">
     <wsdl:part name="parameters" element="tns:GetData" />
   </wsdl:message>
   <wsdl:message name="IService1_GetData_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetDataResponse" />
   </wsdl:message>
-  <wsdl:message name="IService1_GetDataUsingDataContract_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetDataUsingDataContract" />
-  </wsdl:message>
-  <wsdl:message name="IService1_GetDataUsingDataContract_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetDataUsingDataContractResponse" />
-  </wsdl:message>
-  <wsdl:message name="IService1_InsertCliente_InputMessage">
-    <wsdl:part name="parameters" element="tns:InsertCliente" />
-  </wsdl:message>
-  <wsdl:message name="IService1_InsertCliente_OutputMessage">
-    <wsdl:part name="parameters" element="tns:InsertClienteResponse" />
-  </wsdl:message>
-  <wsdl:message name="IService1_GetClientes_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetClientes" />
-  </wsdl:message>
-  <wsdl:message name="IService1_GetClientes_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetClientesResponse" />
-  </wsdl:message>
   <wsdl:portType name="IService1">
+    <wsdl:operation name="Sincronizar">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/Sincronizar" message="tns:IService1_Sincronizar_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SincronizarResponse" message="tns:IService1_Sincronizar_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetData">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetData" message="tns:IService1_GetData_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetDataResponse" message="tns:IService1_GetData_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetDataUsingDataContract">
-      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetDataUsingDataContract" message="tns:IService1_GetDataUsingDataContract_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetDataUsingDataContractResponse" message="tns:IService1_GetDataUsingDataContract_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="InsertCliente">
-      <wsdl:input wsaw:Action="http://tempuri.org/IService1/InsertCliente" message="tns:IService1_InsertCliente_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IService1/InsertClienteResponse" message="tns:IService1_InsertCliente_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetClientes">
-      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetClientes" message="tns:IService1_GetClientes_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetClientesResponse" message="tns:IService1_GetClientes_OutputMessage" />
-    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IService1" type="tns:IService1">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Sincronizar">
+      <soap:operation soapAction="http://tempuri.org/IService1/Sincronizar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetData">
       <soap:operation soapAction="http://tempuri.org/IService1/GetData" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetDataUsingDataContract">
-      <soap:operation soapAction="http://tempuri.org/IService1/GetDataUsingDataContract" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="InsertCliente">
-      <soap:operation soapAction="http://tempuri.org/IService1/InsertCliente" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetClientes">
-      <soap:operation soapAction="http://tempuri.org/IService1/GetClientes" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
