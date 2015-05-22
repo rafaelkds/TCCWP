@@ -11,7 +11,9 @@ namespace TCCWP
 {
     class BancoDeDados
     {
-        private static string caminhoDB = Path.Combine(Windows.Storage.ApplicationData.Current.LocalFolder.Path, "test.sqlite");
+        private static string caminhoDB = Path.Combine(Windows.Storage.ApplicationData.Current.LocalFolder.Path, "teste.sqlite");
+        private static string idU = "1";
+        private static string x = "";
         
         public static void Insert<T>(List<T> lista, Log log)
         {
@@ -26,6 +28,8 @@ namespace TCCWP
                 });
             }
         }
+
+        
 
         public static void Update(object objeto)
         {
@@ -70,6 +74,27 @@ namespace TCCWP
             }
         }
 
+        public static void AtualizaI<T>(T objeto)
+        {
+            try
+            {
+                using (var dbConn = new SQLiteConnection(caminhoDB))
+                {
+                    dbConn.RunInTransaction(() =>
+                    {
+                        Cliente c = objeto as Cliente;
+                        x += "\n" + (c.Id + " // " + c.Nome + " // " + c.Numero + " // " + c.Rua + " // " + c.Telefone + " // " 
+                            + c.Email + " // " + c.Cpf + " // " + c.Complemento + " // " + c.Cidade + " // " + c.Cep + " // " + c.Bairro);
+                        dbConn.CreateTable<T>();
+                        dbConn.InsertOrReplace(objeto);
+                    });
+                }
+            }catch(Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.Message);
+            }
+        }
+
         public static void UltSinc(Sinc ultSinc)
         {
             using (var dbConn = new SQLiteConnection(caminhoDB))
@@ -81,6 +106,34 @@ namespace TCCWP
                     dbConn.Insert(ultSinc);
                 });
             }
+        }
+
+        
+
+        public static string GetIdCliente()
+        {
+            string id = "";
+            using (var dbConn = new SQLiteConnection(caminhoDB))
+            {
+                dbConn.RunInTransaction(() =>
+                {
+                    dbConn.CreateTable<Id>();
+                    List<Id> ls = dbConn.Query<Id>("select * from Id");
+                    int idAux;
+                    if (ls.Count == 0)
+                    {
+                        idAux = 1;
+                        dbConn.Execute("Insert into Id (Cliente) values (?)", idAux);
+                    }
+                    else
+                    {
+                        idAux = ls[0].Cliente + 1;
+                        dbConn.Execute("Update Id set Cliente = ?", idAux);
+                    }
+                    id = idU + "/" + idAux;
+                });
+            }
+            return id;
         }
         
         /*

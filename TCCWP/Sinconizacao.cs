@@ -31,14 +31,12 @@ namespace TCCWP
 
         void SincronizarCompleted(object sender, SincronizarCompletedEventArgs e)
         {
-            System.Windows.MessageBox.Show("1");
             Atualizacao a = e.Result;
             List<Cliente> lista = new List<Cliente>(a.clientes.Count);
             foreach(ClienteWS item in a.clientes)
             {
                 lista.Add(new Cliente(){
                     Id = item.Id,
-                    Origem = item.Origem,
                     Nome = item.Nome,
                     Cpf = item.Cpf,
                     Rua = item.Rua,
@@ -51,8 +49,12 @@ namespace TCCWP
                     Email = item.Email
                 });
             }
-            System.Windows.MessageBox.Show("2 " + lista.Count);
+            
             BancoDeDados.Atualiza<Cliente>(lista);
+            /*foreach(Cliente c in lista)
+            {
+                BancoDeDados.AtualizaI<Cliente>(c);
+            }*/
 
             Sinc s = new Sinc();
             List<Sinc> ls = BancoDeDados.Query<Sinc>("select * from Sinc");
@@ -63,7 +65,6 @@ namespace TCCWP
 
             BancoDeDados.UltSinc(s);
             concluiu = true;
-            System.Windows.MessageBox.Show("3");
         }
     }
 }

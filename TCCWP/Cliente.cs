@@ -8,10 +8,8 @@ namespace TCCWP
 {
     class Cliente
     {
-        [SQLite.PrimaryKey, SQLite.AutoIncrement]
-        public int Id { get; set; }
-        [SQLite.]
-        public int Origem { get; set; }
+        [SQLite.PrimaryKey]
+        public string Id { get; set; }
         public string Nome { get; set; }
         public string Cpf { get; set; }
         public string Rua { get; set; }

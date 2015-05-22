@@ -64,7 +64,6 @@ namespace TCCWP
 
                 
                 Cliente c = new Cliente();
-                c.Origem = 1;
                 c.Nome = tbNome.Text;
                 c.Cpf = tbCpf.Text;
                 c.Rua = tbRua.Text;

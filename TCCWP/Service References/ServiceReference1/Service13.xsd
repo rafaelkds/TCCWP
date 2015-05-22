@@ -21,10 +21,9 @@
       <xs:element minOccurs="0" name="Complemento" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Cpf" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Id" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Nome" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Numero" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Origem" type="xs:int" />
       <xs:element minOccurs="0" name="Rua" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Telefone" nillable="true" type="xs:string" />
     </xs:sequence>

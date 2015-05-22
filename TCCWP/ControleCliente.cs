@@ -19,9 +19,10 @@ namespace TCCWP
             string values = "";
             foreach(Cliente cliente in lista)
             {
+                if (string.IsNullOrWhiteSpace(cliente.Id)) cliente.Id = BancoDeDados.GetIdCliente();
                 if (values.Length > 0) values += ", ";
                 values += "("
-                    + "$$" + cliente.Origem + "$$,"
+                    + "$$" + cliente.Id + "$$,"
                     + "$$" + cliente.Nome + "$$,"
                     + "$$" + cliente.Cpf + "$$," 
                     + "$$" + cliente.Rua + "$$," 
@@ -34,7 +35,7 @@ namespace TCCWP
                     + "$$" + cliente.Email + "$$)";
             }
             string sql = "insert into Cliente "
-                + "(Origem, Nome, Cpf, Rua, Numero, Bairro, Cidade, Cep, Complemento, Telefone, Email) "
+                + "(Id, Nome, Cpf, Rua, Numero, Bairro, Cidade, Cep, Complemento, Telefone, Email) "
                 + "values " + values;
             Log log = new Log();
             log.Sql = sql;

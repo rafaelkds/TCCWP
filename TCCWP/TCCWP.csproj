@@ -102,6 +102,7 @@
     </Compile>
     <Compile Include="Controle.cs" />
     <Compile Include="ControleCliente.cs" />
+    <Compile Include="Id.cs" />
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="MainPage.xaml.cs">

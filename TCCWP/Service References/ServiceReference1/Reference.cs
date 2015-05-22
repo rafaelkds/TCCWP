@@ -77,13 +77,11 @@ namespace TCCWP.ServiceReference1 {
         
         private string EmailField;
         
-        private int IdField;
+        private string IdField;
         
         private string NomeField;
         
         private string NumeroField;
-        
-        private int OrigemField;
         
         private string RuaField;
         
@@ -168,12 +166,12 @@ namespace TCCWP.ServiceReference1 {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Id {
+        public string Id {
             get {
                 return this.IdField;
             }
             set {
-                if ((this.IdField.Equals(value) != true)) {
+                if ((object.ReferenceEquals(this.IdField, value) != true)) {
                     this.IdField = value;
                     this.RaisePropertyChanged("Id");
                 }
@@ -202,19 +200,6 @@ namespace TCCWP.ServiceReference1 {
                 if ((object.ReferenceEquals(this.NumeroField, value) != true)) {
                     this.NumeroField = value;
                     this.RaisePropertyChanged("Numero");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Origem {
-            get {
-                return this.OrigemField;
-            }
-            set {
-                if ((this.OrigemField.Equals(value) != true)) {
-                    this.OrigemField = value;
-                    this.RaisePropertyChanged("Origem");
                 }
             }
         }
