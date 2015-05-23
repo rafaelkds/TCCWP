@@ -10,17 +10,20 @@ namespace TCCWP
     class Sinconizacao
     {
         private bool concluiu;
+        private List<Log> atualizacoes;
         public async void Sincronizar()
         {
             concluiu = false;
             List<Sinc> ls = BancoDeDados.Query<Sinc>("select * from Sinc");
             Sinc ultSinc = ls.Count > 0 ? ls[0] : new Sinc();
-            List<Log> atualizacoes = BancoDeDados.Query<Log>("select * from Log order by Id");
+            atualizacoes = BancoDeDados.Query<Log>("select * from Log order by Id");
             List<string> lista = new List<string>();
             foreach(Log log in atualizacoes)
             {
                 lista.Add(log.Sql);
             }
+
+            
 
             Service1Client client = new Service1Client();
             client.SincronizarCompleted += SincronizarCompleted;
@@ -31,6 +34,11 @@ namespace TCCWP
 
         void SincronizarCompleted(object sender, SincronizarCompletedEventArgs e)
         {
+            foreach (Log log in atualizacoes)
+            {
+                BancoDeDados.Delete(log);
+            }
+
             Atualizacao a = e.Result;
             List<Cliente> lista = new List<Cliente>(a.clientes.Count);
             foreach(ClienteWS item in a.clientes)

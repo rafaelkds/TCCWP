@@ -8,7 +8,7 @@ namespace TCCWP
 {
     class Cliente
     {
-        [SQLite.PrimaryKey]
+        [SQLite.Unique]
         public string Id { get; set; }
         public string Nome { get; set; }
         public string Cpf { get; set; }

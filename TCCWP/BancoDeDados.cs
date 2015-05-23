@@ -29,7 +29,16 @@ namespace TCCWP
             }
         }
 
-        
+        public static void Delete(object objeto)
+        {
+            using (var dbConn = new SQLiteConnection(caminhoDB))
+            {
+                dbConn.RunInTransaction(() =>
+                {
+                    dbConn.Delete(objeto);
+                });
+            }
+        }
 
         public static void Update(object objeto)
         {
