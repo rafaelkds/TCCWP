@@ -27,7 +27,7 @@ namespace TCCWP
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/Clientes.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/Telas/Clientes.xaml", UriKind.Relative));
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -43,6 +43,16 @@ namespace TCCWP
             TCCWP.ServiceReference1.Service1Client client = new TCCWP.ServiceReference1.Service1Client();
             client.SincronizarCompleted += SincronizarCompleted;
             client.SincronizarAsync(new System.Collections.ObjectModel.ObservableCollection<string>(lista), DateTime.Now.AddYears(-5));*/
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/Telas/Produtos.xaml", UriKind.Relative));
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/Telas/Pedidos.xaml", UriKind.Relative));
         }
         /*
         void SincronizarCompleted(object sender, TCCWP.ServiceReference1.SincronizarCompletedEventArgs e)

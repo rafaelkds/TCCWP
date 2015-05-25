@@ -24,6 +24,12 @@ namespace TCCWP.ServiceReference1 {
         
         private System.DateTime dtAtualizadoField;
         
+        private System.Collections.ObjectModel.ObservableCollection<TCCWP.ServiceReference1.PedidoWS> pedidosField;
+        
+        private System.Collections.ObjectModel.ObservableCollection<TCCWP.ServiceReference1.ProdutoWS> produtosField;
+        
+        private System.Collections.ObjectModel.ObservableCollection<TCCWP.ServiceReference1.ProdutoPedidoWS> produtospedidoField;
+        
         [System.Runtime.Serialization.DataMemberAttribute()]
         public System.Collections.ObjectModel.ObservableCollection<TCCWP.ServiceReference1.ClienteWS> clientes {
             get {
@@ -46,6 +52,45 @@ namespace TCCWP.ServiceReference1 {
                 if ((this.dtAtualizadoField.Equals(value) != true)) {
                     this.dtAtualizadoField = value;
                     this.RaisePropertyChanged("dtAtualizado");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.ObjectModel.ObservableCollection<TCCWP.ServiceReference1.PedidoWS> pedidos {
+            get {
+                return this.pedidosField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.pedidosField, value) != true)) {
+                    this.pedidosField = value;
+                    this.RaisePropertyChanged("pedidos");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.ObjectModel.ObservableCollection<TCCWP.ServiceReference1.ProdutoWS> produtos {
+            get {
+                return this.produtosField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.produtosField, value) != true)) {
+                    this.produtosField = value;
+                    this.RaisePropertyChanged("produtos");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.ObjectModel.ObservableCollection<TCCWP.ServiceReference1.ProdutoPedidoWS> produtospedido {
+            get {
+                return this.produtospedidoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.produtospedidoField, value) != true)) {
+                    this.produtospedidoField = value;
+                    this.RaisePropertyChanged("produtospedido");
                 }
             }
         }
@@ -226,6 +271,291 @@ namespace TCCWP.ServiceReference1 {
                 if ((object.ReferenceEquals(this.TelefoneField, value) != true)) {
                     this.TelefoneField = value;
                     this.RaisePropertyChanged("Telefone");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="PedidoWS", Namespace="http://schemas.datacontract.org/2004/07/TCCWS")]
+    public partial class PedidoWS : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private System.DateTime DataEmissaoField;
+        
+        private System.DateTime DataPagoField;
+        
+        private string IdField;
+        
+        private string IdClienteField;
+        
+        private int IdVendedorField;
+        
+        private string NumeroField;
+        
+        private string ObservacoesField;
+        
+        private decimal ValorField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime DataEmissao {
+            get {
+                return this.DataEmissaoField;
+            }
+            set {
+                if ((this.DataEmissaoField.Equals(value) != true)) {
+                    this.DataEmissaoField = value;
+                    this.RaisePropertyChanged("DataEmissao");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime DataPago {
+            get {
+                return this.DataPagoField;
+            }
+            set {
+                if ((this.DataPagoField.Equals(value) != true)) {
+                    this.DataPagoField = value;
+                    this.RaisePropertyChanged("DataPago");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.IdField, value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string IdCliente {
+            get {
+                return this.IdClienteField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.IdClienteField, value) != true)) {
+                    this.IdClienteField = value;
+                    this.RaisePropertyChanged("IdCliente");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdVendedor {
+            get {
+                return this.IdVendedorField;
+            }
+            set {
+                if ((this.IdVendedorField.Equals(value) != true)) {
+                    this.IdVendedorField = value;
+                    this.RaisePropertyChanged("IdVendedor");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Numero {
+            get {
+                return this.NumeroField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NumeroField, value) != true)) {
+                    this.NumeroField = value;
+                    this.RaisePropertyChanged("Numero");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Observacoes {
+            get {
+                return this.ObservacoesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ObservacoesField, value) != true)) {
+                    this.ObservacoesField = value;
+                    this.RaisePropertyChanged("Observacoes");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal Valor {
+            get {
+                return this.ValorField;
+            }
+            set {
+                if ((this.ValorField.Equals(value) != true)) {
+                    this.ValorField = value;
+                    this.RaisePropertyChanged("Valor");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ProdutoWS", Namespace="http://schemas.datacontract.org/2004/07/TCCWS")]
+    public partial class ProdutoWS : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private decimal EstoqueField;
+        
+        private int IdField;
+        
+        private string NomeField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal Estoque {
+            get {
+                return this.EstoqueField;
+            }
+            set {
+                if ((this.EstoqueField.Equals(value) != true)) {
+                    this.EstoqueField = value;
+                    this.RaisePropertyChanged("Estoque");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Nome {
+            get {
+                return this.NomeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NomeField, value) != true)) {
+                    this.NomeField = value;
+                    this.RaisePropertyChanged("Nome");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ProdutoPedidoWS", Namespace="http://schemas.datacontract.org/2004/07/TCCWS")]
+    public partial class ProdutoPedidoWS : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private string IdField;
+        
+        private string IdPedidoField;
+        
+        private int IdProdutoField;
+        
+        private decimal QuantidadeField;
+        
+        private decimal ValorField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.IdField, value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string IdPedido {
+            get {
+                return this.IdPedidoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.IdPedidoField, value) != true)) {
+                    this.IdPedidoField = value;
+                    this.RaisePropertyChanged("IdPedido");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdProduto {
+            get {
+                return this.IdProdutoField;
+            }
+            set {
+                if ((this.IdProdutoField.Equals(value) != true)) {
+                    this.IdProdutoField = value;
+                    this.RaisePropertyChanged("IdProduto");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal Quantidade {
+            get {
+                return this.QuantidadeField;
+            }
+            set {
+                if ((this.QuantidadeField.Equals(value) != true)) {
+                    this.QuantidadeField = value;
+                    this.RaisePropertyChanged("Quantidade");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal Valor {
+            get {
+                return this.ValorField;
+            }
+            set {
+                if ((this.ValorField.Equals(value) != true)) {
+                    this.ValorField = value;
+                    this.RaisePropertyChanged("Valor");
                 }
             }
         }

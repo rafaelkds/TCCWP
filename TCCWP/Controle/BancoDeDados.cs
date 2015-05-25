@@ -59,6 +59,15 @@ namespace TCCWP
                 return dbConn.Table<Cliente>().ToList();
             }
         }
+
+        public static List<Produto> ListAllProduto()
+        {
+            using (var dbConn = new SQLiteConnection(caminhoDB))
+            {
+                dbConn.CreateTable<Produto>();
+                return dbConn.Table<Produto>().ToList();
+            }
+        }
         
         public static List<T> Query<T>(string query)
         {

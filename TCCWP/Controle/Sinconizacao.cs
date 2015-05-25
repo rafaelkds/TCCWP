@@ -40,10 +40,13 @@ namespace TCCWP
             }
 
             Atualizacao a = e.Result;
-            List<Cliente> lista = new List<Cliente>(a.clientes.Count);
-            foreach(ClienteWS item in a.clientes)
+
+            #region Cliente
+            List<Cliente> clientes = new List<Cliente>(a.clientes.Count);
+            foreach (ClienteWS item in a.clientes)
             {
-                lista.Add(new Cliente(){
+                clientes.Add(new Cliente()
+                {
                     Id = item.Id,
                     Nome = item.Nome,
                     Cpf = item.Cpf,
@@ -57,12 +60,24 @@ namespace TCCWP
                     Email = item.Email
                 });
             }
-            
-            BancoDeDados.Atualiza<Cliente>(lista);
-            /*foreach(Cliente c in lista)
+
+            BancoDeDados.Atualiza<Cliente>(clientes);
+            #endregion
+
+            #region Produto
+            List<Produto> produtos = new List<Produto>(a.produtos.Count);
+            foreach (ProdutoWS item in a.produtos)
             {
-                BancoDeDados.AtualizaI<Cliente>(c);
-            }*/
+                produtos.Add(new Produto()
+                {
+                    Id = item.Id,
+                    Nome = item.Nome,
+                    Estoque = item.Estoque
+                });
+            }
+
+            BancoDeDados.Atualiza<Produto>(produtos);
+            #endregion
 
             Sinc s = new Sinc();
             List<Sinc> ls = BancoDeDados.Query<Sinc>("select * from Sinc");

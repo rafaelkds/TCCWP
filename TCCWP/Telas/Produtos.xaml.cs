@@ -10,11 +10,16 @@ using Microsoft.Phone.Shell;
 
 namespace TCCWP
 {
-    public partial class Pedidos : PhoneApplicationPage
+    public partial class Produtos : PhoneApplicationPage
     {
-        public Pedidos()
+        public Produtos()
         {
             InitializeComponent();
+        }
+
+        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            listProdutos.ItemsSource = BancoDeDados.ListAllProduto();
         }
     }
 }
