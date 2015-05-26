@@ -135,6 +135,9 @@
     <Compile Include="Telas\UCSelecaoCliente.xaml.cs">
       <DependentUpon>UCSelecaoCliente.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Telas\UCSelecaoProduto.xaml.cs">
+      <DependentUpon>UCSelecaoProduto.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -158,6 +161,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Telas\UCSelecaoCliente.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Telas\UCSelecaoProduto.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

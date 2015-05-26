@@ -21,7 +21,6 @@ D:\Visual Studio 2013\Projects\TCCWP\TCCWP\Bin\x86\Debug\Sqlite.winmd
 D:\Visual Studio 2013\Projects\TCCWP\TCCWP\Bin\x86\Debug\Sqlite.dll
 D:\Visual Studio 2013\Projects\TCCWP\TCCWP\obj\x86\Debug\Telas\Clientes.g.cs
 D:\Visual Studio 2013\Projects\TCCWP\TCCWP\obj\x86\Debug\Telas\Pedidos.g.cs
-D:\Visual Studio 2013\Projects\TCCWP\TCCWP\obj\x86\Debug\TCCWP.csprojResolveAssemblyReference.cache
 D:\Visual Studio 2013\Projects\TCCWP\TCCWP\obj\x86\Debug\Telas\Produtos.g.cs
 D:\Visual Studio 2013\Projects\TCCWP\TCCWP\obj\x86\Debug\MainPage.g.cs
 D:\Visual Studio 2013\Projects\TCCWP\TCCWP\Bin\x86\Debug\Microsoft.Phone.Controls.Toolkit.dll
@@ -76,3 +75,4 @@ D:\Visual Studio 2013\Projects\TCCWP\TCCWP\Bin\x86\Debug\vi-VN\Microsoft.Phone.C
 D:\Visual Studio 2013\Projects\TCCWP\TCCWP\Bin\x86\Debug\zh-CN\Microsoft.Phone.Controls.Toolkit.resources.dll
 D:\Visual Studio 2013\Projects\TCCWP\TCCWP\Bin\x86\Debug\zh-TW\Microsoft.Phone.Controls.Toolkit.resources.dll
 D:\Visual Studio 2013\Projects\TCCWP\TCCWP\obj\x86\Debug\Telas\UCSelecaoCliente.g.cs
+D:\Visual Studio 2013\Projects\TCCWP\TCCWP\obj\x86\Debug\Telas\UCSelecaoProduto.g.cs

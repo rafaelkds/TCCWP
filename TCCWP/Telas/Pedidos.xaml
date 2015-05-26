@@ -36,10 +36,51 @@
                             <ColumnDefinition Width="1*" />
                             <ColumnDefinition Width="1*" />
                         </Grid.ColumnDefinitions>
-                        <Button Content="Adicionar" HorizontalAlignment="Stretch" Grid.Column="0"/>
-                        <Button Content="Remover" HorizontalAlignment="Stretch" Grid.Column="1"/>
+                        <Button Content="Adicionar" HorizontalAlignment="Stretch" Grid.Column="0" Click="Button_Click_1"/>
+                        <Button Content="Remover" HorizontalAlignment="Stretch" Grid.Column="1" Click="Button_Click_2"/>
                     </Grid>
-                    
+                    <phone:LongListSelector Name="listProdutos" Height="490" ScrollViewer.HorizontalScrollBarVisibility="Auto" >
+                        <phone:LongListSelector.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*" />
+                                        <ColumnDefinition Width="1*" />
+                                        <ColumnDefinition Width="1*" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="{Binding IdProduto}" TextWrapping="Wrap" FontSize="25" Grid.Column="0"/>
+                                    <TextBlock Text="{Binding Quantidade}" TextWrapping="Wrap" FontSize="25" Grid.Column="1" TextAlignment="Right"/>
+                                    <TextBlock Text="{Binding Valor}" TextWrapping="Wrap" FontSize="25" Grid.Column="2" TextAlignment="Right"/>
+                                </Grid>
+                            </DataTemplate>
+                        </phone:LongListSelector.ItemTemplate>
+                    </phone:LongListSelector>
+                    <!--ListBox Name="listProdutos" ScrollViewer.HorizontalScrollBarVisibility="Auto" Height="500">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*" />
+                                        <ColumnDefinition Width="1*" />
+                                        <ColumnDefinition Width="1*" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="{Binding IdProduto}" TextWrapping="Wrap" FontSize="25" Grid.Column="0"/>
+                                    <TextBlock Text="{Binding Quantidade}" TextWrapping="Wrap" FontSize="25" Grid.Column="1" TextAlignment="Right"/>
+                                    <TextBlock Text="{Binding Valor}" TextWrapping="Wrap" FontSize="25" Grid.Column="2" TextAlignment="Right"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox-->
+                    <Grid Margin="0,0,12,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Total:" HorizontalAlignment="Stretch" Grid.Column="0" FontSize="30"/>
+                        <TextBlock Name="tbTotalQuantidade" HorizontalAlignment="Stretch" Grid.Column="1" TextAlignment="Right" FontSize="30"/>
+                        <TextBlock Name="tbTotalValor" HorizontalAlignment="Stretch" Grid.Column="2" TextAlignment="Right" FontSize="30"/>
+                    </Grid>
                 </StackPanel>
             </phone:PivotItem>
         </phone:Pivot>

@@ -1,0 +1,43 @@
+﻿<UserControl x:Class="TCCWP.UCSelecaoProduto"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="768" d:DesignWidth="480">
+
+    <Grid x:Name="LayoutRoot" Background="{StaticResource PhoneChromeBrush}">
+        <StackPanel>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+                <TextBox Name="tbQuantidade" Height="80" HorizontalAlignment="Stretch" Grid.Column="0"/>
+                <TextBox Name="tbValor" HorizontalAlignment="Stretch" Grid.Column="1"/>
+            </Grid>
+            <ListBox Name="listProdutos" Height="585" ScrollViewer.HorizontalScrollBarVisibility="Auto">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Id}"
+						    TextWrapping="Wrap" FontSize="25" />
+
+                            <TextBlock Text="{Binding Nome}"
+						    TextWrapping="Wrap" FontSize="25" />
+
+                            <TextBlock Text="{Binding Valor}"
+						    TextWrapping="Wrap" FontSize="25" />
+
+                            <TextBlock Text="{Binding Estoque}"
+						    TextWrapping="Wrap" FontSize="25" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </StackPanel>
+    </Grid>
+</UserControl>
