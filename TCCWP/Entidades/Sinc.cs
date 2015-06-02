@@ -9,7 +9,6 @@ namespace TCCWP
     class Sinc
     {
         public long UltimaSinc { get; set; }
-
         
         public DateTime getUltimaSinc()
         {

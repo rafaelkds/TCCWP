@@ -95,12 +95,32 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controle\BancoDeDados.cs" />
+    <Compile Include="Controle\ControleAnotacao.cs" />
+    <Compile Include="Controle\ControleReceber.cs" />
+    <Compile Include="Controle\ControleProdutoPedido.cs" />
     <Compile Include="Controle\ControlePedido.cs" />
+    <Compile Include="Entidades\Anotacao.cs" />
     <Compile Include="Entidades\Cliente.cs" />
     <Compile Include="Entidades\Pedido.cs" />
     <Compile Include="Entidades\ProdutoPedido.cs" />
+    <Compile Include="Entidades\Receber.cs" />
+    <Compile Include="Telas\Clientes\Cadastro.xaml.cs">
+      <DependentUpon>Cadastro.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Telas\Clientes\Consulta.xaml.cs">
+      <DependentUpon>Consulta.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Telas\Clientes\Menu.xaml.cs">
+      <DependentUpon>Menu.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Telas\Pedidos.xaml.cs">
       <DependentUpon>Pedidos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Telas\Pedidos\Cadastro.xaml.cs">
+      <DependentUpon>Cadastro.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Telas\Pedidos\Menu.xaml.cs">
+      <DependentUpon>Menu.xaml</DependentUpon>
     </Compile>
     <Compile Include="Telas\Produtos.xaml.cs">
       <DependentUpon>Produtos.xaml</DependentUpon>
@@ -144,7 +164,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Page Include="Telas\Clientes\Cadastro.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Telas\Clientes\Consulta.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Telas\Clientes\Menu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Telas\Pedidos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Telas\Pedidos\Cadastro.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Telas\Pedidos\Menu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

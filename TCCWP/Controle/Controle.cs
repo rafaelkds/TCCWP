@@ -8,8 +8,8 @@ namespace TCCWP
 {
     interface Controle<T>
     {
-        List<T> buscar();
-        void gravar(List<T> lista);
-        void deletar(List<T> lista);
+        List<T> buscar(string busca);
+        void gravar(T objeto);
+        void deletar(T objeto);
     }
 }

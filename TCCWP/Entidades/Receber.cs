@@ -6,17 +6,14 @@ using System.Threading.Tasks;
 
 namespace TCCWP
 {
-    class ProdutoPedido
+    class Receber
     {
         [SQLite.PrimaryKey]
         public string Id { get; set; }
         public string IdPedido { get; set; }
-        public int IdProduto { get; set; }
+        public int Ordem { get; set; }
         public decimal Valor { get; set; }
-        public decimal Quantidade { get; set; }
-
-
-        [SQLite.Ignore]
-        public Produto Produto { get; set; }
+        public DateTime Vencimento { get; set; }
+        public DateTime Pagamento { get; set; }
     }
 }

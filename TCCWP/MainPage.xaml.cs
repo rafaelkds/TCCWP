@@ -19,30 +19,15 @@ namespace TCCWP
         public MainPage()
         {
             InitializeComponent();
-            
-            
+
+            BancoDeDados.teste();
             // Sample code to localize the ApplicationBar
             //BuildLocalizedApplicationBar();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new Uri("/Telas/Clientes.xaml", UriKind.Relative));
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             sinc.Sincronizar();
-            /*List<Log> atualizacoes = BancoDeDados.Query<Log>("select * from Log order by Id");
-            List<string> lista = new List<string>();
-            foreach (Log log in atualizacoes)
-            {
-                lista.Add(log.Sql);
-            }
-
-            TCCWP.ServiceReference1.Service1Client client = new TCCWP.ServiceReference1.Service1Client();
-            client.SincronizarCompleted += SincronizarCompleted;
-            client.SincronizarAsync(new System.Collections.ObjectModel.ObservableCollection<string>(lista), DateTime.Now.AddYears(-5));*/
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
@@ -52,37 +37,14 @@ namespace TCCWP
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/Telas/Pedidos.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/Telas/Pedidos/Menu.xaml", UriKind.Relative));
         }
-        /*
-        void SincronizarCompleted(object sender, TCCWP.ServiceReference1.SincronizarCompletedEventArgs e)
+
+        private void btClientes_Click(object sender, RoutedEventArgs e)
         {
-            System.Windows.MessageBox.Show("1");
-            TCCWP.ServiceReference1.Atualizacao a = e.Result;
-            List<Cliente> lista = new List<Cliente>(a.clientes.Count);
-            foreach (TCCWP.ServiceReference1.ClienteWS item in a.clientes)
-            {
-                lista.Add(new Cliente()
-                {
-                    Id = item.Id,
-                    Nome = item.Nome,
-                    Cpf = item.Cpf,
-                    Rua = item.Rua,
-                    Numero = item.Numero,
-                    Bairro = item.Bairro,
-                    Cidade = item.Cidade,
-                    Cep = item.Cep,
-                    Complemento = item.Complemento,
-                    Telefone = item.Telefone,
-                    Email = item.Email
-                });
-            }
-            BancoDeDados.Atualiza<Cliente>(lista);
-            Sinc s = new Sinc();
-            s.UltimaSinc = a.dtAtualizado;
-            BancoDeDados.UltSinc(s);
-            System.Windows.MessageBox.Show("2");
-        }*/
+            NavigationService.Navigate(new Uri("/Telas/Clientes/Menu.xaml", UriKind.Relative));
+        }
+        
 
         // Sample code for building a localized ApplicationBar
         //private void BuildLocalizedApplicationBar()

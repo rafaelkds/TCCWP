@@ -8,29 +8,26 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 
-namespace TCCWP
+namespace TCCWP.Telas.Pedidos
 {
-    public partial class Pedidos : PhoneApplicationPage
+    public partial class Cadastro : PhoneApplicationPage
     {
         private Pedido novoPedido;
-        private List<ProdutoPedido> produtos;
-        private List<Receber> vencimentos;
-        public Pedidos()
+
+        public Cadastro()
         {
             InitializeComponent();
             novoPedido = new Pedido();
-            produtos = new List<ProdutoPedido>();
-            vencimentos = new List<Receber>();
+            novoPedido.Produtos = new List<ProdutoPedido>();
+            novoPedido.Receber = new List<Receber>();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void btSelecionarCliente_Click(object sender, RoutedEventArgs e)
         {
             UCSelecaoCliente ucsc = new UCSelecaoCliente();
             CustomMessageBox cmb = new CustomMessageBox()
             {
                 Content = ucsc,
-                //Height = 500,
-                //Opacity = 0.7,
                 LeftButtonContent = "Selecionar",
                 RightButtonContent = "Cancelar"
             };
@@ -50,7 +47,7 @@ namespace TCCWP
             cmb.Show();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void btAdicionarProduto_Click(object sender, RoutedEventArgs e)
         {
             UCSelecaoProduto ucsp = new UCSelecaoProduto();
             CustomMessageBox cmb = new CustomMessageBox()
@@ -70,13 +67,13 @@ namespace TCCWP
                             novoProdutoPedido.IdProduto = (ucsp.listProdutos.SelectedItem as Produto).Id;
                             novoProdutoPedido.Quantidade = Convert.ToDecimal(ucsp.tbQuantidade.Text);
                             novoProdutoPedido.Valor = Convert.ToDecimal(ucsp.tbValor.Text);
-                            produtos.Add(novoProdutoPedido);
-                            
+                            novoPedido.Produtos.Add(novoProdutoPedido);
+
                             listProdutos.ItemsSource = null;
-                            listProdutos.ItemsSource = produtos;
+                            listProdutos.ItemsSource = novoPedido.Produtos;
 
                             decimal tQtde = 0, tValor = 0;
-                            foreach(ProdutoPedido item in produtos)
+                            foreach (ProdutoPedido item in novoPedido.Produtos)
                             {
                                 tQtde += item.Quantidade;
                                 tValor += item.Valor;
@@ -90,35 +87,33 @@ namespace TCCWP
             cmb.Show();
         }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        private void btRemoverProduto_Click(object sender, RoutedEventArgs e)
         {
-            produtos.Remove(listProdutos.SelectedItem as ProdutoPedido);
+            novoPedido.Produtos.Remove(listProdutos.SelectedItem as ProdutoPedido);
             listProdutos.ItemsSource = null;
-            listProdutos.ItemsSource = produtos;
+            listProdutos.ItemsSource = novoPedido.Produtos;
         }
 
-        private void Button_Click_3(object sender, RoutedEventArgs e)
+        private void btAdicionarVencimento_Click(object sender, RoutedEventArgs e)
         {
             Receber novoReceber = new Receber();
             novoReceber.Vencimento = dpData.Value ?? new DateTime();
             novoReceber.Valor = Convert.ToDecimal(tbValor.Text);
-            vencimentos.Add(novoReceber);
+            novoPedido.Receber.Add(novoReceber);
 
             listVencimentos.ItemsSource = null;
-            listVencimentos.ItemsSource = vencimentos;
-                        
+            listVencimentos.ItemsSource = novoPedido.Receber;
         }
 
-        private void Button_Click_4(object sender, RoutedEventArgs e)
+        private void btRemoverVencimento_Click(object sender, RoutedEventArgs e)
         {
-            vencimentos.Remove(listVencimentos.SelectedItem as Receber);
+            novoPedido.Receber.Remove(listVencimentos.SelectedItem as Receber);
             listVencimentos.ItemsSource = null;
-            listVencimentos.ItemsSource = vencimentos;
+            listVencimentos.ItemsSource = novoPedido.Receber;
         }
 
-        private void Button_Click_5(object sender, RoutedEventArgs e)
+        private void tbGravar_Click(object sender, RoutedEventArgs e)
         {
-
             if (!string.IsNullOrWhiteSpace(tbNumero.Text) && dpEmissao.Value != null)
             {
                 novoPedido.DataEmissao = dpEmissao.Value ?? new DateTime();
@@ -128,7 +123,7 @@ namespace TCCWP
                 novoPedido.IdVendedor = 1;
                 novoPedido.Observacoes = tbObservacoes.Text;
                 decimal total = 0;
-                foreach(ProdutoPedido item in produtos)
+                foreach (ProdutoPedido item in novoPedido.Produtos)
                 {
                     item.Id = BancoDeDados.GetIdProdutoPedido();
                     item.IdPedido = novoPedido.Id;
@@ -136,7 +131,7 @@ namespace TCCWP
                 }
                 novoPedido.Valor = total;
 
-                foreach(Receber item in vencimentos)
+                foreach (Receber item in novoPedido.Receber)
                 {
                     item.Id = BancoDeDados.GetIdReceber();
                     item.IdPedido = novoPedido.Id;
@@ -146,10 +141,10 @@ namespace TCCWP
                 cp.gravar(novoPedido);
 
                 ControleProdutoPedido cpp = new ControleProdutoPedido();
-                cpp.gravarLista(produtos);
+                cpp.gravarLista(novoPedido.Produtos);
 
                 ControleReceber cr = new ControleReceber();
-                cr.gravarLista(vencimentos);
+                cr.gravarLista(novoPedido.Receber);
             }
         }
     }

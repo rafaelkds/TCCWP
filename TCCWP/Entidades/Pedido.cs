@@ -8,7 +8,7 @@ namespace TCCWP
 {
     class Pedido
     {
-        [SQLite.Unique]
+        [SQLite.PrimaryKey]
         public string Id { get; set; }
         public string Numero { get; set; }
         public string IdCliente { get; set; }
@@ -17,5 +17,13 @@ namespace TCCWP
         public DateTime DataEmissao { get; set; }
         public DateTime DataPago { get; set; }
         public string Observacoes { get; set; }
+
+
+        [SQLite.Ignore]
+        public Cliente Cliente { get; set; }
+        [SQLite.Ignore]
+        public List<ProdutoPedido> Produtos { get; set; }
+        [SQLite.Ignore]
+        public List<Receber> Receber { get; set; }
     }
 }

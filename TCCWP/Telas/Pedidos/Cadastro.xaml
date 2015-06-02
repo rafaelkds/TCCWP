@@ -1,5 +1,5 @@
 ﻿<phone:PhoneApplicationPage
-    x:Class="TCCWP.Pedidos"
+    x:Class="TCCWP.Telas.Pedidos.Cadastro"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
@@ -14,7 +14,6 @@
     SupportedOrientations="Portrait"  Orientation="Portrait"
     shell:SystemTray.IsVisible="True">
 
-
     <StackPanel Background="Transparent">
 
         <phone:Pivot Title="Pedido">
@@ -25,8 +24,8 @@
                     <TextBox Name="tbNumero" HorizontalAlignment="Stretch" Width="Auto"/>
                     <TextBlock Text="Data de Emissão:"/>
                     <toolkit:DatePicker Name="dpEmissao" />
-                    <Button Content="Cliente" HorizontalAlignment="Stretch" Click="Button_Click"/>
-                    <TextBlock Name="tbCliente"/>
+                    <Button x:Name="btSelecionarCliente" Content="Selecionar Cliente" HorizontalAlignment="Stretch" Click="btSelecionarCliente_Click"/>
+                    <TextBlock Name="tbCliente" Margin="12,0,12,0" FontFamily="Segoe WP Semibold" FontSize="22"/>
                 </StackPanel>
             </phone:PivotItem>
 
@@ -37,41 +36,25 @@
                             <ColumnDefinition Width="1*" />
                             <ColumnDefinition Width="1*" />
                         </Grid.ColumnDefinitions>
-                        <Button Content="Adicionar" HorizontalAlignment="Stretch" Grid.Column="0" Click="Button_Click_1"/>
-                        <Button Content="Remover" HorizontalAlignment="Stretch" Grid.Column="1" Click="Button_Click_2"/>
+                        <Button x:Name="btAdicionarProduto" Content="Adicionar" HorizontalAlignment="Stretch" Grid.Column="0" Click="btAdicionarProduto_Click"/>
+                        <Button x:Name="btRemoverProduto" Content="Remover" HorizontalAlignment="Stretch" Grid.Column="1" Click="btRemoverProduto_Click"/>
                     </Grid>
-                    <phone:LongListSelector Name="listProdutos" Height="420" ScrollViewer.HorizontalScrollBarVisibility="Auto" >
-                        <phone:LongListSelector.ItemTemplate>
-                            <DataTemplate>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="1*" />
-                                        <ColumnDefinition Width="1*" />
-                                        <ColumnDefinition Width="1*" />
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock Text="{Binding IdProduto}" TextWrapping="Wrap" FontSize="25" Grid.Column="0"/>
-                                    <TextBlock Text="{Binding Quantidade}" TextWrapping="Wrap" FontSize="25" Grid.Column="1" TextAlignment="Right"/>
-                                    <TextBlock Text="{Binding Valor}" TextWrapping="Wrap" FontSize="25" Grid.Column="2" TextAlignment="Right"/>
-                                </Grid>
-                            </DataTemplate>
-                        </phone:LongListSelector.ItemTemplate>
-                    </phone:LongListSelector>
-                    <!--ListBox Name="listProdutos" ScrollViewer.HorizontalScrollBarVisibility="Auto" Height="500">
+                    <ListBox Name="listProdutos" Height="420">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="1*" />
-                                        <ColumnDefinition Width="1*" />
-                                        <ColumnDefinition Width="1*" />
+                                        <ColumnDefinition Width="232" />
+                                        <ColumnDefinition Width="100" />
+                                        <ColumnDefinition Width="100" />
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock Text="{Binding IdProduto}" TextWrapping="Wrap" FontSize="25" Grid.Column="0"/>
-                                    <TextBlock Text="{Binding Quantidade}" TextWrapping="Wrap" FontSize="25" Grid.Column="1" TextAlignment="Right"/>
-                                    <TextBlock Text="{Binding Valor}" TextWrapping="Wrap" FontSize="25" Grid.Column="2" TextAlignment="Right"/>
+                                    <TextBlock Text="{Binding IdProduto}" FontSize="25" Grid.Column="0"/>
+                                    <TextBlock Text="{Binding Quantidade}" FontSize="25" Grid.Column="1" TextAlignment="Right"/>
+                                    <TextBlock Text="{Binding Valor}" FontSize="25" Grid.Column="2" TextAlignment="Right"/>
                                 </Grid>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
-                    </ListBox-->
+                    </ListBox>
                     <Grid Margin="0,0,12,0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1*" />
@@ -100,10 +83,26 @@
                             <ColumnDefinition />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
-                        <Button Content="Adicionar" HorizontalAlignment="Stretch" Grid.Column="0" Click="Button_Click_3"/>
-                        <Button Content="Remover" HorizontalAlignment="Stretch" Grid.Column="1" Click="Button_Click_4"/>
+                        <Button x:Name="btAdicionarVencimento" Content="Adicionar" HorizontalAlignment="Stretch" Grid.Column="0" Click="btAdicionarVencimento_Click"/>
+                        <Button x:Name="btRemoverVencimento" Content="Remover" HorizontalAlignment="Stretch" Grid.Column="1" Click="btRemoverVencimento_Click"/>
                     </Grid>
-                    <phone:LongListSelector Name="listVencimentos" Height="350" ScrollViewer.HorizontalScrollBarVisibility="Auto" >
+
+                    <ListBox Name="listVencimentos" Height="350">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="216" />
+                                        <ColumnDefinition Width="216" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="{Binding Vencimento}" TextWrapping="Wrap" FontSize="25" Grid.Column="0"/>
+                                    <TextBlock Text="{Binding Valor}" TextWrapping="Wrap" FontSize="25" Grid.Column="1" TextAlignment="Right"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+
+                    <!--phone:LongListSelector Name="listVencimentos" Height="350" ScrollViewer.HorizontalScrollBarVisibility="Auto" >
                         <phone:LongListSelector.ItemTemplate>
                             <DataTemplate>
                                 <Grid>
@@ -116,7 +115,7 @@
                                 </Grid>
                             </DataTemplate>
                         </phone:LongListSelector.ItemTemplate>
-                    </phone:LongListSelector>
+                    </phone:LongListSelector-->
                     <Grid Margin="0,0,12,0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="0.75*" />
@@ -133,12 +132,10 @@
             </phone:PivotItem>
 
             <phone:PivotItem Header="Observações">
-                <StackPanel>
-                    <TextBox Name="tbObservacoes" Height="500" AcceptsReturn="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"/>
-                </StackPanel>
+                <TextBox Name="tbObservacoes" Height="500" AcceptsReturn="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"/>
             </phone:PivotItem>
         </phone:Pivot>
-        <Button Content="Gravar" Click="Button_Click_5"/>
+        <Button x:Name="tbGravar" Content="Gravar" Click="tbGravar_Click"/>
     </StackPanel>
-
+    
 </phone:PhoneApplicationPage>

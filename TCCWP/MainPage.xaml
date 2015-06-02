@@ -47,7 +47,7 @@
 
         <!--ContentPanel - place additional content here-->
         <StackPanel x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <Button Content="Clientes" HorizontalAlignment="Stretch" Click="Button_Click"/>
+            <Button x:Name="btClientes" Content="Clientes" HorizontalAlignment="Stretch" Click="btClientes_Click"/>
             <Button Content="Pedidos" HorizontalAlignment="Stretch" Click="Button_Click_3"/>
             <Button Content="Produtos" HorizontalAlignment="Stretch" Click="Button_Click_2"/>
             <Button Content="Atualizar" HorizontalAlignment="Stretch" Click="Button_Click_1"/>

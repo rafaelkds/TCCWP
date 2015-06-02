@@ -7,6 +7,7 @@
       <xs:element minOccurs="0" name="pedidos" nillable="true" type="tns:ArrayOfPedidoWS" />
       <xs:element minOccurs="0" name="produtos" nillable="true" type="tns:ArrayOfProdutoWS" />
       <xs:element minOccurs="0" name="produtospedido" nillable="true" type="tns:ArrayOfProdutoPedidoWS" />
+      <xs:element minOccurs="0" name="receber" nillable="true" type="tns:ArrayOfReceberWS" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Atualizacao" nillable="true" type="tns:Atualizacao" />
@@ -59,9 +60,11 @@
   <xs:element name="ArrayOfProdutoWS" nillable="true" type="tns:ArrayOfProdutoWS" />
   <xs:complexType name="ProdutoWS">
     <xs:sequence>
+      <xs:element minOccurs="0" name="Ativo" type="xs:boolean" />
       <xs:element minOccurs="0" name="Estoque" type="xs:decimal" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="Nome" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Valor" type="xs:decimal" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ProdutoWS" nillable="true" type="tns:ProdutoWS" />
@@ -81,4 +84,21 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ProdutoPedidoWS" nillable="true" type="tns:ProdutoPedidoWS" />
+  <xs:complexType name="ArrayOfReceberWS">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ReceberWS" nillable="true" type="tns:ReceberWS" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfReceberWS" nillable="true" type="tns:ArrayOfReceberWS" />
+  <xs:complexType name="ReceberWS">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IdPedido" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Ordem" type="xs:int" />
+      <xs:element minOccurs="0" name="Pagamento" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Valor" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Vencimento" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReceberWS" nillable="true" type="tns:ReceberWS" />
 </xs:schema>

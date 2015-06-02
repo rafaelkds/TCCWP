@@ -76,3 +76,9 @@ D:\Visual Studio 2013\Projects\TCCWP\TCCWP\Bin\x86\Debug\zh-CN\Microsoft.Phone.C
 D:\Visual Studio 2013\Projects\TCCWP\TCCWP\Bin\x86\Debug\zh-TW\Microsoft.Phone.Controls.Toolkit.resources.dll
 D:\Visual Studio 2013\Projects\TCCWP\TCCWP\obj\x86\Debug\Telas\UCSelecaoCliente.g.cs
 D:\Visual Studio 2013\Projects\TCCWP\TCCWP\obj\x86\Debug\Telas\UCSelecaoProduto.g.cs
+D:\Visual Studio 2013\Projects\TCCWP\TCCWP\obj\x86\Debug\TCCWP.csprojResolveAssemblyReference.cache
+D:\Visual Studio 2013\Projects\TCCWP\TCCWP\obj\x86\Debug\Telas\Clientes\Cadastro.g.cs
+D:\Visual Studio 2013\Projects\TCCWP\TCCWP\obj\x86\Debug\Telas\Clientes\Consulta.g.cs
+D:\Visual Studio 2013\Projects\TCCWP\TCCWP\obj\x86\Debug\Telas\Clientes\Menu.g.cs
+D:\Visual Studio 2013\Projects\TCCWP\TCCWP\obj\x86\Debug\Telas\Pedidos\Cadastro.g.cs
+D:\Visual Studio 2013\Projects\TCCWP\TCCWP\obj\x86\Debug\Telas\Pedidos\Menu.g.cs

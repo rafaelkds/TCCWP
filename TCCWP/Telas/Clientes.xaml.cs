@@ -24,19 +24,7 @@ namespace TCCWP
         
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
-        {/*
-            Service1Client client = new Service1Client();
-            //client.Endpoint.Binding.ReceiveTimeout = TimeSpan.FromMinutes(1);
-            client.GetClientesCompleted += GetClientesCompleted;
-            client.GetClientesAsync();*/
-            /*try
-            {*/
-            /*SQLiteConnection dbConn = new SQLiteConnection(Path.Combine(Windows.Storage.ApplicationData.Current.LocalFolder.Path, "test.sqlite"));
-            dbConn.CreateTable<Cliente>();
-                listClientes.ItemsSource = dbConn.Table<Cliente>();
-            /*}
-            catch (Exception ex)
-            { }*/
+        {
             listClientes.ItemsSource = BancoDeDados.ListAllCliente();
         }
 
@@ -45,24 +33,7 @@ namespace TCCWP
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             try
-            {/*
-                ServiceReference1.Cliente c = new ServiceReference1.Cliente();
-                c.Nome = tbNome.Text;
-                c.Cpf = tbCpf.Text;
-                c.Rua = tbRua.Text;
-                c.Numero = tbNumero.Text;
-                c.Bairro = tbBairro.Text;
-                c.Cidade = Convert.ToInt32(tbCidade.Text);
-                c.Cep = tbCep.Text;
-                //c.Complemento = tbComplemento.Text;
-                //c.Telefone = tbTelefone.Text;
-                //c.Email = tbEmail.Text;
-
-                Service1Client client = new Service1Client();
-                client.InsertClienteCompleted += InsertClienteCompleted;
-                client.InsertClienteAsync(c);*/
-
-                
+            {
                 Cliente c = new Cliente();
                 c.Nome = tbNome.Text;
                 c.Cpf = tbCpf.Text;
@@ -71,16 +42,9 @@ namespace TCCWP
                 c.Bairro = tbBairro.Text;
                 c.Cidade = Convert.ToInt32(tbCidade.Text);
                 c.Cep = tbCep.Text;
-/*
-                SQLiteConnection dbConn = new SQLiteConnection(Path.Combine(Windows.Storage.ApplicationData.Current.LocalFolder.Path, "test.sqlite"));
-                dbConn.CreateTable<Cliente>();
-                dbConn.Insert(c);
-                dbConn.Close();
-                */
+
                 ControleCliente cc = new ControleCliente();
-                List<Cliente> lista = new List<Cliente>();
-                lista.Add(c);
-                cc.gravar(lista);
+                cc.gravar(c);
             }
             catch (Exception ex)
             {
