@@ -12,9 +12,20 @@ namespace TCCWP
     class BancoDeDados
     {
         private static string caminhoDB = Path.Combine(Windows.Storage.ApplicationData.Current.LocalFolder.Path, "teste.sqlite");
-        private static string idU = "1";
-        private static string x = "";
-
+        private static int identificacao;
+        private static int Identificacao
+        {
+            get
+            {
+                if(identificacao == 0)
+                {
+                    List<Sinc> lista = Query<Sinc>("select * from Sinc");
+                    if (lista.Count > 0)
+                        identificacao = lista[0].Identificacao;
+                }
+                return identificacao;
+            }
+        }
 
 
         #region Connection Transaction
@@ -33,17 +44,17 @@ namespace TCCWP
 
         public static void BeginTransaction()
         {
-            conn.BeginTransaction();
+            Conn.BeginTransaction();
         }
 
         public static void CommitTransaction()
         {
-            conn.Commit();
+            Conn.Commit();
         }
 
         public static void RollbackTransaction()
         {
-            conn.Rollback();
+            Conn.Rollback();
         }
         #endregion
 
@@ -51,51 +62,54 @@ namespace TCCWP
         #region Normal
         public static void Insert<T>(T objeto, Log log)
         {
-            conn.CreateTable<T>();
-            conn.Insert(objeto);
-            conn.CreateTable<Log>();
-            conn.Insert(log);
+            Conn.CreateTable<T>();
+            Conn.Insert(objeto);
+            Conn.CreateTable<Log>();
+            Conn.Insert(log);
+        }
+
+        public static void Insert<T>(T objeto)
+        {
+            Conn.CreateTable<T>();
+            Conn.Insert(objeto);
         }
 
         public static void InsertList<T>(List<T> lista, Log log)
         {
-            conn.CreateTable<T>();
-            conn.InsertAll(lista);
-            conn.CreateTable<Log>();
-            conn.Insert(log);
+            Conn.CreateTable<T>();
+            foreach(T item in lista)
+                Conn.Insert(item);
+            Conn.CreateTable<Log>();
+            Conn.Insert(log);
         }
 
-        public static void Delete(object objeto)
+        public static void DeleteAll<T>()
         {
-            conn.Delete(objeto);
-        }
-
-        public static void DeleteList<T>(List<T> lista)
-        {
-            foreach (Object item in lista)
-                conn.Delete<T>(item);
+            Conn.DeleteAll<T>();
         }
 
         public static void Update(object objeto, Log log)
         {
-            conn.Update(objeto);
-            conn.Insert(log);
+            Conn.Update(objeto);
+            Conn.Insert(log);
         }
 
         public static void Atualiza<T>(List<T> lista)
         {
-            conn.CreateTable<T>();
+            Conn.CreateTable<T>();
 
             foreach (T objeto in lista)
-                conn.Delete(objeto);
-            conn.InsertAll(lista);
+            {
+                Conn.Delete(objeto);
+                Conn.Insert(objeto);
+            }
         }
 
         public static void UltSinc(Sinc ultSinc)
         {
-            conn.DropTable<Sinc>();
-            conn.CreateTable<Sinc>();
-            conn.Insert(ultSinc);
+            Conn.CreateTable<Sinc>();
+            Conn.DeleteAll<Sinc>();
+            Conn.Insert(ultSinc);
         }
         #endregion
 
@@ -222,8 +236,8 @@ namespace TCCWP
         }
 
 
-        #region GetId
-        public static string GetIdCliente()
+        #region GetIdRIT
+        public static string GetIdClienteRIT()
         {
             string id = "";
             using (var dbConn = new SQLiteConnection(caminhoDB))
@@ -243,13 +257,13 @@ namespace TCCWP
                         idAux = ls[0].Cliente + 1;
                         dbConn.Execute("Update Id set Cliente = ?", idAux);
                     }
-                    id = idU + "/" + idAux;
+                    id = Identificacao + "/" + idAux;
                 });
             }
             return id;
         }
 
-        public static string GetIdPedido()
+        public static string GetIdPedidoRIT()
         {
             string id = "";
             using (var dbConn = new SQLiteConnection(caminhoDB))
@@ -269,13 +283,13 @@ namespace TCCWP
                         idAux = ls[0].Pedido + 1;
                         dbConn.Execute("Update Id set Pedido = ?", idAux);
                     }
-                    id = idU + "/" + idAux;
+                    id = Identificacao + "/" + idAux;
                 });
             }
             return id;
         }
 
-        public static string GetIdProdutoPedido()
+        public static string GetIdProdutoPedidoRIT()
         {
             string id = "";
             using (var dbConn = new SQLiteConnection(caminhoDB))
@@ -295,13 +309,13 @@ namespace TCCWP
                         idAux = ls[0].ProdutoPedido + 1;
                         dbConn.Execute("Update Id set ProdutoPedido = ?", idAux);
                     }
-                    id = idU + "/" + idAux;
+                    id = Identificacao + "/" + idAux;
                 });
             }
             return id;
         }
 
-        public static string GetIdReceber()
+        public static string GetIdReceberRIT()
         {
             string id = "";
             using (var dbConn = new SQLiteConnection(caminhoDB))
@@ -319,11 +333,113 @@ namespace TCCWP
                     else
                     {
                         idAux = ls[0].Receber + 1;
-                        dbConn.Execute("Update Id set Receber = ?", idAux);
+                        dbConn.Execute("Update Id set Receber = " + idAux);
                     }
-                    id = idU + "/" + idAux;
+                    id = Identificacao + "/" + idAux;
                 });
             }
+            return id;
+        }
+        #endregion
+
+        #region GetId
+        public static string GetIdCliente()
+        {
+            string id = "";
+            Conn.CreateTable<Id>();
+            List<Id> ls = Conn.Query<Id>("select * from Id");
+            int idAux;
+            if (ls.Count == 0)
+            {
+                idAux = 1;
+                Conn.Execute("Insert into Id (Cliente) values (?)", idAux);
+            }
+            else
+            {
+                idAux = ls[0].Cliente + 1;
+                Conn.Execute("Update Id set Cliente = ?", idAux);
+            }
+            id = Identificacao + "/" + idAux;
+            return id;
+        }
+
+        public static string GetIdPedido()
+        {
+            string id = "";
+            Conn.CreateTable<Id>();
+            List<Id> ls = Conn.Query<Id>("select * from Id");
+            int idAux;
+            if (ls.Count == 0)
+            {
+                idAux = 1;
+                Conn.Execute("Insert into Id (Pedido) values (?)", idAux);
+            }
+            else
+            {
+                idAux = ls[0].Pedido + 1;
+                Conn.Execute("Update Id set Pedido = ?", idAux);
+            }
+            id = Identificacao + "/" + idAux;
+            return id;
+        }
+
+        public static string GetIdProdutoPedido()
+        {
+            string id = "";
+            Conn.CreateTable<Id>();
+            List<Id> ls = Conn.Query<Id>("select * from Id");
+            int idAux;
+            if (ls.Count == 0)
+            {
+                idAux = 1;
+                Conn.Execute("Insert into Id (ProdutoPedido) values (?)", idAux);
+            }
+            else
+            {
+                idAux = ls[0].ProdutoPedido + 1;
+                Conn.Execute("Update Id set ProdutoPedido = ?", idAux);
+            }
+            id = Identificacao + "/" + idAux;
+            return id;
+        }
+
+        public static string GetIdReceber()
+        {
+            string id = "";
+            Conn.CreateTable<Id>();
+            List<Id> ls = Conn.Query<Id>("select * from Id");
+            int idAux;
+            if (ls.Count == 0)
+            {
+                idAux = 1;
+                Conn.Execute("Insert into Id (Receber) values (?)", idAux);
+            }
+            else
+            {
+                idAux = ls[0].Receber + 1;
+                Conn.Execute("Update Id set Receber = " + idAux);
+            }
+            id = Identificacao + "/" + idAux;
+            return id;
+        }
+
+        public static string GetIdAnotacao()
+        {
+            string id = "";
+            Conn.CreateTable<Id>();
+            List<Id> ls = Conn.Query<Id>("select * from Id");
+            int idAux;
+            if (ls.Count == 0)
+            {
+                idAux = 1;
+                Conn.Execute("Insert into Id (Anotacao) values (?)", idAux);
+            }
+            else
+            {
+                idAux = ls[0].Anotacao + 1;
+                Conn.Execute("Update Id set Anotacao = " + idAux);
+            }
+            id = Identificacao + "/" + idAux;
             return id;
         }
         #endregion
@@ -348,6 +464,7 @@ namespace TCCWP
                     dbConn.CreateTable<ProdutoPedido>();
                     dbConn.CreateTable<Receber>();
                     dbConn.CreateTable<Produto>();
+                    dbConn.CreateTable<Anotacao>();
                 });
             }
             //System.Windows.MessageBox.Show(storage.FileExists("teste.sqlite").ToString());        

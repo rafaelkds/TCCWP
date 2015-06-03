@@ -31,11 +31,6 @@ namespace TCCWP
             BancoDeDados.Insert(objeto, log);
         }
 
-        public void deletar(ProdutoPedido objeto)
-        {
-            throw new NotImplementedException();
-        }
-
         public void gravarLista(List<ProdutoPedido> lista)
         {
             string values = "";

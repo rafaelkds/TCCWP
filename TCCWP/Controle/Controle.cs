@@ -10,6 +10,5 @@ namespace TCCWP
     {
         List<T> buscar(string busca);
         void gravar(T objeto);
-        void deletar(T objeto);
     }
 }

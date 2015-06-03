@@ -10,38 +10,38 @@ namespace TCCWP
     {
         public List<Pedido> buscar(string busca)
         {
-            throw new NotImplementedException();
+            string query = string.Format("select Pedido.* from Pedido, Cliente where Pedido.IdCliente = Cliente.Id and (Pedido.Numero like '{0}%' or Cliente.Nome like '{1}%' or Cliente.Cpf like '{2}%')", busca, busca, busca);
+            List<Pedido> lista = BancoDeDados.Query<Pedido>(query);
+            return lista;
+        }
+
+        public Pedido buscarPorId(string id)
+        {
+            string query = string.Format("select * from Pedido where Id = '{0}'", id);
+            List<Pedido> lista = BancoDeDados.Query<Pedido>(query);
+            Pedido pedido = lista[0];
+
+            query = string.Format("select * from ProdutoPedido where IdPedido = '{0}'", id);
+            List<ProdutoPedido> listaProdutos = BancoDeDados.Query<ProdutoPedido>(query);
+            pedido.Produtos = listaProdutos;
+
+            query = string.Format("select * from Receber where IdPedido = '{0}'", id);
+            List<Receber> listaReceber = BancoDeDados.Query<Receber>(query);
+            pedido.Receber = listaReceber;
+
+            return pedido;
         }
         
-        /*public void gravar(Pedido objeto)
-        {
-            if (string.IsNullOrWhiteSpace(objeto.Id)) objeto.Id = BancoDeDados.GetIdPedido();
-            string values = "("
-                + "$$" + objeto.Id + "$$,"
-                + "$$" + objeto.Numero + "$$,"
-                + "$$" + objeto.IdVendedor + "$$,"
-                + "$$" + objeto.IdCliente + "$$,"
-                + "$$" + objeto.Valor + "$$,"
-                + "$$" + objeto.DataEmissao.ToString("dd/M/yyyy") + "$$,"
-                + "$$" + objeto.DataPago.ToString("dd/M/yyyy") + "$$,"
-                + "$$" + objeto.Observacoes + "$$)";
-            
-            string sql = "insert into Pedido "
-                + "(Id, Numero, Id_vendedor, Id_cliente, Valor, Data_emissao, Data_pago, Observacoes) "
-                + "values " + values;
-            Log log = new Log();
-            log.Sql = sql;
-            BancoDeDados.Insert(objeto, log);
-        }*/
         public void gravar(Pedido objeto)
         {
             BancoDeDados.BeginTransaction();
-
             objeto.IdVendedor = 1;
+
+            if (string.IsNullOrWhiteSpace(objeto.Id)) objeto.Id = BancoDeDados.GetIdPedido();
+
             decimal total = 0;
             foreach (ProdutoPedido item in objeto.Produtos)
             {
-                item.Id = BancoDeDados.GetIdProdutoPedido();
                 item.IdPedido = objeto.Id;
                 total += item.Quantidade * item.Valor;
             }
@@ -49,18 +49,9 @@ namespace TCCWP
 
             foreach (Receber item in objeto.Receber)
             {
-                item.Id = BancoDeDados.GetIdReceber();
                 item.IdPedido = objeto.Id;
             }
 
-            ControleProdutoPedido cpp = new ControleProdutoPedido();
-            cpp.gravarLista(objeto.Produtos);
-
-            ControleReceber cr = new ControleReceber();
-            cr.gravarLista(objeto.Receber);
-
-
-            if (string.IsNullOrWhiteSpace(objeto.Id)) objeto.Id = BancoDeDados.GetIdPedido();
             string values = "("
                 + "$$" + objeto.Id + "$$,"
                 + "$$" + objeto.Numero + "$$,"
@@ -77,38 +68,16 @@ namespace TCCWP
             Log log = new Log();
             log.Sql = sql;
             BancoDeDados.Insert(objeto, log);
+            
+
+            ControleProdutoPedido cpp = new ControleProdutoPedido();
+            cpp.gravarLista(objeto.Produtos);
+
+            ControleReceber cr = new ControleReceber();
+            cr.gravarLista(objeto.Receber);
 
             BancoDeDados.CommitTransaction();
         }
-
-        public void deletar(Pedido objeto)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void gravarLista(List<Pedido> lista)
-        {
-            string values = "";
-            foreach (Pedido pedido in lista)
-            {
-                if (string.IsNullOrWhiteSpace(pedido.Id)) pedido.Id = BancoDeDados.GetIdPedido();
-                if (values.Length > 0) values += ", ";
-                values += "("
-                    + "$$" + pedido.Id + "$$,"
-                    + "$$" + pedido.Numero + "$$,"
-                    + "$$" + pedido.IdVendedor + "$$,"
-                    + "$$" + pedido.IdCliente + "$$,"
-                    + "$$" + pedido.Valor + "$$,"
-                    + "$$" + pedido.DataEmissao.ToString("dd/M/yyyy") + "$$,"
-                    + "$$" + pedido.DataPago.ToString("dd/M/yyyy") + "$$,"
-                    + "$$" + pedido.Observacoes + "$$)";
-            }
-            string sql = "insert into Pedido "
-                + "(Id, Numero, Id_vendedor, Id_cliente, Valor, Data_emissao, Data_pago, Observacoes) "
-                + "values " + values;
-            Log log = new Log();
-            log.Sql = sql;
-            BancoDeDados.InsertList(lista, log);
-        }
+        
     }
 }

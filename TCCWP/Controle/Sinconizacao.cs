@@ -28,7 +28,7 @@ namespace TCCWP
             Service1Client client = new Service1Client();
             client.SincronizarCompleted += SincronizarCompleted;
             //client.SincronizarAsync(new System.Collections.ObjectModel.ObservableCollection<string>(lista), ultSinc.getUltimaSinc().AddDays(-5));
-            client.SincronizarAsync(new System.Collections.ObjectModel.ObservableCollection<string>(lista), ultSinc.getUltimaSinc());
+            client.SincronizarAsync(new System.Collections.ObjectModel.ObservableCollection<string>(lista), ultSinc.getUltimaSinc(), Windows.Phone.System.Analytics.HostInformation.PublisherHostId);
             
             while (!concluiu)
             {
@@ -40,7 +40,7 @@ namespace TCCWP
         {
             Atualizacao a = e.Result;
             BancoDeDados.BeginTransaction();
-            BancoDeDados.DeleteList<Log>(atualizacoes);
+            BancoDeDados.DeleteAll<Log>();
 
             #region Cliente
             List<Cliente> clientes = new List<Cliente>(a.clientes.Count);
@@ -134,6 +134,37 @@ namespace TCCWP
 
             BancoDeDados.Atualiza<Receber>(receber);
             #endregion
+
+            #region Anotacao
+            List<Anotacao> anotacoes = new List<Anotacao>(a.anotacoes.Count);
+            foreach (AnotacaoWS item in a.anotacoes)
+            {
+                anotacoes.Add(new Anotacao()
+                {
+                    Id = item.Id,
+                    IdPedido = item.IdPedido,
+                    Data = item.Data,
+                    DataUltimaAlteracao = item.DataUltimaAlteracao,
+                    Texto = item.Texto
+                });
+            }
+
+            BancoDeDados.Atualiza<Anotacao>(anotacoes);
+            #endregion
+
+            if (a.maxIdAnotacao != null || a.maxIdCliente != null || a.maxIdPedido != null || a.maxIdProdutoPedido != null || a.maxIdReceber != null)
+            {
+                Id id = new Id()
+                {
+                    Anotacao = a.maxIdAnotacao ?? 0,
+                    Cliente = a.maxIdCliente ?? 0,
+                    Pedido = a.maxIdPedido ?? 0,
+                    ProdutoPedido = a.maxIdProdutoPedido ?? 0,
+                    Receber = a.maxIdReceber ?? 0
+                };
+                BancoDeDados.DeleteAll<Id>();
+                BancoDeDados.Insert<Id>(id);
+            }
 
             Sinc s = new Sinc();
             List<Sinc> ls = BancoDeDados.Query<Sinc>("select * from Sinc");

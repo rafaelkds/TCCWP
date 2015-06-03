@@ -20,9 +20,23 @@ namespace TCCWP.ServiceReference1 {
     [System.Runtime.Serialization.DataContractAttribute(Name="Atualizacao", Namespace="http://schemas.datacontract.org/2004/07/TCCWS")]
     public partial class Atualizacao : object, System.ComponentModel.INotifyPropertyChanged {
         
+        private System.Collections.ObjectModel.ObservableCollection<TCCWP.ServiceReference1.AnotacaoWS> anotacoesField;
+        
         private System.Collections.ObjectModel.ObservableCollection<TCCWP.ServiceReference1.ClienteWS> clientesField;
         
         private System.DateTime dtAtualizadoField;
+        
+        private int idField;
+        
+        private System.Nullable<int> maxIdAnotacaoField;
+        
+        private System.Nullable<int> maxIdClienteField;
+        
+        private System.Nullable<int> maxIdPedidoField;
+        
+        private System.Nullable<int> maxIdProdutoPedidoField;
+        
+        private System.Nullable<int> maxIdReceberField;
         
         private System.Collections.ObjectModel.ObservableCollection<TCCWP.ServiceReference1.PedidoWS> pedidosField;
         
@@ -31,6 +45,19 @@ namespace TCCWP.ServiceReference1 {
         private System.Collections.ObjectModel.ObservableCollection<TCCWP.ServiceReference1.ProdutoPedidoWS> produtospedidoField;
         
         private System.Collections.ObjectModel.ObservableCollection<TCCWP.ServiceReference1.ReceberWS> receberField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.ObjectModel.ObservableCollection<TCCWP.ServiceReference1.AnotacaoWS> anotacoes {
+            get {
+                return this.anotacoesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.anotacoesField, value) != true)) {
+                    this.anotacoesField = value;
+                    this.RaisePropertyChanged("anotacoes");
+                }
+            }
+        }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
         public System.Collections.ObjectModel.ObservableCollection<TCCWP.ServiceReference1.ClienteWS> clientes {
@@ -54,6 +81,84 @@ namespace TCCWP.ServiceReference1 {
                 if ((this.dtAtualizadoField.Equals(value) != true)) {
                     this.dtAtualizadoField = value;
                     this.RaisePropertyChanged("dtAtualizado");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int id {
+            get {
+                return this.idField;
+            }
+            set {
+                if ((this.idField.Equals(value) != true)) {
+                    this.idField = value;
+                    this.RaisePropertyChanged("id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> maxIdAnotacao {
+            get {
+                return this.maxIdAnotacaoField;
+            }
+            set {
+                if ((this.maxIdAnotacaoField.Equals(value) != true)) {
+                    this.maxIdAnotacaoField = value;
+                    this.RaisePropertyChanged("maxIdAnotacao");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> maxIdCliente {
+            get {
+                return this.maxIdClienteField;
+            }
+            set {
+                if ((this.maxIdClienteField.Equals(value) != true)) {
+                    this.maxIdClienteField = value;
+                    this.RaisePropertyChanged("maxIdCliente");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> maxIdPedido {
+            get {
+                return this.maxIdPedidoField;
+            }
+            set {
+                if ((this.maxIdPedidoField.Equals(value) != true)) {
+                    this.maxIdPedidoField = value;
+                    this.RaisePropertyChanged("maxIdPedido");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> maxIdProdutoPedido {
+            get {
+                return this.maxIdProdutoPedidoField;
+            }
+            set {
+                if ((this.maxIdProdutoPedidoField.Equals(value) != true)) {
+                    this.maxIdProdutoPedidoField = value;
+                    this.RaisePropertyChanged("maxIdProdutoPedido");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> maxIdReceber {
+            get {
+                return this.maxIdReceberField;
+            }
+            set {
+                if ((this.maxIdReceberField.Equals(value) != true)) {
+                    this.maxIdReceberField = value;
+                    this.RaisePropertyChanged("maxIdReceber");
                 }
             }
         }
@@ -106,6 +211,96 @@ namespace TCCWP.ServiceReference1 {
                 if ((object.ReferenceEquals(this.receberField, value) != true)) {
                     this.receberField = value;
                     this.RaisePropertyChanged("receber");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="AnotacaoWS", Namespace="http://schemas.datacontract.org/2004/07/TCCWS")]
+    public partial class AnotacaoWS : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private System.DateTime DataField;
+        
+        private System.DateTime DataUltimaAlteracaoField;
+        
+        private string IdField;
+        
+        private string IdPedidoField;
+        
+        private string TextoField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime Data {
+            get {
+                return this.DataField;
+            }
+            set {
+                if ((this.DataField.Equals(value) != true)) {
+                    this.DataField = value;
+                    this.RaisePropertyChanged("Data");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime DataUltimaAlteracao {
+            get {
+                return this.DataUltimaAlteracaoField;
+            }
+            set {
+                if ((this.DataUltimaAlteracaoField.Equals(value) != true)) {
+                    this.DataUltimaAlteracaoField = value;
+                    this.RaisePropertyChanged("DataUltimaAlteracao");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.IdField, value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string IdPedido {
+            get {
+                return this.IdPedidoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.IdPedidoField, value) != true)) {
+                    this.IdPedidoField = value;
+                    this.RaisePropertyChanged("IdPedido");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Texto {
+            get {
+                return this.TextoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TextoField, value) != true)) {
+                    this.TextoField = value;
+                    this.RaisePropertyChanged("Texto");
                 }
             }
         }
@@ -725,14 +920,9 @@ namespace TCCWP.ServiceReference1 {
     public interface IService1 {
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService1/Sincronizar", ReplyAction="http://tempuri.org/IService1/SincronizarResponse")]
-        System.IAsyncResult BeginSincronizar(System.Collections.ObjectModel.ObservableCollection<string> atualizacoes, System.DateTime ultimaAtualizacao, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginSincronizar(System.Collections.ObjectModel.ObservableCollection<string> atualizacoes, System.DateTime ultimaAtualizacao, string identificacao, System.AsyncCallback callback, object asyncState);
         
         TCCWP.ServiceReference1.Atualizacao EndSincronizar(System.IAsyncResult result);
-        
-        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IService1/GetData", ReplyAction="http://tempuri.org/IService1/GetDataResponse")]
-        System.IAsyncResult BeginGetData(System.AsyncCallback callback, object asyncState);
-        
-        System.Collections.ObjectModel.ObservableCollection<string> EndGetData(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -760,25 +950,6 @@ namespace TCCWP.ServiceReference1 {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class GetDataCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        public GetDataCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        public System.Collections.ObjectModel.ObservableCollection<string> Result {
-            get {
-                base.RaiseExceptionIfNecessary();
-                return ((System.Collections.ObjectModel.ObservableCollection<string>)(this.results[0]));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class Service1Client : System.ServiceModel.ClientBase<TCCWP.ServiceReference1.IService1>, TCCWP.ServiceReference1.IService1 {
         
         private BeginOperationDelegate onBeginSincronizarDelegate;
@@ -786,12 +957,6 @@ namespace TCCWP.ServiceReference1 {
         private EndOperationDelegate onEndSincronizarDelegate;
         
         private System.Threading.SendOrPostCallback onSincronizarCompletedDelegate;
-        
-        private BeginOperationDelegate onBeginGetDataDelegate;
-        
-        private EndOperationDelegate onEndGetDataDelegate;
-        
-        private System.Threading.SendOrPostCallback onGetDataCompletedDelegate;
         
         private BeginOperationDelegate onBeginOpenDelegate;
         
@@ -848,15 +1013,13 @@ namespace TCCWP.ServiceReference1 {
         
         public event System.EventHandler<SincronizarCompletedEventArgs> SincronizarCompleted;
         
-        public event System.EventHandler<GetDataCompletedEventArgs> GetDataCompleted;
-        
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> OpenCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> CloseCompleted;
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult TCCWP.ServiceReference1.IService1.BeginSincronizar(System.Collections.ObjectModel.ObservableCollection<string> atualizacoes, System.DateTime ultimaAtualizacao, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginSincronizar(atualizacoes, ultimaAtualizacao, callback, asyncState);
+        System.IAsyncResult TCCWP.ServiceReference1.IService1.BeginSincronizar(System.Collections.ObjectModel.ObservableCollection<string> atualizacoes, System.DateTime ultimaAtualizacao, string identificacao, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginSincronizar(atualizacoes, ultimaAtualizacao, identificacao, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -867,7 +1030,8 @@ namespace TCCWP.ServiceReference1 {
         private System.IAsyncResult OnBeginSincronizar(object[] inValues, System.AsyncCallback callback, object asyncState) {
             System.Collections.ObjectModel.ObservableCollection<string> atualizacoes = ((System.Collections.ObjectModel.ObservableCollection<string>)(inValues[0]));
             System.DateTime ultimaAtualizacao = ((System.DateTime)(inValues[1]));
-            return ((TCCWP.ServiceReference1.IService1)(this)).BeginSincronizar(atualizacoes, ultimaAtualizacao, callback, asyncState);
+            string identificacao = ((string)(inValues[2]));
+            return ((TCCWP.ServiceReference1.IService1)(this)).BeginSincronizar(atualizacoes, ultimaAtualizacao, identificacao, callback, asyncState);
         }
         
         private object[] OnEndSincronizar(System.IAsyncResult result) {
@@ -883,11 +1047,11 @@ namespace TCCWP.ServiceReference1 {
             }
         }
         
-        public void SincronizarAsync(System.Collections.ObjectModel.ObservableCollection<string> atualizacoes, System.DateTime ultimaAtualizacao) {
-            this.SincronizarAsync(atualizacoes, ultimaAtualizacao, null);
+        public void SincronizarAsync(System.Collections.ObjectModel.ObservableCollection<string> atualizacoes, System.DateTime ultimaAtualizacao, string identificacao) {
+            this.SincronizarAsync(atualizacoes, ultimaAtualizacao, identificacao, null);
         }
         
-        public void SincronizarAsync(System.Collections.ObjectModel.ObservableCollection<string> atualizacoes, System.DateTime ultimaAtualizacao, object userState) {
+        public void SincronizarAsync(System.Collections.ObjectModel.ObservableCollection<string> atualizacoes, System.DateTime ultimaAtualizacao, string identificacao, object userState) {
             if ((this.onBeginSincronizarDelegate == null)) {
                 this.onBeginSincronizarDelegate = new BeginOperationDelegate(this.OnBeginSincronizar);
             }
@@ -899,51 +1063,8 @@ namespace TCCWP.ServiceReference1 {
             }
             base.InvokeAsync(this.onBeginSincronizarDelegate, new object[] {
                         atualizacoes,
-                        ultimaAtualizacao}, this.onEndSincronizarDelegate, this.onSincronizarCompletedDelegate, userState);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult TCCWP.ServiceReference1.IService1.BeginGetData(System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginGetData(callback, asyncState);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Collections.ObjectModel.ObservableCollection<string> TCCWP.ServiceReference1.IService1.EndGetData(System.IAsyncResult result) {
-            return base.Channel.EndGetData(result);
-        }
-        
-        private System.IAsyncResult OnBeginGetData(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            return ((TCCWP.ServiceReference1.IService1)(this)).BeginGetData(callback, asyncState);
-        }
-        
-        private object[] OnEndGetData(System.IAsyncResult result) {
-            System.Collections.ObjectModel.ObservableCollection<string> retVal = ((TCCWP.ServiceReference1.IService1)(this)).EndGetData(result);
-            return new object[] {
-                    retVal};
-        }
-        
-        private void OnGetDataCompleted(object state) {
-            if ((this.GetDataCompleted != null)) {
-                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
-                this.GetDataCompleted(this, new GetDataCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
-            }
-        }
-        
-        public void GetDataAsync() {
-            this.GetDataAsync(null);
-        }
-        
-        public void GetDataAsync(object userState) {
-            if ((this.onBeginGetDataDelegate == null)) {
-                this.onBeginGetDataDelegate = new BeginOperationDelegate(this.OnBeginGetData);
-            }
-            if ((this.onEndGetDataDelegate == null)) {
-                this.onEndGetDataDelegate = new EndOperationDelegate(this.OnEndGetData);
-            }
-            if ((this.onGetDataCompletedDelegate == null)) {
-                this.onGetDataCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetDataCompleted);
-            }
-            base.InvokeAsync(this.onBeginGetDataDelegate, null, this.onEndGetDataDelegate, this.onGetDataCompletedDelegate, userState);
+                        ultimaAtualizacao,
+                        identificacao}, this.onEndSincronizarDelegate, this.onSincronizarCompletedDelegate, userState);
         }
         
         private System.IAsyncResult OnBeginOpen(object[] inValues, System.AsyncCallback callback, object asyncState) {
@@ -1022,10 +1143,11 @@ namespace TCCWP.ServiceReference1 {
                     base(client) {
             }
             
-            public System.IAsyncResult BeginSincronizar(System.Collections.ObjectModel.ObservableCollection<string> atualizacoes, System.DateTime ultimaAtualizacao, System.AsyncCallback callback, object asyncState) {
-                object[] _args = new object[2];
+            public System.IAsyncResult BeginSincronizar(System.Collections.ObjectModel.ObservableCollection<string> atualizacoes, System.DateTime ultimaAtualizacao, string identificacao, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[3];
                 _args[0] = atualizacoes;
                 _args[1] = ultimaAtualizacao;
+                _args[2] = identificacao;
                 System.IAsyncResult _result = base.BeginInvoke("Sincronizar", _args, callback, asyncState);
                 return _result;
             }
@@ -1033,18 +1155,6 @@ namespace TCCWP.ServiceReference1 {
             public TCCWP.ServiceReference1.Atualizacao EndSincronizar(System.IAsyncResult result) {
                 object[] _args = new object[0];
                 TCCWP.ServiceReference1.Atualizacao _result = ((TCCWP.ServiceReference1.Atualizacao)(base.EndInvoke("Sincronizar", _args, result)));
-                return _result;
-            }
-            
-            public System.IAsyncResult BeginGetData(System.AsyncCallback callback, object asyncState) {
-                object[] _args = new object[0];
-                System.IAsyncResult _result = base.BeginInvoke("GetData", _args, callback, asyncState);
-                return _result;
-            }
-            
-            public System.Collections.ObjectModel.ObservableCollection<string> EndGetData(System.IAsyncResult result) {
-                object[] _args = new object[0];
-                System.Collections.ObjectModel.ObservableCollection<string> _result = ((System.Collections.ObjectModel.ObservableCollection<string>)(base.EndInvoke("GetData", _args, result)));
                 return _result;
             }
         }

@@ -27,9 +27,10 @@
             <TextBlock Text="page name" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
 
-        <Button x:Name="btNovo" Content="Novo" Grid.Row="1" Click="btNovo_Click"/>
-
-        <Button x:Name="btConsultar" Content="Consultar" Grid.Row="2" Click="btConsultar_Click"/>
+        <StackPanel Grid.Row="1" Margin="12,0,12,0">
+            <Button x:Name="btNovo" Content="Novo" Click="btNovo_Click"/>
+            <Button x:Name="btConsultar" Content="Consultar" Click="btConsultar_Click"/>
+        </StackPanel>
     </Grid>
 
 </phone:PhoneApplicationPage>

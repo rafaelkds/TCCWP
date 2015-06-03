@@ -10,6 +10,7 @@ namespace TCCWP
     {
         [SQLite.PrimaryKey]
         public string Id { get; set; }
+        public string IdPedido { get; set; }
         public DateTime Data { get; set; }
         public DateTime DataUltimaAlteracao { get; set; }
         public string Texto { get; set; }

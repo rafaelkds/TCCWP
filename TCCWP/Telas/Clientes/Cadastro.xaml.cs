@@ -20,7 +20,7 @@ namespace TCCWP.Telas.Clientes
             
         }
 
-        private void carregarPedido()
+        private void carregarCliente()
         {
             ControleCliente cc = new ControleCliente();
             Cliente cliente = cc.buscarPorId(id);
@@ -72,7 +72,7 @@ namespace TCCWP.Telas.Clientes
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             if (NavigationContext.QueryString.TryGetValue("id", out id))
-                carregarPedido();
+                carregarCliente();
         }
     }
 }

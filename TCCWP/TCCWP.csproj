@@ -74,7 +74,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>Bin\ARM\Debug</OutputPath>
-    <DefineConstants>DEBUG;TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;SILVERLIGHT;WINDOWS_PHONE;USE_WP8_NATIVE_SQLITE</DefineConstants>
     <NoStdLib>true</NoStdLib>
     <NoConfig>true</NoConfig>
     <ErrorReport>prompt</ErrorReport>
@@ -84,7 +84,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>Bin\ARM\Release</OutputPath>
-    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE;USE_WP8_NATIVE_SQLITE</DefineConstants>
     <NoStdLib>true</NoStdLib>
     <NoConfig>true</NoConfig>
     <ErrorReport>prompt</ErrorReport>
@@ -113,20 +113,23 @@
     <Compile Include="Telas\Clientes\Menu.xaml.cs">
       <DependentUpon>Menu.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Telas\Pedidos.xaml.cs">
-      <DependentUpon>Pedidos.xaml</DependentUpon>
+    <Compile Include="Telas\Pedidos\Anotacoes\Consulta.xaml.cs">
+      <DependentUpon>Consulta.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Telas\Pedidos\Anotacoes\UCTexto.xaml.cs">
+      <DependentUpon>UCTexto.xaml</DependentUpon>
     </Compile>
     <Compile Include="Telas\Pedidos\Cadastro.xaml.cs">
       <DependentUpon>Cadastro.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Telas\Pedidos\Consulta.xaml.cs">
+      <DependentUpon>Consulta.xaml</DependentUpon>
     </Compile>
     <Compile Include="Telas\Pedidos\Menu.xaml.cs">
       <DependentUpon>Menu.xaml</DependentUpon>
     </Compile>
     <Compile Include="Telas\Produtos.xaml.cs">
       <DependentUpon>Produtos.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Telas\Clientes.xaml.cs">
-      <DependentUpon>Clientes.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controle\Controle.cs" />
     <Compile Include="Controle\ControleCliente.cs" />
@@ -176,11 +179,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Telas\Pedidos.xaml">
+    <Page Include="Telas\Pedidos\Anotacoes\Consulta.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Telas\Pedidos\Anotacoes\UCTexto.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Telas\Pedidos\Cadastro.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Telas\Pedidos\Consulta.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -189,10 +200,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Telas\Produtos.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Telas\Clientes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -221,17 +228,17 @@
     <None Include="Properties\WMAppManifest.xml">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceReference1\Service1.wsdl" />
-    <None Include="Service References\ServiceReference1\Service1.xsd">
+    <None Include="Service References\ServiceReference1\Service11.wsdl" />
+    <None Include="Service References\ServiceReference1\Service14.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceReference1\Service11.xsd">
+    <None Include="Service References\ServiceReference1\Service141.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceReference1\Service12.xsd">
+    <None Include="Service References\ServiceReference1\Service142.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceReference1\Service13.xsd">
+    <None Include="Service References\ServiceReference1\Service143.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ServiceReference1\TCCWP.ServiceReference1.Atualizacao.datasource">

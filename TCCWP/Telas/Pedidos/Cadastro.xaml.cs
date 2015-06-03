@@ -17,9 +17,28 @@ namespace TCCWP.Telas.Pedidos
         public Cadastro()
         {
             InitializeComponent();
+            
             novoPedido = new Pedido();
             novoPedido.Produtos = new List<ProdutoPedido>();
             novoPedido.Receber = new List<Receber>();
+        }
+
+        private void carregarPedido(string id)
+        {
+            ControlePedido cp = new ControlePedido();
+            novoPedido = cp.buscarPorId(id);
+
+            tbNumero.Text = novoPedido.Numero;
+            dpEmissao.Value = novoPedido.DataEmissao;
+
+            ControleCliente cc = new ControleCliente();
+            Cliente cliente = cc.buscarPorId(novoPedido.IdCliente);
+            tbCliente.Text = cliente.Nome;
+
+            listProdutos.ItemsSource = novoPedido.Produtos;
+            listVencimentos.ItemsSource = novoPedido.Receber;
+
+            tbObservacoes.Text = novoPedido.Observacoes;
         }
 
         private void btSelecionarCliente_Click(object sender, RoutedEventArgs e)
@@ -112,40 +131,49 @@ namespace TCCWP.Telas.Pedidos
             listVencimentos.ItemsSource = novoPedido.Receber;
         }
 
-        private void tbGravar_Click(object sender, RoutedEventArgs e)
+        private void btGravar_Click(object sender, RoutedEventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(tbNumero.Text) && dpEmissao.Value != null)
             {
-                novoPedido.DataEmissao = dpEmissao.Value ?? new DateTime();
                 novoPedido.Numero = tbNumero.Text;
-
-                novoPedido.Id = BancoDeDados.GetIdPedido();
-                novoPedido.IdVendedor = 1;
+                novoPedido.DataEmissao = dpEmissao.Value ?? new DateTime();
                 novoPedido.Observacoes = tbObservacoes.Text;
-                decimal total = 0;
-                foreach (ProdutoPedido item in novoPedido.Produtos)
-                {
-                    item.Id = BancoDeDados.GetIdProdutoPedido();
-                    item.IdPedido = novoPedido.Id;
-                    total += item.Quantidade * item.Valor;
-                }
-                novoPedido.Valor = total;
-
-                foreach (Receber item in novoPedido.Receber)
-                {
-                    item.Id = BancoDeDados.GetIdReceber();
-                    item.IdPedido = novoPedido.Id;
-                }
 
                 ControlePedido cp = new ControlePedido();
                 cp.gravar(novoPedido);
-
-                ControleProdutoPedido cpp = new ControleProdutoPedido();
-                cpp.gravarLista(novoPedido.Produtos);
-
-                ControleReceber cr = new ControleReceber();
-                cr.gravarLista(novoPedido.Receber);
             }
+        }
+
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            string id;
+            if (NavigationContext.QueryString.TryGetValue("id", out id))
+            {
+                btAnotacoes.Visibility = System.Windows.Visibility.Visible;
+                btGravar.IsEnabled = false;
+
+                tbNumero.IsEnabled = false;
+                dpEmissao.IsEnabled = false;
+                btSelecionarCliente.IsEnabled = false;
+
+                btAdicionarProduto.IsEnabled = false;
+                btRemoverProduto.IsEnabled = false;
+                listProdutos.IsEnabled = false;
+
+                dpData.IsEnabled = false;
+                tbValor.IsEnabled = false;
+                btAdicionarVencimento.IsEnabled = false;
+                btRemoverVencimento.IsEnabled = false;
+
+                tbObservacoes.IsEnabled = false;
+
+                carregarPedido(id);
+            }
+        }
+
+        private void btAnotacoes_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/Telas/Pedidos/Anotacoes/Consulta.xaml?id=" + novoPedido.Id, UriKind.Relative));
         }
     }
 }

@@ -29,12 +29,7 @@ namespace TCCWP
                 + "values " + values;
             Log log = new Log();
             log.Sql = sql;
-            BancoDeDados.InsertRIT(objeto, log);
-        }
-
-        public void deletar(Receber objeto)
-        {
-            throw new NotImplementedException();
+            BancoDeDados.Insert(objeto, log);
         }
 
         public void gravarLista(List<Receber> lista)

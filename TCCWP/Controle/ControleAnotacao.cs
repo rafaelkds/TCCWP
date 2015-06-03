@@ -10,29 +10,44 @@ namespace TCCWP
     {
         public List<Anotacao> buscar(string busca)
         {
-            throw new NotImplementedException();
+            string query = string.Format("select * from Anotacao where IdPedido = '{0}'", busca);
+            List<Anotacao> lista = BancoDeDados.Query<Anotacao>(query);
+            return lista;
         }
 
         public void gravar(Anotacao objeto)
         {
-            if (string.IsNullOrWhiteSpace(objeto.Id)) objeto.Id = BancoDeDados.GetIdPedido();
-            string values = "("
-                + "$$" + objeto.Id + "$$,"
-                + "$$" + objeto.Data.ToString("dd/M/yyyy") + "$$,"
-                + "$$" + objeto.DataUltimaAlteracao.ToString("dd/M/yyyy") + "$$,"
-                + "$$" + objeto.Texto + "$$)";
+            BancoDeDados.BeginTransaction();
 
-            string sql = "insert into Anotacao "
-                + "(Id, Data, Data_ultima_alteracao, Texto) "
-                + "values " + values;
-            Log log = new Log();
-            log.Sql = sql;
-            BancoDeDados.InsertRIT(objeto, log);
-        }
+            if (string.IsNullOrWhiteSpace(objeto.Id))
+            {
+                objeto.Id = BancoDeDados.GetIdAnotacao();
+                string values = "("
+                    + "$$" + objeto.Id + "$$,"
+                    + "$$" + objeto.IdPedido + "$$,"
+                    + "$$" + objeto.Data.ToString("dd/M/yyyy") + "$$,"
+                    + "$$" + objeto.DataUltimaAlteracao.ToString("dd/M/yyyy") + "$$,"
+                    + "$$" + objeto.Texto + "$$)";
 
-        public void deletar(Anotacao objeto)
-        {
-            throw new NotImplementedException();
+                string sql = "insert into Anotacao "
+                    + "(Id, Id_pedido, Data, Data_ultima_alteracao, Texto) "
+                    + "values " + values;
+                Log log = new Log();
+                log.Sql = sql;
+                BancoDeDados.Insert(objeto, log);
+            }
+            else
+            {
+                string sql = "update Anotacao set "
+                    + "Data_ultima_alteracao = $$" + objeto.DataUltimaAlteracao.ToString("dd/M/yyyy") + "$$,"
+                    + "Texto = $$" + objeto.Texto + "$$"
+                    + " where Id = $$" + objeto.Id + "$$";
+                Log log = new Log();
+                log.Sql = sql;
+                BancoDeDados.Update(objeto, log);
+            }
+
+            BancoDeDados.CommitTransaction();
         }
     }
 }

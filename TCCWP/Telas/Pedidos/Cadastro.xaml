@@ -26,6 +26,7 @@
                     <toolkit:DatePicker Name="dpEmissao" />
                     <Button x:Name="btSelecionarCliente" Content="Selecionar Cliente" HorizontalAlignment="Stretch" Click="btSelecionarCliente_Click"/>
                     <TextBlock Name="tbCliente" Margin="12,0,12,0" FontFamily="Segoe WP Semibold" FontSize="22"/>
+                    <Button x:Name="btAnotacoes" Content="Anotações" Click="btAnotacoes_Click" Visibility="Collapsed"/>
                 </StackPanel>
             </phone:PivotItem>
 
@@ -135,7 +136,7 @@
                 <TextBox Name="tbObservacoes" Height="500" AcceptsReturn="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"/>
             </phone:PivotItem>
         </phone:Pivot>
-        <Button x:Name="tbGravar" Content="Gravar" Click="tbGravar_Click"/>
+        <Button x:Name="btGravar" Content="Gravar" Click="btGravar_Click"/>
     </StackPanel>
     
 </phone:PhoneApplicationPage>

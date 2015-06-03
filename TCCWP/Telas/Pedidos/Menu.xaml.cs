@@ -21,5 +21,10 @@ namespace TCCWP.Telas.Pedidos
         {
             NavigationService.Navigate(new Uri("/Telas/Pedidos/Cadastro.xaml", UriKind.Relative));
         }
+
+        private void btConsultar_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/Telas/Pedidos/Consulta.xaml", UriKind.Relative));
+        }
     }
 }

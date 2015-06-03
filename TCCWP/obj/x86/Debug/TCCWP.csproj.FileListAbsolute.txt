@@ -19,8 +19,6 @@ D:\Visual Studio 2013\Projects\TCCWP\TCCWP\obj\x86\Debug\TCCWP.pdb
 D:\Visual Studio 2013\Projects\TCCWP\TCCWP\obj\x86\Debug\XapCacheFile.xml
 D:\Visual Studio 2013\Projects\TCCWP\TCCWP\Bin\x86\Debug\Sqlite.winmd
 D:\Visual Studio 2013\Projects\TCCWP\TCCWP\Bin\x86\Debug\Sqlite.dll
-D:\Visual Studio 2013\Projects\TCCWP\TCCWP\obj\x86\Debug\Telas\Clientes.g.cs
-D:\Visual Studio 2013\Projects\TCCWP\TCCWP\obj\x86\Debug\Telas\Pedidos.g.cs
 D:\Visual Studio 2013\Projects\TCCWP\TCCWP\obj\x86\Debug\Telas\Produtos.g.cs
 D:\Visual Studio 2013\Projects\TCCWP\TCCWP\obj\x86\Debug\MainPage.g.cs
 D:\Visual Studio 2013\Projects\TCCWP\TCCWP\Bin\x86\Debug\Microsoft.Phone.Controls.Toolkit.dll
@@ -82,3 +80,4 @@ D:\Visual Studio 2013\Projects\TCCWP\TCCWP\obj\x86\Debug\Telas\Clientes\Consulta
 D:\Visual Studio 2013\Projects\TCCWP\TCCWP\obj\x86\Debug\Telas\Clientes\Menu.g.cs
 D:\Visual Studio 2013\Projects\TCCWP\TCCWP\obj\x86\Debug\Telas\Pedidos\Cadastro.g.cs
 D:\Visual Studio 2013\Projects\TCCWP\TCCWP\obj\x86\Debug\Telas\Pedidos\Menu.g.cs
+D:\Visual Studio 2013\Projects\TCCWP\TCCWP\obj\x86\Debug\Telas\Pedidos\Consulta.g.cs

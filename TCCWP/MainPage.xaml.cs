@@ -14,6 +14,7 @@ namespace TCCWP
 {
     public partial class MainPage : PhoneApplicationPage
     {
+        public long UltimaSinc { get; set; }
         private Sinconizacao sinc = new Sinconizacao();
         // Constructor
         public MainPage()

@@ -25,6 +25,7 @@ namespace TCCWP
 
         public void gravar(Cliente objeto)
         {
+            BancoDeDados.BeginTransaction();
             if (string.IsNullOrWhiteSpace(objeto.Id))
             {
                 objeto.Id = BancoDeDados.GetIdCliente();
@@ -70,39 +71,7 @@ namespace TCCWP
 
                 BancoDeDados.Update(objeto, log);
             }
-        }
-
-        public void deletar(Cliente objeto)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void gravarLista(List<Cliente> lista)
-        {
-            string values = "";
-            foreach (Cliente cliente in lista)
-            {
-                if (string.IsNullOrWhiteSpace(cliente.Id)) cliente.Id = BancoDeDados.GetIdCliente();
-                if (values.Length > 0) values += ", ";
-                values += "("
-                    + "$$" + cliente.Id + "$$,"
-                    + "$$" + cliente.Nome + "$$,"
-                    + "$$" + cliente.Cpf + "$$,"
-                    + "$$" + cliente.Rua + "$$,"
-                    + "$$" + cliente.Numero + "$$,"
-                    + "$$" + cliente.Bairro + "$$,"
-                    + "$$" + cliente.Cidade + "$$,"
-                    + "$$" + cliente.Cep + "$$,"
-                    + "$$" + cliente.Complemento + "$$,"
-                    + "$$" + cliente.Telefone + "$$,"
-                    + "$$" + cliente.Email + "$$)";
-            }
-            string sql = "insert into Cliente "
-                + "(Id, Nome, Cpf, Rua, Numero, Bairro, Cidade, Cep, Complemento, Telefone, Email) "
-                + "values " + values;
-            Log log = new Log();
-            log.Sql = sql;
-            BancoDeDados.InsertList(lista, log);
+            BancoDeDados.CommitTransaction();
         }
     }
 }
