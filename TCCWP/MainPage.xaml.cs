@@ -9,11 +9,16 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using TCCWP.Resources;
 using SQLite;
+using Microsoft.Phone.Scheduler;
 
 namespace TCCWP
 {
     public partial class MainPage : PhoneApplicationPage
     {
+        ResourceIntensiveTask resourceIntensiveTask;
+        string resourceIntensiveTaskName = "ResourceIntensiveAgent";
+        public bool agentsAreEnabled = true;
+
         public long UltimaSinc { get; set; }
         private Sinconizacao sinc = new Sinconizacao();
         // Constructor
@@ -45,22 +50,55 @@ namespace TCCWP
         {
             NavigationService.Navigate(new Uri("/Telas/Clientes/Menu.xaml", UriKind.Relative));
         }
-        
 
-        // Sample code for building a localized ApplicationBar
-        //private void BuildLocalizedApplicationBar()
-        //{
-        //    // Set the page's ApplicationBar to a new instance of ApplicationBar.
-        //    ApplicationBar = new ApplicationBar();
 
-        //    // Create a new button and set the text value to the localized string from AppResources.
-        //    ApplicationBarIconButton appBarButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.add.rest.png", UriKind.Relative));
-        //    appBarButton.Text = AppResources.AppBarButtonText;
-        //    ApplicationBar.Buttons.Add(appBarButton);
+        private void StartResourceIntensiveAgent()
+        {
+            // Variable for tracking enabled status of background agents for this app.
+            agentsAreEnabled = true;
 
-        //    // Create a new menu item with the localized string from AppResources.
-        //    ApplicationBarMenuItem appBarMenuItem = new ApplicationBarMenuItem(AppResources.AppBarMenuItemText);
-        //    ApplicationBar.MenuItems.Add(appBarMenuItem);
-        //}
+            resourceIntensiveTask = ScheduledActionService.Find(resourceIntensiveTaskName) as ResourceIntensiveTask;
+
+            // If the task already exists and background agents are enabled for the
+            // application, you must remove the task and then add it again to update 
+            // the schedule.
+            if (resourceIntensiveTask != null)
+            {
+                ScheduledActionService.Remove(resourceIntensiveTaskName);
+            }
+
+            resourceIntensiveTask = new ResourceIntensiveTask(resourceIntensiveTaskName);
+
+            // The description is required for periodic agents. This is the string that the user
+            // will see in the background services Settings page on the device.
+            resourceIntensiveTask.Description = "Atualização automática do TCCWP.";
+
+            // Place the call to Add in a try block in case the user has disabled agents.
+            try
+            {
+                ScheduledActionService.Add(resourceIntensiveTask);
+
+                // If debugging is enabled, use LaunchForTest to launch the agent in one minute.
+/*#if(DEBUG_AGENT)
+    ScheduledActionService.LaunchForTest(resourceIntensiveTaskName, TimeSpan.FromSeconds(60));
+#endif*/
+            }
+            catch (InvalidOperationException exception)
+            {
+                if (exception.Message.Contains("BNS Error: The action is disabled"))
+                {
+                    agentsAreEnabled = false;
+
+                }
+            }
+            catch (SchedulerServiceException)
+            {
+                // No user action required.
+            }
+
+
+        }
+
+
     }
 }

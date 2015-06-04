@@ -54,7 +54,7 @@ namespace TCCWP
                     Rua = item.Rua,
                     Numero = item.Numero,
                     Bairro = item.Bairro,
-                    Cidade = item.Cidade,
+                    Cidade = item.Cidade.ToString(),///////////////////////////
                     Cep = item.Cep,
                     Complemento = item.Complemento,
                     Telefone = item.Telefone,
@@ -172,6 +172,7 @@ namespace TCCWP
                 s.UltimaSinc = a.dtAtualizado.Ticks > ls[0].UltimaSinc ? a.dtAtualizado.Ticks : ls[0].UltimaSinc;
             else
                 s.UltimaSinc = a.dtAtualizado.Ticks;
+            s.IdCelular = a.id;
 
             BancoDeDados.UltSinc(s);
             BancoDeDados.CommitTransaction();

@@ -21,7 +21,7 @@ namespace TCCWP
                 {
                     List<Sinc> lista = Query<Sinc>("select * from Sinc");
                     if (lista.Count > 0)
-                        identificacao = lista[0].Identificacao;
+                        identificacao = lista[0].IdCelular;
                 }
                 return identificacao;
             }
@@ -105,7 +105,7 @@ namespace TCCWP
             }
         }
 
-        public static void UltSinc(Sinc ultSinc)
+        public static void UltSinc(Sinc ultSinc)///////////remover
         {
             Conn.CreateTable<Sinc>();
             Conn.DeleteAll<Sinc>();
@@ -114,98 +114,6 @@ namespace TCCWP
         #endregion
 
 
-        #region RunInTransaction
-        public static void InsertRIT<T>(T objeto, Log log)
-        {
-            using (var dbConn = new SQLiteConnection(caminhoDB))
-            {
-                dbConn.RunInTransaction(() =>
-                {
-                    dbConn.CreateTable<T>();
-                    dbConn.Insert(objeto);
-                    dbConn.CreateTable<Log>();
-                    dbConn.Insert(log);
-                });
-            }
-        }
-
-        public static void InsertListRIT<T>(List<T> lista, Log log)
-        {
-            using (var dbConn = new SQLiteConnection(caminhoDB))
-            {
-                dbConn.RunInTransaction(() =>
-                {
-                    dbConn.CreateTable<T>();
-                    dbConn.InsertAll(lista);
-                    dbConn.CreateTable<Log>();
-                    dbConn.Insert(log);
-                });
-            }
-        }
-
-        public static void DeleteRIT(object objeto)
-        {
-            using (var dbConn = new SQLiteConnection(caminhoDB))
-            {
-                dbConn.RunInTransaction(() =>
-                {
-                    dbConn.Delete(objeto);
-                });
-            }
-        }
-
-        public static void DeleteListRIT(List<object> lista)
-        {
-            using (var dbConn = new SQLiteConnection(caminhoDB))
-            {
-                dbConn.RunInTransaction(() =>
-                {
-                    foreach(Object item in lista)
-                        dbConn.Delete(item);
-                });
-            }
-        }
-
-        public static void UpdateRIT(object objeto, Log log)
-        {
-            using (var dbConn = new SQLiteConnection(caminhoDB))
-            {
-                dbConn.RunInTransaction(() =>
-                {
-                    dbConn.Update(objeto);
-                    dbConn.Insert(log);
-                });
-            }
-        }
-
-        public static void AtualizaRIT<T>(List<T> lista)
-        {
-            using (var dbConn = new SQLiteConnection(caminhoDB))
-            {
-                dbConn.RunInTransaction(() =>
-                {
-                    dbConn.CreateTable<T>();
-
-                    foreach (T objeto in lista)
-                        dbConn.Delete(objeto);
-                    dbConn.InsertAll(lista);
-                });
-            }
-        }
-
-        public static void UltSincRIT(Sinc ultSinc)
-        {
-            using (var dbConn = new SQLiteConnection(caminhoDB))
-            {
-                dbConn.RunInTransaction(() =>
-                {
-                    dbConn.DropTable<Sinc>();
-                    dbConn.CreateTable<Sinc>();
-                    dbConn.Insert(ultSinc);
-                });
-            }
-        }
-        #endregion
 
         public static List<T> Query<T>(string query)
         {
@@ -217,130 +125,6 @@ namespace TCCWP
             }
         }
 
-        public static List<Cliente> ListAllCliente()
-        {
-            using (var dbConn = new SQLiteConnection(caminhoDB))
-            {
-                dbConn.CreateTable<Cliente>();
-                return dbConn.Table<Cliente>().ToList();
-            }
-        }
-
-        public static List<Produto> ListAllProduto()
-        {
-            using (var dbConn = new SQLiteConnection(caminhoDB))
-            {
-                dbConn.CreateTable<Produto>();
-                return dbConn.Table<Produto>().ToList();
-            }
-        }
-
-
-        #region GetIdRIT
-        public static string GetIdClienteRIT()
-        {
-            string id = "";
-            using (var dbConn = new SQLiteConnection(caminhoDB))
-            {
-                dbConn.RunInTransaction(() =>
-                {
-                    dbConn.CreateTable<Id>();
-                    List<Id> ls = dbConn.Query<Id>("select * from Id");
-                    int idAux;
-                    if (ls.Count == 0)
-                    {
-                        idAux = 1;
-                        dbConn.Execute("Insert into Id (Cliente) values (?)", idAux);
-                    }
-                    else
-                    {
-                        idAux = ls[0].Cliente + 1;
-                        dbConn.Execute("Update Id set Cliente = ?", idAux);
-                    }
-                    id = Identificacao + "/" + idAux;
-                });
-            }
-            return id;
-        }
-
-        public static string GetIdPedidoRIT()
-        {
-            string id = "";
-            using (var dbConn = new SQLiteConnection(caminhoDB))
-            {
-                dbConn.RunInTransaction(() =>
-                {
-                    dbConn.CreateTable<Id>();
-                    List<Id> ls = dbConn.Query<Id>("select * from Id");
-                    int idAux;
-                    if (ls.Count == 0)
-                    {
-                        idAux = 1;
-                        dbConn.Execute("Insert into Id (Pedido) values (?)", idAux);
-                    }
-                    else
-                    {
-                        idAux = ls[0].Pedido + 1;
-                        dbConn.Execute("Update Id set Pedido = ?", idAux);
-                    }
-                    id = Identificacao + "/" + idAux;
-                });
-            }
-            return id;
-        }
-
-        public static string GetIdProdutoPedidoRIT()
-        {
-            string id = "";
-            using (var dbConn = new SQLiteConnection(caminhoDB))
-            {
-                dbConn.RunInTransaction(() =>
-                {
-                    dbConn.CreateTable<Id>();
-                    List<Id> ls = dbConn.Query<Id>("select * from Id");
-                    int idAux;
-                    if (ls.Count == 0)
-                    {
-                        idAux = 1;
-                        dbConn.Execute("Insert into Id (ProdutoPedido) values (?)", idAux);
-                    }
-                    else
-                    {
-                        idAux = ls[0].ProdutoPedido + 1;
-                        dbConn.Execute("Update Id set ProdutoPedido = ?", idAux);
-                    }
-                    id = Identificacao + "/" + idAux;
-                });
-            }
-            return id;
-        }
-
-        public static string GetIdReceberRIT()
-        {
-            string id = "";
-            using (var dbConn = new SQLiteConnection(caminhoDB))
-            {
-                dbConn.RunInTransaction(() =>
-                {
-                    dbConn.CreateTable<Id>();
-                    List<Id> ls = dbConn.Query<Id>("select * from Id");
-                    int idAux;
-                    if (ls.Count == 0)
-                    {
-                        idAux = 1;
-                        dbConn.Execute("Insert into Id (Receber) values (?)", idAux);
-                    }
-                    else
-                    {
-                        idAux = ls[0].Receber + 1;
-                        dbConn.Execute("Update Id set Receber = " + idAux);
-                    }
-                    id = Identificacao + "/" + idAux;
-                });
-            }
-            return id;
-        }
-        #endregion
 
         #region GetId
         public static string GetIdCliente()
@@ -445,7 +229,9 @@ namespace TCCWP
         #endregion
 
         
-
+        
+        /// //////////////SO TESTE///////////
+        
         public static void teste()
         {
             //System.IO.IsolatedStorage.IsolatedStorageFile storage = System.IO.IsolatedStorage.IsolatedStorageFile.GetUserStoreForApplication();
@@ -470,5 +256,22 @@ namespace TCCWP
             //System.Windows.MessageBox.Show(storage.FileExists("teste.sqlite").ToString());        
         }
 
+        public static List<Cliente> ListAllCliente()
+        {
+            using (var dbConn = new SQLiteConnection(caminhoDB))
+            {
+                dbConn.CreateTable<Cliente>();
+                return dbConn.Table<Cliente>().ToList();
+            }
+        }
+
+        public static List<Produto> ListAllProduto()
+        {
+            using (var dbConn = new SQLiteConnection(caminhoDB))
+            {
+                dbConn.CreateTable<Produto>();
+                return dbConn.Table<Produto>().ToList();
+            }
+        }
     }
 }

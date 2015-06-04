@@ -18,5 +18,7 @@ MDIL image D:\Visual Studio 2013\Projects\TCCWP\TCCWP\obj\ARM\Debug\MDIL\TCCWP.d
 
 
 File D:\Visual Studio 2013\Projects\TCCWP\TCCWP\Bin\ARM\Debug\MDIL\TCCWP.dll output D:\Visual Studio 2013\Projects\TCCWP\TCCWP\obj\ARM\Debug\MDIL\TCCWP.dll
+Processing file: D:\Visual Studio 2013\Projects\TCCWP\TCCWP\Bin\ARM\Debug\MDIL\TCCWPTaskAgent.dll
+File D:\Visual Studio 2013\Projects\TCCWP\TCCWP\Bin\ARM\Debug\MDIL\TCCWPTaskAgent.dll is not in the compile filter. Skipping.
 Processing file: D:\Visual Studio 2013\Projects\TCCWP\TCCWP\Bin\ARM\Debug\MDIL\WMAppManifest.xml
 File D:\Visual Studio 2013\Projects\TCCWP\TCCWP\Bin\ARM\Debug\MDIL\WMAppManifest.xml is not in the compile filter. Skipping.

@@ -50,7 +50,7 @@ namespace TCCWP.Telas.Clientes
                 c.Rua = tbRua.Text;
                 c.Numero = tbNumero.Text;
                 c.Bairro = tbBairro.Text;
-                c.Cidade = Convert.ToInt32(tbCidade.Text);
+                c.Cidade = tbCidade.Text;
                 c.Cep = tbCep.Text;
 
                 c.Complemento = tbComplemento.Text;

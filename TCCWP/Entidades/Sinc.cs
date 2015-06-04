@@ -8,7 +8,7 @@ namespace TCCWP
 {
     class Sinc
     {
-        public int Identificacao { get; set; }
+        public int IdCelular { get; set; }
         public long UltimaSinc { get; set; }
         
         public DateTime getUltimaSinc()
