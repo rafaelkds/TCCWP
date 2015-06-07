@@ -21,6 +21,9 @@ namespace TCCWP.Telas.Pedidos
             novoPedido = new Pedido();
             novoPedido.Produtos = new List<ProdutoPedido>();
             novoPedido.Receber = new List<Receber>();
+            
+            ControleVendedor cv = new ControleVendedor();
+            listVendedores.ItemsSource = cv.buscar("");
         }
 
         private void carregarPedido(string id)
@@ -30,10 +33,11 @@ namespace TCCWP.Telas.Pedidos
 
             tbNumero.Text = novoPedido.Numero;
             dpEmissao.Value = novoPedido.DataEmissao;
+            listVendedores.SelectedIndex = (new List<Vendedor>(listVendedores.ItemsSource.Cast<Vendedor>())).FindIndex(x => x.Id == novoPedido.IdVendedor);
 
             ControleCliente cc = new ControleCliente();
             Cliente cliente = cc.buscarPorId(novoPedido.IdCliente);
-            tbCliente.Text = cliente.Nome;
+            btSelecionarCliente.Content = cliente.Nome;
 
             listProdutos.ItemsSource = novoPedido.Produtos;
             listVencimentos.ItemsSource = novoPedido.Receber;
@@ -58,7 +62,7 @@ namespace TCCWP.Telas.Pedidos
                         if (ucsc.listClientes.SelectedItem != null)
                         {
                             novoPedido.IdCliente = (ucsc.listClientes.SelectedItem as Cliente).Id;
-                            tbCliente.Text = (ucsc.listClientes.SelectedItem as Cliente).Nome;
+                            btSelecionarCliente.Content = (ucsc.listClientes.SelectedItem as Cliente).Nome;
                         }
                         break;
                 }
@@ -138,6 +142,7 @@ namespace TCCWP.Telas.Pedidos
                 novoPedido.Numero = tbNumero.Text;
                 novoPedido.DataEmissao = dpEmissao.Value ?? new DateTime();
                 novoPedido.Observacoes = tbObservacoes.Text;
+                novoPedido.IdVendedor = (listVendedores.SelectedItem as Vendedor).Id;
 
                 ControlePedido cp = new ControlePedido();
                 cp.gravar(novoPedido);
@@ -155,6 +160,7 @@ namespace TCCWP.Telas.Pedidos
                 tbNumero.IsEnabled = false;
                 dpEmissao.IsEnabled = false;
                 btSelecionarCliente.IsEnabled = false;
+                listVendedores.IsEnabled = false;
 
                 btAdicionarProduto.IsEnabled = false;
                 btRemoverProduto.IsEnabled = false;

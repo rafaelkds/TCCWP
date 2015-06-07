@@ -3,7 +3,6 @@
     <AssemblyPart x:Name="TCCWP" Source="TCCWP.dll" />
     <AssemblyPart x:Name="Microsoft.Phone.Controls" Source="Microsoft.Phone.Controls.dll" />
     <AssemblyPart x:Name="Microsoft.Phone.Controls.Toolkit" Source="Microsoft.Phone.Controls.Toolkit.dll" />
-    <AssemblyPart x:Name="TCCWPTaskAgent" Source="TCCWPTaskAgent.dll" />
     <AssemblyPart x:Name="Sqlite" Source="Sqlite.dll" />
   </Deployment.Parts>
 </Deployment>

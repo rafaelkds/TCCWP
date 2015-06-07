@@ -24,8 +24,21 @@
                     <TextBox Name="tbNumero" HorizontalAlignment="Stretch" Width="Auto"/>
                     <TextBlock Text="Data de Emissão:"/>
                     <toolkit:DatePicker Name="dpEmissao" />
-                    <Button x:Name="btSelecionarCliente" Content="Selecionar Cliente" HorizontalAlignment="Stretch" Click="btSelecionarCliente_Click"/>
-                    <TextBlock Name="tbCliente" Margin="12,0,12,0" FontFamily="Segoe WP Semibold" FontSize="22"/>
+                    <TextBlock Text="Cliente:"/>
+                    <Button x:Name="btSelecionarCliente" Content="Selecionar" HorizontalAlignment="Stretch" Click="btSelecionarCliente_Click"/>
+                    <TextBlock Text="Vendedor:"/>
+                    <toolkit:ListPicker Name="listVendedores" ExpansionMode="FullScreenOnly">
+                        <toolkit:ListPicker.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Nome}"/>
+                            </DataTemplate>
+                        </toolkit:ListPicker.ItemTemplate>
+                        <toolkit:ListPicker.FullModeItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Nome}" FontSize="40" />
+                            </DataTemplate>
+                        </toolkit:ListPicker.FullModeItemTemplate>
+                    </toolkit:ListPicker>
                     <Button x:Name="btAnotacoes" Content="Anotações" Click="btAnotacoes_Click" Visibility="Collapsed"/>
                 </StackPanel>
             </phone:PivotItem>

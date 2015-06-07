@@ -15,6 +15,7 @@
       <xs:element minOccurs="0" name="produtos" nillable="true" type="tns:ArrayOfProdutoWS" />
       <xs:element minOccurs="0" name="produtospedido" nillable="true" type="tns:ArrayOfProdutoPedidoWS" />
       <xs:element minOccurs="0" name="receber" nillable="true" type="tns:ArrayOfReceberWS" />
+      <xs:element minOccurs="0" name="vendedores" nillable="true" type="tns:ArrayOfVendedorWS" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Atualizacao" nillable="true" type="tns:Atualizacao" />
@@ -124,4 +125,17 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ReceberWS" nillable="true" type="tns:ReceberWS" />
+  <xs:complexType name="ArrayOfVendedorWS">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="VendedorWS" nillable="true" type="tns:VendedorWS" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfVendedorWS" nillable="true" type="tns:ArrayOfVendedorWS" />
+  <xs:complexType name="VendedorWS">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Nome" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="VendedorWS" nillable="true" type="tns:VendedorWS" />
 </xs:schema>

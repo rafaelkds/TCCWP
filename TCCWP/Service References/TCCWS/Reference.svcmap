@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="72e8004c-7ce9-4035-bfcf-bfae33b740f4" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>true</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.ObjectModel.ObservableCollection`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>false</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>false</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://10.1.1.100:12115/TCCWS.svc?wsdl" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="TCCWS.xsd" MetadataType="Schema" ID="3c60d2a9-1f4d-4095-a6d7-6cd35e163557" SourceId="1" SourceUrl="http://10.1.1.100:12115/TCCWS.svc?xsd=xsd1" />
+    <MetadataFile FileName="TCCWS1.xsd" MetadataType="Schema" ID="0e4290c4-c253-4564-b936-778e475bf411" SourceId="1" SourceUrl="http://10.1.1.100:12115/TCCWS.svc?xsd=xsd0" />
+    <MetadataFile FileName="TCCWS2.xsd" MetadataType="Schema" ID="7c455b1e-7ad8-4480-a529-93f5cd1f4031" SourceId="1" SourceUrl="http://10.1.1.100:12115/TCCWS.svc?xsd=xsd3" />
+    <MetadataFile FileName="TCCWS3.xsd" MetadataType="Schema" ID="e72f3c2d-689b-4e9f-9215-5721cf3a8f8d" SourceId="1" SourceUrl="http://10.1.1.100:12115/TCCWS.svc?xsd=xsd2" />
+    <MetadataFile FileName="TCCWS.wsdl" MetadataType="Wsdl" ID="da47f633-edf7-4d75-a690-23434f5adcf7" SourceId="1" SourceUrl="http://10.1.1.100:12115/TCCWS.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

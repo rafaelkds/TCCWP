@@ -33,7 +33,7 @@ namespace TCCWP
         {
             InitializeComponent();
             //StartPeriodicAgent();
-            StartResourceIntensiveAgent();
+            //StartResourceIntensiveAgent();
             BancoDeDados.teste();
             // Sample code to localize the ApplicationBar
             //BuildLocalizedApplicationBar();
@@ -63,7 +63,7 @@ namespace TCCWP
 
 
 
-
+        /*
         private void StartPeriodicAgent()
         {
             // Variable for tracking enabled status of background agents for this app.
@@ -174,6 +174,6 @@ namespace TCCWP
             {
             }
         }
-
+        */
     }
 }

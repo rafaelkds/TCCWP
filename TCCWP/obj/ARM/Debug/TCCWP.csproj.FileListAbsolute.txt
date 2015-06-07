@@ -83,5 +83,3 @@ D:\Visual Studio 2013\Projects\TCCWP\TCCWP\Bin\ARM\Debug\zh-TW\Microsoft.Phone.C
 D:\Visual Studio 2013\Projects\TCCWP\TCCWP\obj\ARM\Debug\Telas\Pedidos\Anotacoes\Consulta.g.cs
 D:\Visual Studio 2013\Projects\TCCWP\TCCWP\obj\ARM\Debug\Telas\Pedidos\Anotacoes\UCTexto.g.cs
 D:\Visual Studio 2013\Projects\TCCWP\TCCWP\obj\ARM\Debug\TCCWP.csprojResolveAssemblyReference.cache
-D:\Visual Studio 2013\Projects\TCCWP\TCCWP\Bin\ARM\Debug\TCCWPTaskAgent.dll
-D:\Visual Studio 2013\Projects\TCCWP\TCCWP\Bin\ARM\Debug\TCCWPTaskAgent.pdb

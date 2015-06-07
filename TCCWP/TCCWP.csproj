@@ -94,6 +94,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controle\ControleVendedor.cs" />
     <Compile Include="Controle\BancoDeDados.cs" />
     <Compile Include="Controle\ControleAnotacao.cs" />
     <Compile Include="Controle\ControleReceber.cs" />
@@ -104,6 +105,12 @@
     <Compile Include="Entidades\Pedido.cs" />
     <Compile Include="Entidades\ProdutoPedido.cs" />
     <Compile Include="Entidades\Receber.cs" />
+    <Compile Include="Entidades\Vendedor.cs" />
+    <Compile Include="Service References\TCCWS\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Telas\Clientes\Cadastro.xaml.cs">
       <DependentUpon>Cadastro.xaml</DependentUpon>
     </Compile>
@@ -145,11 +152,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Service References\ServiceReference1\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Entidades\Sinc.cs" />
     <Compile Include="Controle\Sinconizacao.cs" />
@@ -218,6 +220,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="README_FIRST.txt" />
+    <None Include="Service References\TCCWS\configuration91.svcinfo" />
+    <None Include="Service References\TCCWS\configuration.svcinfo" />
+    <None Include="Service References\TCCWS\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Toolkit.Content\ApplicationBar.Add.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Check.png" />
@@ -228,25 +236,25 @@
     <None Include="Properties\WMAppManifest.xml">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceReference1\Service11.wsdl" />
-    <None Include="Service References\ServiceReference1\Service14.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ServiceReference1\Service141.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ServiceReference1\Service142.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ServiceReference1\Service143.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ServiceReference1\TCCWP.ServiceReference1.Atualizacao.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
     <Content Include="ServiceReferences.ClientConfig">
       <SubType>Designer</SubType>
     </Content>
+    <None Include="Service References\TCCWS\TCCWP.TCCWS.Atualizacao.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\TCCWS\TCCWS.wsdl" />
+    <None Include="Service References\TCCWS\TCCWS.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TCCWS\TCCWS1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TCCWS\TCCWS2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TCCWS\TCCWS3.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\AlignmentGrid.png" />
@@ -268,12 +276,6 @@
     <Content Include="Assets\Tiles\IconicTileSmall.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Service References\ServiceReference1\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Service References\ServiceReference1\configuration.svcinfo" />
-    <None Include="Service References\ServiceReference1\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\AppResources.resx">
@@ -294,18 +296,12 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\ServiceReference1\" />
-  </ItemGroup>
-  <ItemGroup>
     <SDKReference Include="SQLite.WP80, Version=3.8.9">
       <Name>SQLite for Windows Phone</Name>
     </SDKReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TCCWPTaskAgent\TCCWPTaskAgent.csproj">
-      <Project>{9F1BC793-4638-4BD1-A528-278CFAC39291}</Project>
-      <Name>TCCWPTaskAgent</Name>
-    </ProjectReference>
+    <WCFMetadataStorage Include="Service References\TCCWS\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />

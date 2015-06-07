@@ -35,7 +35,6 @@ namespace TCCWP
         public void gravar(Pedido objeto)
         {
             BancoDeDados.BeginTransaction();
-            objeto.IdVendedor = 1;
 
             if (string.IsNullOrWhiteSpace(objeto.Id)) objeto.Id = BancoDeDados.GetIdPedido();
 

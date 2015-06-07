@@ -251,6 +251,7 @@ namespace TCCWP
                     dbConn.CreateTable<Receber>();
                     dbConn.CreateTable<Produto>();
                     dbConn.CreateTable<Anotacao>();
+                    dbConn.CreateTable<Vendedor>();
                 });
             }
             //System.Windows.MessageBox.Show(storage.FileExists("teste.sqlite").ToString());        

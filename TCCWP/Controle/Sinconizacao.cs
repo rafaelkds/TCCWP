@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TCCWP.ServiceReference1;
+using TCCWP.TCCWS;
 
 namespace TCCWP
 {
@@ -23,9 +23,9 @@ namespace TCCWP
                 lista.Add(log.Sql);
             }
 
-            
 
-            Service1Client client = new Service1Client();
+
+            TCCWSClient client = new TCCWSClient();
             client.SincronizarCompleted += SincronizarCompleted;
             //client.SincronizarAsync(new System.Collections.ObjectModel.ObservableCollection<string>(lista), ultSinc.getUltimaSinc().AddDays(-5));
             client.SincronizarAsync(new System.Collections.ObjectModel.ObservableCollection<string>(lista), ultSinc.getUltimaSinc(), Windows.Phone.System.Analytics.HostInformation.PublisherHostId);
@@ -150,6 +150,20 @@ namespace TCCWP
             }
 
             BancoDeDados.Atualiza<Anotacao>(anotacoes);
+            #endregion
+
+            #region Vendedor
+            List<Vendedor> vendedores = new List<Vendedor>(a.vendedores.Count);
+            foreach (VendedorWS item in a.vendedores)
+            {
+                vendedores.Add(new Vendedor()
+                {
+                    Id = item.Id,
+                    Nome = item.Nome
+                });
+            }
+
+            BancoDeDados.Atualiza<Vendedor>(vendedores);
             #endregion
 
             if (a.maxIdAnotacao != null || a.maxIdCliente != null || a.maxIdPedido != null || a.maxIdProdutoPedido != null || a.maxIdReceber != null)
