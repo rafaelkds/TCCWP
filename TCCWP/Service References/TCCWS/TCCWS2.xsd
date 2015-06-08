@@ -5,7 +5,7 @@
       <xs:element minOccurs="0" name="anotacoes" nillable="true" type="tns:ArrayOfAnotacaoWS" />
       <xs:element minOccurs="0" name="clientes" nillable="true" type="tns:ArrayOfClienteWS" />
       <xs:element minOccurs="0" name="dtAtualizado" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="id" type="xs:int" />
+      <xs:element minOccurs="0" name="idCelular" type="xs:int" />
       <xs:element minOccurs="0" name="maxIdAnotacao" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="maxIdCliente" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="maxIdPedido" nillable="true" type="xs:int" />
@@ -43,9 +43,10 @@
   <xs:element name="ArrayOfClienteWS" nillable="true" type="tns:ArrayOfClienteWS" />
   <xs:complexType name="ClienteWS">
     <xs:sequence>
+      <xs:element minOccurs="0" name="Ativo" type="xs:boolean" />
       <xs:element minOccurs="0" name="Bairro" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Cep" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Cidade" type="xs:int" />
+      <xs:element minOccurs="0" name="Cidade" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Complemento" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Cpf" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
@@ -54,6 +55,7 @@
       <xs:element minOccurs="0" name="Numero" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Rua" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Telefone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Uf" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ClienteWS" nillable="true" type="tns:ClienteWS" />
@@ -66,7 +68,7 @@
   <xs:complexType name="PedidoWS">
     <xs:sequence>
       <xs:element minOccurs="0" name="DataEmissao" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="DataPago" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DataPagamento" type="xs:dateTime" />
       <xs:element minOccurs="0" name="Id" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="IdCliente" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="IdVendedor" type="xs:int" />
@@ -104,6 +106,7 @@
       <xs:element minOccurs="0" name="IdPedido" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="IdProduto" type="xs:int" />
       <xs:element minOccurs="0" name="Quantidade" type="xs:decimal" />
+      <xs:element minOccurs="0" name="QuantidadeEntregue" type="xs:decimal" />
       <xs:element minOccurs="0" name="Valor" type="xs:decimal" />
     </xs:sequence>
   </xs:complexType>

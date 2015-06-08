@@ -14,6 +14,7 @@ namespace TCCWP
         public int IdProduto { get; set; }
         public decimal Valor { get; set; }
         public decimal Quantidade { get; set; }
+        public decimal QuantidadeEntregue { get; set; }
 
 
         [SQLite.Ignore]

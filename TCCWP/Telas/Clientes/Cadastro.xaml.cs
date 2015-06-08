@@ -31,7 +31,8 @@ namespace TCCWP.Telas.Clientes
             tbRua.Text = cliente.Rua;
             tbNumero.Text = cliente.Numero;
             tbBairro.Text = cliente.Bairro;
-            tbCidade.Text = cliente.Cidade.ToString();
+            tbCidade.Text = cliente.Cidade;
+            tbUf.Text = cliente.Uf;
             tbCep.Text = string.IsNullOrWhiteSpace(cliente.Cep) ? "" : cliente.Cep;
             tbComplemento.Text = string.IsNullOrWhiteSpace(cliente.Complemento) ? "" : cliente.Complemento;
         }
@@ -51,6 +52,7 @@ namespace TCCWP.Telas.Clientes
                 c.Numero = tbNumero.Text;
                 c.Bairro = tbBairro.Text;
                 c.Cidade = tbCidade.Text;
+                c.Uf = tbUf.Text;
                 c.Cep = tbCep.Text;
 
                 c.Complemento = tbComplemento.Text;

@@ -26,7 +26,7 @@ namespace TCCWP.TCCWS {
         
         private System.DateTime dtAtualizadoField;
         
-        private int idField;
+        private int idCelularField;
         
         private System.Nullable<int> maxIdAnotacaoField;
         
@@ -88,14 +88,14 @@ namespace TCCWP.TCCWS {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int id {
+        public int idCelular {
             get {
-                return this.idField;
+                return this.idCelularField;
             }
             set {
-                if ((this.idField.Equals(value) != true)) {
-                    this.idField = value;
-                    this.RaisePropertyChanged("id");
+                if ((this.idCelularField.Equals(value) != true)) {
+                    this.idCelularField = value;
+                    this.RaisePropertyChanged("idCelular");
                 }
             }
         }
@@ -335,11 +335,13 @@ namespace TCCWP.TCCWS {
     [System.Runtime.Serialization.DataContractAttribute(Name="ClienteWS", Namespace="http://schemas.datacontract.org/2004/07/TCCWS")]
     public partial class ClienteWS : object, System.ComponentModel.INotifyPropertyChanged {
         
+        private bool AtivoField;
+        
         private string BairroField;
         
         private string CepField;
         
-        private int CidadeField;
+        private string CidadeField;
         
         private string ComplementoField;
         
@@ -356,6 +358,21 @@ namespace TCCWP.TCCWS {
         private string RuaField;
         
         private string TelefoneField;
+        
+        private string UfField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Ativo {
+            get {
+                return this.AtivoField;
+            }
+            set {
+                if ((this.AtivoField.Equals(value) != true)) {
+                    this.AtivoField = value;
+                    this.RaisePropertyChanged("Ativo");
+                }
+            }
+        }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
         public string Bairro {
@@ -384,12 +401,12 @@ namespace TCCWP.TCCWS {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Cidade {
+        public string Cidade {
             get {
                 return this.CidadeField;
             }
             set {
-                if ((this.CidadeField.Equals(value) != true)) {
+                if ((object.ReferenceEquals(this.CidadeField, value) != true)) {
                     this.CidadeField = value;
                     this.RaisePropertyChanged("Cidade");
                 }
@@ -500,6 +517,19 @@ namespace TCCWP.TCCWS {
             }
         }
         
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Uf {
+            get {
+                return this.UfField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UfField, value) != true)) {
+                    this.UfField = value;
+                    this.RaisePropertyChanged("Uf");
+                }
+            }
+        }
+        
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {
@@ -517,7 +547,7 @@ namespace TCCWP.TCCWS {
         
         private System.DateTime DataEmissaoField;
         
-        private System.DateTime DataPagoField;
+        private System.DateTime DataPagamentoField;
         
         private string IdField;
         
@@ -545,14 +575,14 @@ namespace TCCWP.TCCWS {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime DataPago {
+        public System.DateTime DataPagamento {
             get {
-                return this.DataPagoField;
+                return this.DataPagamentoField;
             }
             set {
-                if ((this.DataPagoField.Equals(value) != true)) {
-                    this.DataPagoField = value;
-                    this.RaisePropertyChanged("DataPago");
+                if ((this.DataPagamentoField.Equals(value) != true)) {
+                    this.DataPagamentoField = value;
+                    this.RaisePropertyChanged("DataPagamento");
                 }
             }
         }
@@ -748,6 +778,8 @@ namespace TCCWP.TCCWS {
         
         private decimal QuantidadeField;
         
+        private decimal QuantidadeEntregueField;
+        
         private decimal ValorField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
@@ -798,6 +830,19 @@ namespace TCCWP.TCCWS {
                 if ((this.QuantidadeField.Equals(value) != true)) {
                     this.QuantidadeField = value;
                     this.RaisePropertyChanged("Quantidade");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal QuantidadeEntregue {
+            get {
+                return this.QuantidadeEntregueField;
+            }
+            set {
+                if ((this.QuantidadeEntregueField.Equals(value) != true)) {
+                    this.QuantidadeEntregueField = value;
+                    this.RaisePropertyChanged("QuantidadeEntregue");
                 }
             }
         }

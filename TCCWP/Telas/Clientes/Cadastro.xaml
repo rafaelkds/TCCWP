@@ -44,8 +44,12 @@
                     <TextBox x:Name="tbBairro"/>
                     <TextBlock Text="Cidade:"/>
                     <TextBox x:Name="tbCidade"/>
-                    <TextBlock Text="CEP:"/>
-                    <TextBox x:Name="tbCep"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="UF:"/>
+                        <TextBox x:Name="tbUf" Width="100"/>
+                        <TextBlock Text="CEP:"/>
+                        <TextBox x:Name="tbCep" Width="265"/>
+                    </StackPanel>
                 </StackPanel>
             </phone:PivotItem>
 

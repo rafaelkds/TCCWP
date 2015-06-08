@@ -29,7 +29,7 @@ namespace TCCWP
             if (string.IsNullOrWhiteSpace(objeto.Id))
             {
                 objeto.Id = BancoDeDados.GetIdCliente();
-
+                objeto.Ativo = true;
                 string values = "("
                     + "$$" + objeto.Id + "$$,"
                     + "$$" + objeto.Nome + "$$,"
@@ -38,13 +38,14 @@ namespace TCCWP
                     + "$$" + objeto.Numero + "$$,"
                     + "$$" + objeto.Bairro + "$$,"
                     + "$$" + objeto.Cidade + "$$,"
+                    + "$$" + objeto.Uf + "$$,"
                     + "$$" + objeto.Cep + "$$,"
                     + "$$" + objeto.Complemento + "$$,"
                     + "$$" + objeto.Telefone + "$$,"
                     + "$$" + objeto.Email + "$$)";
 
                 string sql = "insert into Cliente "
-                    + "(Id, Nome, Cpf, Rua, Numero, Bairro, Cidade, Cep, Complemento, Telefone, Email) "
+                    + "(Id, Nome, Cpf, Rua, Numero, Bairro, Cidade, Uf, Cep, Complemento, Telefone, Email) "
                     + "values " + values;
                 Log log = new Log();
                 log.Sql = sql;
@@ -60,6 +61,7 @@ namespace TCCWP
                     + "Numero = $$" + objeto.Numero + "$$,"
                     + "Bairro = $$" + objeto.Bairro + "$$,"
                     + "Cidade = $$" + objeto.Cidade + "$$,"
+                    + "Uf = $$" + objeto.Uf + "$$,"
                     + "Cep = $$" + objeto.Cep + "$$,"
                     + "Complemento = $$" + objeto.Complemento + "$$,"
                     + "Telefone = $$" + objeto.Telefone + "$$,"

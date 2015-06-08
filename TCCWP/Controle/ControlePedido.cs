@@ -58,11 +58,11 @@ namespace TCCWP
                 + "$$" + objeto.IdCliente + "$$,"
                 + "$$" + objeto.Valor + "$$,"
                 + "$$" + objeto.DataEmissao.ToString("dd/M/yyyy") + "$$,"
-                + "$$" + objeto.DataPago.ToString("dd/M/yyyy") + "$$,"
+                + "$$" + objeto.DataPagamento.ToString("dd/M/yyyy") + "$$,"
                 + "$$" + objeto.Observacoes + "$$)";
 
             string sql = "insert into Pedido "
-                + "(Id, Numero, Id_vendedor, Id_cliente, Valor, Data_emissao, Data_pago, Observacoes) "
+                + "(Id, Numero, Id_vendedor, Id_cliente, Valor, Data_emissao, Data_pagamento, Observacoes) "
                 + "values " + values;
             Log log = new Log();
             log.Sql = sql;

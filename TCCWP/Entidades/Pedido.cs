@@ -15,7 +15,7 @@ namespace TCCWP
         public int IdVendedor { get; set; }
         public decimal Valor { get; set; }
         public DateTime DataEmissao { get; set; }
-        public DateTime DataPago { get; set; }
+        public DateTime DataPagamento { get; set; }
         public string Observacoes { get; set; }
 
 

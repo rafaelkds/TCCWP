@@ -16,13 +16,13 @@ namespace TCCWP
         public void gravar(Receber objeto)
         {
             if (string.IsNullOrWhiteSpace(objeto.Id)) objeto.Id = BancoDeDados.GetIdReceber();
-                string values = "("
-                    + "$$" + objeto.Id + "$$,"
-                    + "$$" + objeto.IdPedido + "$$,"
-                    + "$$" + objeto.Ordem + "$$,"
-                    + "$$" + objeto.Valor + "$$,"
-                    + "$$" + objeto.Vencimento.ToString("dd/M/yyyy") + "$$,"
-                    + "$$" + objeto.Pagamento.ToString("dd/M/yyyy") + "$$)";
+            string values = "("
+                + "$$" + objeto.Id + "$$,"
+                + "$$" + objeto.IdPedido + "$$,"
+                + "$$" + objeto.Ordem + "$$,"
+                + "$$" + objeto.Valor + "$$,"
+                + "$$" + objeto.Vencimento.ToString("dd/M/yyyy") + "$$,"
+                + "$$" + objeto.Pagamento.ToString("dd/M/yyyy") + "$$)";
             
             string sql = "insert into Receber "
                 + "(Id, Id_pedido, Ordem, Valor, Vencimento, Pagamento) "
