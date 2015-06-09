@@ -25,8 +25,7 @@ namespace TCCWP
 
             TCCWSClient client = new TCCWSClient();
             client.SincronizarCompleted += SincronizarCompleted;
-            //client.SincronizarAsync(new System.Collections.ObjectModel.ObservableCollection<string>(lista), ultSinc.getUltimaSinc().AddDays(-5));
-            client.SincronizarAsync(new System.Collections.ObjectModel.ObservableCollection<string>(lista), ultSinc.getUltimaSinc(), Windows.Phone.System.Analytics.HostInformation.PublisherHostId);
+            client.SincronizarAsync(lista, ultSinc.getUltimaSinc(), Windows.Phone.System.Analytics.HostInformation.PublisherHostId);
             
             while (!concluiu)
             {

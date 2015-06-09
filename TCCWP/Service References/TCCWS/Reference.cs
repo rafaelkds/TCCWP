@@ -20,9 +20,9 @@ namespace TCCWP.TCCWS {
     [System.Runtime.Serialization.DataContractAttribute(Name="Atualizacao", Namespace="http://schemas.datacontract.org/2004/07/TCCWS")]
     public partial class Atualizacao : object, System.ComponentModel.INotifyPropertyChanged {
         
-        private System.Collections.ObjectModel.ObservableCollection<TCCWP.TCCWS.AnotacaoWS> anotacoesField;
+        private System.Collections.Generic.List<TCCWP.TCCWS.AnotacaoWS> anotacoesField;
         
-        private System.Collections.ObjectModel.ObservableCollection<TCCWP.TCCWS.ClienteWS> clientesField;
+        private System.Collections.Generic.List<TCCWP.TCCWS.ClienteWS> clientesField;
         
         private System.DateTime dtAtualizadoField;
         
@@ -38,18 +38,18 @@ namespace TCCWP.TCCWS {
         
         private System.Nullable<int> maxIdReceberField;
         
-        private System.Collections.ObjectModel.ObservableCollection<TCCWP.TCCWS.PedidoWS> pedidosField;
+        private System.Collections.Generic.List<TCCWP.TCCWS.PedidoWS> pedidosField;
         
-        private System.Collections.ObjectModel.ObservableCollection<TCCWP.TCCWS.ProdutoWS> produtosField;
+        private System.Collections.Generic.List<TCCWP.TCCWS.ProdutoWS> produtosField;
         
-        private System.Collections.ObjectModel.ObservableCollection<TCCWP.TCCWS.ProdutoPedidoWS> produtospedidoField;
+        private System.Collections.Generic.List<TCCWP.TCCWS.ProdutoPedidoWS> produtospedidoField;
         
-        private System.Collections.ObjectModel.ObservableCollection<TCCWP.TCCWS.ReceberWS> receberField;
+        private System.Collections.Generic.List<TCCWP.TCCWS.ReceberWS> receberField;
         
-        private System.Collections.ObjectModel.ObservableCollection<TCCWP.TCCWS.VendedorWS> vendedoresField;
+        private System.Collections.Generic.List<TCCWP.TCCWS.VendedorWS> vendedoresField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.ObjectModel.ObservableCollection<TCCWP.TCCWS.AnotacaoWS> anotacoes {
+        public System.Collections.Generic.List<TCCWP.TCCWS.AnotacaoWS> anotacoes {
             get {
                 return this.anotacoesField;
             }
@@ -62,7 +62,7 @@ namespace TCCWP.TCCWS {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.ObjectModel.ObservableCollection<TCCWP.TCCWS.ClienteWS> clientes {
+        public System.Collections.Generic.List<TCCWP.TCCWS.ClienteWS> clientes {
             get {
                 return this.clientesField;
             }
@@ -166,7 +166,7 @@ namespace TCCWP.TCCWS {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.ObjectModel.ObservableCollection<TCCWP.TCCWS.PedidoWS> pedidos {
+        public System.Collections.Generic.List<TCCWP.TCCWS.PedidoWS> pedidos {
             get {
                 return this.pedidosField;
             }
@@ -179,7 +179,7 @@ namespace TCCWP.TCCWS {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.ObjectModel.ObservableCollection<TCCWP.TCCWS.ProdutoWS> produtos {
+        public System.Collections.Generic.List<TCCWP.TCCWS.ProdutoWS> produtos {
             get {
                 return this.produtosField;
             }
@@ -192,7 +192,7 @@ namespace TCCWP.TCCWS {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.ObjectModel.ObservableCollection<TCCWP.TCCWS.ProdutoPedidoWS> produtospedido {
+        public System.Collections.Generic.List<TCCWP.TCCWS.ProdutoPedidoWS> produtospedido {
             get {
                 return this.produtospedidoField;
             }
@@ -205,7 +205,7 @@ namespace TCCWP.TCCWS {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.ObjectModel.ObservableCollection<TCCWP.TCCWS.ReceberWS> receber {
+        public System.Collections.Generic.List<TCCWP.TCCWS.ReceberWS> receber {
             get {
                 return this.receberField;
             }
@@ -218,7 +218,7 @@ namespace TCCWP.TCCWS {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.ObjectModel.ObservableCollection<TCCWP.TCCWS.VendedorWS> vendedores {
+        public System.Collections.Generic.List<TCCWP.TCCWS.VendedorWS> vendedores {
             get {
                 return this.vendedoresField;
             }
@@ -1025,7 +1025,7 @@ namespace TCCWP.TCCWS {
     public interface ITCCWS {
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/ITCCWS/Sincronizar", ReplyAction="http://tempuri.org/ITCCWS/SincronizarResponse")]
-        System.IAsyncResult BeginSincronizar(System.Collections.ObjectModel.ObservableCollection<string> atualizacoes, System.DateTime ultimaAtualizacao, string identificacao, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginSincronizar(System.Collections.Generic.List<string> atualizacoes, System.DateTime ultimaAtualizacao, string identificacao, System.AsyncCallback callback, object asyncState);
         
         TCCWP.TCCWS.Atualizacao EndSincronizar(System.IAsyncResult result);
     }
@@ -1123,7 +1123,7 @@ namespace TCCWP.TCCWS {
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> CloseCompleted;
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult TCCWP.TCCWS.ITCCWS.BeginSincronizar(System.Collections.ObjectModel.ObservableCollection<string> atualizacoes, System.DateTime ultimaAtualizacao, string identificacao, System.AsyncCallback callback, object asyncState) {
+        System.IAsyncResult TCCWP.TCCWS.ITCCWS.BeginSincronizar(System.Collections.Generic.List<string> atualizacoes, System.DateTime ultimaAtualizacao, string identificacao, System.AsyncCallback callback, object asyncState) {
             return base.Channel.BeginSincronizar(atualizacoes, ultimaAtualizacao, identificacao, callback, asyncState);
         }
         
@@ -1133,7 +1133,7 @@ namespace TCCWP.TCCWS {
         }
         
         private System.IAsyncResult OnBeginSincronizar(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            System.Collections.ObjectModel.ObservableCollection<string> atualizacoes = ((System.Collections.ObjectModel.ObservableCollection<string>)(inValues[0]));
+            System.Collections.Generic.List<string> atualizacoes = ((System.Collections.Generic.List<string>)(inValues[0]));
             System.DateTime ultimaAtualizacao = ((System.DateTime)(inValues[1]));
             string identificacao = ((string)(inValues[2]));
             return ((TCCWP.TCCWS.ITCCWS)(this)).BeginSincronizar(atualizacoes, ultimaAtualizacao, identificacao, callback, asyncState);
@@ -1152,11 +1152,11 @@ namespace TCCWP.TCCWS {
             }
         }
         
-        public void SincronizarAsync(System.Collections.ObjectModel.ObservableCollection<string> atualizacoes, System.DateTime ultimaAtualizacao, string identificacao) {
+        public void SincronizarAsync(System.Collections.Generic.List<string> atualizacoes, System.DateTime ultimaAtualizacao, string identificacao) {
             this.SincronizarAsync(atualizacoes, ultimaAtualizacao, identificacao, null);
         }
         
-        public void SincronizarAsync(System.Collections.ObjectModel.ObservableCollection<string> atualizacoes, System.DateTime ultimaAtualizacao, string identificacao, object userState) {
+        public void SincronizarAsync(System.Collections.Generic.List<string> atualizacoes, System.DateTime ultimaAtualizacao, string identificacao, object userState) {
             if ((this.onBeginSincronizarDelegate == null)) {
                 this.onBeginSincronizarDelegate = new BeginOperationDelegate(this.OnBeginSincronizar);
             }
@@ -1248,7 +1248,7 @@ namespace TCCWP.TCCWS {
                     base(client) {
             }
             
-            public System.IAsyncResult BeginSincronizar(System.Collections.ObjectModel.ObservableCollection<string> atualizacoes, System.DateTime ultimaAtualizacao, string identificacao, System.AsyncCallback callback, object asyncState) {
+            public System.IAsyncResult BeginSincronizar(System.Collections.Generic.List<string> atualizacoes, System.DateTime ultimaAtualizacao, string identificacao, System.AsyncCallback callback, object asyncState) {
                 object[] _args = new object[3];
                 _args[0] = atualizacoes;
                 _args[1] = ultimaAtualizacao;

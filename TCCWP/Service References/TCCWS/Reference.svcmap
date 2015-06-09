@@ -9,7 +9,7 @@
     <GenerateMessageContracts>false</GenerateMessageContracts>
     <NamespaceMappings />
     <CollectionMappings>
-      <CollectionMapping TypeName="System.Collections.ObjectModel.ObservableCollection`1" Category="List" />
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
     </CollectionMappings>
     <GenerateSerializableTypes>false</GenerateSerializableTypes>
     <Serializer>Auto</Serializer>
@@ -20,14 +20,14 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://10.1.1.100:12115/TCCWS.svc?wsdl" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://tccws.ddns.net:12115/TCCWS.svc?wsdl" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="TCCWS.xsd" MetadataType="Schema" ID="3c60d2a9-1f4d-4095-a6d7-6cd35e163557" SourceId="1" SourceUrl="http://10.1.1.100:12115/TCCWS.svc?xsd=xsd1" />
-    <MetadataFile FileName="TCCWS1.xsd" MetadataType="Schema" ID="0e4290c4-c253-4564-b936-778e475bf411" SourceId="1" SourceUrl="http://10.1.1.100:12115/TCCWS.svc?xsd=xsd0" />
-    <MetadataFile FileName="TCCWS2.xsd" MetadataType="Schema" ID="7c455b1e-7ad8-4480-a529-93f5cd1f4031" SourceId="1" SourceUrl="http://10.1.1.100:12115/TCCWS.svc?xsd=xsd3" />
-    <MetadataFile FileName="TCCWS3.xsd" MetadataType="Schema" ID="e72f3c2d-689b-4e9f-9215-5721cf3a8f8d" SourceId="1" SourceUrl="http://10.1.1.100:12115/TCCWS.svc?xsd=xsd2" />
-    <MetadataFile FileName="TCCWS.wsdl" MetadataType="Wsdl" ID="da47f633-edf7-4d75-a690-23434f5adcf7" SourceId="1" SourceUrl="http://10.1.1.100:12115/TCCWS.svc?wsdl" />
+    <MetadataFile FileName="TCCWS4.xsd" MetadataType="Schema" ID="3906686f-f87d-4e07-8075-24bdd01c8260" SourceId="1" SourceUrl="http://tccws.ddns.net:12115/TCCWS.svc?xsd=xsd2" />
+    <MetadataFile FileName="TCCWS1.wsdl" MetadataType="Wsdl" ID="50b3444a-d548-4606-a812-7b88531f1ace" SourceId="1" SourceUrl="http://tccws.ddns.net:12115/TCCWS.svc?wsdl" />
+    <MetadataFile FileName="TCCWS41.xsd" MetadataType="Schema" ID="cc21b197-29d3-4c8b-9b9f-47a6c3b0bc5f" SourceId="1" SourceUrl="http://tccws.ddns.net:12115/TCCWS.svc?xsd=xsd1" />
+    <MetadataFile FileName="TCCWS42.xsd" MetadataType="Schema" ID="57014db5-9d5c-4027-843f-d6aa929dd337" SourceId="1" SourceUrl="http://tccws.ddns.net:12115/TCCWS.svc?xsd=xsd0" />
+    <MetadataFile FileName="TCCWS43.xsd" MetadataType="Schema" ID="ebdd0080-1488-46f5-812e-386134b2fff6" SourceId="1" SourceUrl="http://tccws.ddns.net:12115/TCCWS.svc?xsd=xsd3" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

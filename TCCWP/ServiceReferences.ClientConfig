@@ -9,7 +9,7 @@
             </basicHttpBinding>
         </bindings>
         <client>
-            <endpoint address="http://10.1.1.100:12115/TCCWS.svc" binding="basicHttpBinding"
+            <endpoint address="http://tccws.ddns.net:12115/TCCWS.svc" binding="basicHttpBinding"
                 bindingConfiguration="BasicHttpBinding_ITCCWS" contract="TCCWS.ITCCWS"
                 name="BasicHttpBinding_ITCCWS" />
         </client>
