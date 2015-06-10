@@ -51,6 +51,7 @@
             <Button Content="Pedidos" HorizontalAlignment="Stretch" Click="Button_Click_3"/>
             <!--Button Content="Produtos" HorizontalAlignment="Stretch" Click="Button_Click_2"/-->
             <Button Content="Atualizar" HorizontalAlignment="Stretch" Click="Button_Click_1"/>
+            <Button Content="Button" Click="Button_Click"/>
         </StackPanel>
 
         <!--Uncomment to see an alignment grid to help ensure your controls are

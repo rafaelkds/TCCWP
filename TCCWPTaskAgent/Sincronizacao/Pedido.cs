@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TCCWPTaskAgent
+namespace TCCWPTaskAgent.Sincronizacao
 {
     class Pedido
     {
@@ -15,7 +15,7 @@ namespace TCCWPTaskAgent
         public int IdVendedor { get; set; }
         public decimal Valor { get; set; }
         public DateTime DataEmissao { get; set; }
-        public DateTime DataPago { get; set; }
+        public DateTime DataPagamento { get; set; }
         public string Observacoes { get; set; }
 
 

@@ -4,8 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TCCWPTaskAgent
-
+namespace TCCWPTaskAgent.Sincronizacao
 {
     class Cliente
     {
@@ -22,5 +21,6 @@ namespace TCCWPTaskAgent
         public string Complemento { get; set; }
         public string Telefone { get; set; }
         public string Email { get; set; }
+        public bool Ativo { get; set; }
     }
 }

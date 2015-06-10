@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="222aa8a9-f384-4127-9301-47fc21d76f5d" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>true</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>false</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>false</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://tccws.ddns.net:12115/TCCWS.svc?wsdl" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="TCCWS.xsd" MetadataType="Schema" ID="59eb9c17-65f5-497e-b9a6-6f4301e01951" SourceId="1" SourceUrl="http://tccws.ddns.net:12115/TCCWS.svc?xsd=xsd2" />
+    <MetadataFile FileName="TCCWS.wsdl" MetadataType="Wsdl" ID="0a6cfe07-fa55-4448-b53e-4252068c481f" SourceId="1" SourceUrl="http://tccws.ddns.net:12115/TCCWS.svc?wsdl" />
+    <MetadataFile FileName="TCCWS1.xsd" MetadataType="Schema" ID="88d7ca7c-d8d2-4aff-925e-8e02fabc2899" SourceId="1" SourceUrl="http://tccws.ddns.net:12115/TCCWS.svc?xsd=xsd1" />
+    <MetadataFile FileName="TCCWS2.xsd" MetadataType="Schema" ID="6b8dc659-ff6d-4347-9be9-d50dcb93cab0" SourceId="1" SourceUrl="http://tccws.ddns.net:12115/TCCWS.svc?xsd=xsd0" />
+    <MetadataFile FileName="TCCWS3.xsd" MetadataType="Schema" ID="33b41ea7-94a3-497e-b8f0-cb5e336fc4ea" SourceId="1" SourceUrl="http://tccws.ddns.net:12115/TCCWS.svc?xsd=xsd3" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

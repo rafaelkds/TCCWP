@@ -106,6 +106,7 @@
     <Compile Include="Entidades\ProdutoPedido.cs" />
     <Compile Include="Entidades\Receber.cs" />
     <Compile Include="Entidades\Vendedor.cs" />
+    <Compile Include="Pdf\Pdf.cs" />
     <Compile Include="Service References\TCCWS\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -302,6 +303,12 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\TCCWS\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TCCWPTaskAgent\TCCWPTaskAgent.csproj">
+      <Project>{9F1BC793-4638-4BD1-A528-278CFAC39291}</Project>
+      <Name>TCCWPTaskAgent</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TCCWPTaskAgent
+namespace TCCWPTaskAgent.Sincronizacao
 {
     class ProdutoPedido
     {
@@ -14,9 +14,6 @@ namespace TCCWPTaskAgent
         public int IdProduto { get; set; }
         public decimal Valor { get; set; }
         public decimal Quantidade { get; set; }
-
-
-        [SQLite.Ignore]
-        public Produto Produto { get; set; }
+        public decimal QuantidadeEntregue { get; set; }
     }
 }

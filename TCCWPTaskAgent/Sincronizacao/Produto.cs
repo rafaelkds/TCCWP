@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TCCWPTaskAgent
+namespace TCCWPTaskAgent.Sincronizacao
 {
     class Produto
     {
@@ -12,7 +12,7 @@ namespace TCCWPTaskAgent
         public int Id { get; set; }
         public string Nome { get; set; }
         public decimal Estoque { get; set; }
-        public bool Ativo { get; set; }
         public decimal Valor { get; set; }
+        public bool Ativo { get; set; }
     }
 }

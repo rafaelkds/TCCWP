@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TCCWPTaskAgent
+namespace TCCWPTaskAgent.Sincronizacao
 {
     class Receber
     {
