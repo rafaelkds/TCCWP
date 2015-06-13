@@ -90,10 +90,8 @@ namespace TCCWP.Pdf
             writer.WriteLine("  /BaseFont /Courier");
             writer.WriteLine(">>");
 
-            int qtdeCaracteres = 92 / colunas.Count - 2;
             for (int i = 0; i < colunas.Count; i++)
             {
-
                 //' #7: contents of page. This is written in postscript, fully described in
                 //' chapter 8 of the PDF 1.2 reference manual.
                 writer.Flush(); stream.Flush(); xrefs.Add(stream.Position);
@@ -101,20 +99,13 @@ namespace TCCWP.Pdf
                 sb.AppendLine("BT");//             ' BT = begin text object, with text-units the same as userspace-units
                 sb.AppendLine("/F0 10 Tf");//      ' Tf = start using the named font "F0" with size "40"
                 sb.AppendLine("10 TL");//          ' TL = set line height to "40"
-                double largura;
-                if (i == 0)
-                    largura = 25;
-                else
-                {
-                    largura = (double)550 / colunas.Count * i + 25;
-                }
-                sb.AppendLine(((double)550 / colunas.Count * i + 25).ToString("##0.0").Replace(',', '.') + " 750.0 Td");// ' Td = position text point at coordinates "230.0", "400.0"
-                
+                sb.AppendLine("25.0 775.0 Td");// ' Td = position text point at coordinates "230.0", "400.0"
+
                 sb.AppendLine("("+titulos[i]+") '");//  ' Apostrophe = print the text, and advance to the next line
                 sb.AppendLine("(--------------) '");//  ' Apostrophe = print the text, and advance to the next line
 
                 foreach (string linha in colunas[i])
-                    sb.AppendLine("(" + linha.Substring(0, qtdeCaracteres > linha.Length ? linha.Length : qtdeCaracteres) + ") '");
+                    sb.AppendLine("(" + linha + ") '");
 
                 sb.AppendLine("ET");//             '
                 objeto++;
@@ -187,7 +178,7 @@ namespace TCCWP.Pdf
 
             listaDePaginas(paginas);
 
-            for (int x = 0; x < qtdePaginas; x++)
+            for(int x = 0;x<qtdePaginas;x++)
             {
                 List<List<string>> subcolunas = new List<List<string>>();
                 foreach(List<string> item in colunas)
