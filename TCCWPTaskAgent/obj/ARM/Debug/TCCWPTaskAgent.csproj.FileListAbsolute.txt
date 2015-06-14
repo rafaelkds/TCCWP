@@ -4,3 +4,4 @@ D:\Visual Studio 2013\Projects\TCCWP\TCCWPTaskAgent\Bin\ARM\Debug\Sqlite.winmd
 D:\Visual Studio 2013\Projects\TCCWP\TCCWPTaskAgent\Bin\ARM\Debug\Sqlite.dll
 D:\Visual Studio 2013\Projects\TCCWP\TCCWPTaskAgent\obj\ARM\Debug\TCCWPTaskAgent.dll
 D:\Visual Studio 2013\Projects\TCCWP\TCCWPTaskAgent\obj\ARM\Debug\TCCWPTaskAgent.pdb
+D:\Visual Studio 2013\Projects\TCCWP\TCCWPTaskAgent\obj\ARM\Debug\TCCWPTaskAgent.csprojResolveAssemblyReference.cache

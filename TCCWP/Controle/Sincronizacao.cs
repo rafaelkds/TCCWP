@@ -9,13 +9,13 @@ namespace TCCWP.Controle
 {
     class Sincronizacao
     {
-        public static bool Concluiu { get; set; }
-        public static bool Erro { get; private set; }
-        private static List<Log> atualizacoes;
+        private bool concluiu;
+        private bool erro;
+        private List<Log> atualizacoes;
         
-        public static void Sincronizar()
+        public async void Sincronizar(MainPage pagina)
         {
-            Concluiu = false;
+            concluiu = false;
             List<Sinc> ls = BancoDeDados.Query<Sinc>("select * from Sinc");
             Sinc ultSinc = ls.Count > 0 ? ls[0] : new Sinc();
             atualizacoes = BancoDeDados.Query<Log>("select * from Log order by Id");
@@ -28,9 +28,14 @@ namespace TCCWP.Controle
             TCCWSClient client = new TCCWSClient();
             client.SincronizarCompleted += SincronizarCompleted;
             client.SincronizarAsync(lista, ultSinc.getUltimaSinc(), Windows.Phone.System.Analytics.HostInformation.PublisherHostId);
+
+            while (!concluiu)
+                await Task.Delay(TimeSpan.FromSeconds(1));
+            
+            pagina.mensagemSincronizacao(erro ? "Erro na sincronização" : "Sincronizado com sucesso");
         }
 
-        static void SincronizarCompleted(object sender, SincronizarCompletedEventArgs e)
+        void SincronizarCompleted(object sender, SincronizarCompletedEventArgs e)
         {
             try
             {
@@ -193,15 +198,17 @@ namespace TCCWP.Controle
 
                     BancoDeDados.UltSinc(s);
                     BancoDeDados.CommitTransaction();
-                    Erro = false;
+                    erro = false;
                 }
+                else
+                { erro = true; }
             }
             catch (Exception)
             {
-                Erro = true;
+                erro = true;
                 BancoDeDados.RollbackTransaction();
             }
-            Concluiu = true;
+            concluiu = true;
         }
     }
 }

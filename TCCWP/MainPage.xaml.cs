@@ -73,14 +73,6 @@ namespace TCCWP
             NavigationService.Navigate(new Uri("/Telas/Estoque/Consulta.xaml", UriKind.Relative));
         }
 
-        private void btSincronizar_Click(object sender, RoutedEventArgs e)
-        {
-            
-            Controle.Sincronizacao.Sincronizar();
-            while (!Controle.Sincronizacao.Concluiu) { };
-            MessageBox.Show(Controle.Sincronizacao.Erro ? "Erro na sincronização" : "Sincronizado com sucesso");
-        }
-
         private void btPedidos_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Uri("/Telas/Pedidos/Menu.xaml", UriKind.Relative));
@@ -91,6 +83,17 @@ namespace TCCWP
             NavigationService.Navigate(new Uri("/Telas/Configurar/Configurar.xaml", UriKind.Relative));
         }
 
-        
+        private void btSincronizar_Click(object sender, RoutedEventArgs e)
+        {
+            this.IsEnabled = false;
+            Controle.Sincronizacao sinc = new Controle.Sincronizacao();
+            sinc.Sincronizar(this);
+        }
+
+        public void mensagemSincronizacao(string mensagem)
+        {
+            this.IsEnabled = true;
+            MessageBox.Show(mensagem);
+        }
     }
 }
