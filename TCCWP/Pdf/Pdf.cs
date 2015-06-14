@@ -51,7 +51,7 @@ namespace TCCWP.Pdf
             writer.WriteLine("endobj");
         }
 
-        private async void pagina(int objeto, List<string> titulos, List<List<string>> colunas)
+        private async void pagina(int objeto, List<string> titulos, List<List<string>> colunas, int pagina, string nomeRelatorio)
         {
             //' #3: page - this is our page. We specify size, font resources, and the contents
             writer.Flush(); stream.Flush(); xrefs.Add(stream.Position);
@@ -70,7 +70,7 @@ namespace TCCWP.Pdf
             writer.WriteLine("    >>");
             writer.WriteLine("  >>");
             string col = "";
-            for (int i = 1; i <= colunas.Count; i++)
+            for (int i = 1; i <= colunas.Count+2; i++)
             {
                 col += (i + objeto) + " 0 R ";
             }
@@ -90,28 +90,74 @@ namespace TCCWP.Pdf
             writer.WriteLine("  /BaseFont /Courier");
             writer.WriteLine(">>");
 
-            int qtdeCaracteres = 92 / colunas.Count - 2;
+            ///////////////////////////////////////////////////
+            writer.Flush(); stream.Flush(); xrefs.Add(stream.Position);
+            System.Text.StringBuilder sb = new StringBuilder();
+            sb.AppendLine("BT");//             ' BT = begin text object, with text-units the same as userspace-units
+            sb.AppendLine("/F0 10 Tf");//      ' Tf = start using the named font "F0" with size "40"
+            sb.AppendLine("10 TL");//          ' TL = set line height to "40"
+            sb.AppendLine("25.0 775.0 Td");// ' Td = position text point at coordinates "230.0", "400.0"
+            sb.AppendLine("(" + nomeRelatorio + ") '");//  ' Apostrophe = print the text, and advance to the next line
+            objeto++;
+            writer.WriteLine(objeto + " 0 obj");
+            writer.WriteLine("<<");
+            writer.WriteLine("  /Length " + sb.Length);
+            writer.WriteLine(">>");
+            writer.WriteLine("stream");
+            writer.Write(sb.ToString());
+            writer.WriteLine("endstream");
+            writer.WriteLine("endobj");
+
+            writer.Flush(); stream.Flush(); xrefs.Add(stream.Position);
+            sb = new StringBuilder();
+            sb.AppendLine("BT");//             ' BT = begin text object, with text-units the same as userspace-units
+            sb.AppendLine("/F0 10 Tf");//      ' Tf = start using the named font "F0" with size "40"
+            sb.AppendLine("10 TL");//          ' TL = set line height to "40"
+            sb.AppendLine("550.0 775.0 Td");// ' Td = position text point at coordinates "230.0", "400.0"
+            sb.AppendLine("(" + pagina + ") '");//  ' Apostrophe = print the text, and advance to the next line
+            objeto++;
+            writer.WriteLine(objeto + " 0 obj");
+            writer.WriteLine("<<");
+            writer.WriteLine("  /Length " + sb.Length);
+            writer.WriteLine(">>");
+            writer.WriteLine("stream");
+            writer.Write(sb.ToString());
+            writer.WriteLine("endstream");
+            writer.WriteLine("endobj");
+            ///////////////////////////////////////////////////
+
+            
             for (int i = 0; i < colunas.Count; i++)
             {
 
                 //' #7: contents of page. This is written in postscript, fully described in
                 //' chapter 8 of the PDF 1.2 reference manual.
                 writer.Flush(); stream.Flush(); xrefs.Add(stream.Position);
-                System.Text.StringBuilder sb = new StringBuilder();
+                sb = new StringBuilder();
                 sb.AppendLine("BT");//             ' BT = begin text object, with text-units the same as userspace-units
                 sb.AppendLine("/F0 10 Tf");//      ' Tf = start using the named font "F0" with size "40"
                 sb.AppendLine("10 TL");//          ' TL = set line height to "40"
                 double largura;
+                int qtdeCaracteres;// = 92 / colunas.Count - 2;
                 if (i == 0)
+                {
                     largura = 25;
+                    qtdeCaracteres = (int)(92 / colunas.Count * 1.5 - 2);
+                }
                 else
                 {
-                    largura = (double)550 / colunas.Count * i + 25;
+                    double parte = (double)550 / colunas.Count * 1.5;
+                    largura = (double)(550 - parte) / (colunas.Count - 1) * (i - 1) + parte + 25;
+                    qtdeCaracteres = (int)((92 - (92 / colunas.Count * 1.5)) / (colunas.Count - 1)) - 2;
                 }
-                sb.AppendLine(((double)550 / colunas.Count * i + 25).ToString("##0.0").Replace(',', '.') + " 750.0 Td");// ' Td = position text point at coordinates "230.0", "400.0"
+                
+                sb.AppendLine(largura.ToString("##0.0").Replace(',', '.') + " 750.0 Td");// ' Td = position text point at coordinates "230.0", "400.0"
+                //sb.AppendLine(((double)550 / colunas.Count * i + 25).ToString("##0.0").Replace(',', '.') + " 750.0 Td");// ' Td = position text point at coordinates "230.0", "400.0"
                 
                 sb.AppendLine("("+titulos[i]+") '");//  ' Apostrophe = print the text, and advance to the next line
-                sb.AppendLine("(--------------) '");//  ' Apostrophe = print the text, and advance to the next line
+                sb.Append("(");
+                sb.Append('-', qtdeCaracteres);
+                sb.AppendLine(") '");//  ' Apostrophe = print the text, and advance to the next line
 
                 foreach (string linha in colunas[i])
                     sb.AppendLine("(" + linha.Substring(0, qtdeCaracteres > linha.Length ? linha.Length : qtdeCaracteres) + ") '");
@@ -155,7 +201,7 @@ namespace TCCWP.Pdf
         
         
 
-        public async void criar(List<string> titulos, List<List<string>> colunas)
+        public async void criar(string nomeRelatorio, List<string> titulos, List<List<string>> colunas)
         {
             file = await Windows.Storage.ApplicationData.Current.LocalFolder.CreateFileAsync("a.pdf", Windows.Storage.CreationCollisionOption.ReplaceExisting);
 
@@ -179,7 +225,7 @@ namespace TCCWP.Pdf
             {
                 i++;
                 paginas.Add(pag);
-                pag += 2 + colunas.Count;
+                pag += 2 + colunas.Count +2;
             }
             while (i < qtdePaginas);
 
@@ -197,7 +243,7 @@ namespace TCCWP.Pdf
                         x * linhasPorPagina + linhasPorPagina < item.Count ? linhasPorPagina : item.Count - x * linhasPorPagina);
                     subcolunas.Add(subcoluna);
                 }
-                pagina(paginas[x], titulos, subcolunas);
+                pagina(paginas[x], titulos, subcolunas, x+1, nomeRelatorio);
             }
 
             finalizar();
@@ -207,8 +253,8 @@ namespace TCCWP.Pdf
 
             await Windows.System.Launcher.LaunchFileAsync(file);
         }
-
-        Dictionary<string, string> enc = new Dictionary<string, string>
+        
+        /*Dictionary<string, string> enc = new Dictionary<string, string>
         {{"A", "\\101"},{"Æ","\\306"},{"Á","\\301"},{"Â","\\302"},{"Ä","\\304"},{"À","\\300"},{"Å","\\305"},{"Ã","\\303"},{"B","\\102"},
         {"C","\\103"},{"Ç","\\307"},{"D","\\104"},{"E","\\105"},{"É","\\311"},{"Ê","\\312"},{"Ë","\\313"},{"È","\\310"},{"Ð","\\320"},
         {"F","\\106"},{"G","\\107"},{"H","\\110"},{"I","\\111"},{"Í","\\315"},{"Î","\\316"},{"Ï","\\317"},{"Ì","\\314"},{"J","\\112"},
@@ -233,6 +279,6 @@ namespace TCCWP.Pdf
 		{"/","\\057"},{" ","\\040"},{"£","\\243"},{"t","\\164"},{"þ","\\376"},{"3","\\063"},{"¾","\\276"},{"³","\\263"},{"˜","\\230"},
 		{"™","\\231"},{"2","\\062"},{"²","\\262"},{"u","\\165"},{"ú","\\372"},{"û","\\373"},{"ü","\\374"},{"ù","\\371"},{"_","\\137"},
 		{"v","\\166"},{"w","\\167"},{"x","\\170"},{"y","\\171"},{"ý","\\375"},{"ÿ","\\377"},{"¥","\\245"},{"z","\\172"},{"0","\\060"}};
-
+        */
     }
 }

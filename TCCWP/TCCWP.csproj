@@ -94,6 +94,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controle\ControleProduto.cs" />
     <Compile Include="Controle\ControleVendedor.cs" />
     <Compile Include="Controle\BancoDeDados.cs" />
     <Compile Include="Controle\ControleAnotacao.cs" />
@@ -121,6 +122,12 @@
     <Compile Include="Telas\Clientes\Menu.xaml.cs">
       <DependentUpon>Menu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Telas\Configurar\Configurar.xaml.cs">
+      <DependentUpon>Configurar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Telas\Estoque\Consulta.xaml.cs">
+      <DependentUpon>Consulta.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Telas\Pedidos\Anotacoes\Consulta.xaml.cs">
       <DependentUpon>Consulta.xaml</DependentUpon>
     </Compile>
@@ -135,9 +142,6 @@
     </Compile>
     <Compile Include="Telas\Pedidos\Menu.xaml.cs">
       <DependentUpon>Menu.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Telas\Produtos.xaml.cs">
-      <DependentUpon>Produtos.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controle\Controle.cs" />
     <Compile Include="Controle\ControleCliente.cs" />
@@ -155,14 +159,20 @@
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
     <Compile Include="Entidades\Sinc.cs" />
-    <Compile Include="Controle\Sinconizacao.cs" />
+    <Compile Include="Controle\Sincronizacao.cs" />
     <Compile Include="SQLite\SQLite.cs" />
     <Compile Include="SQLite\SQLiteAsync.cs" />
+    <Compile Include="Telas\Relatorios\Menu.xaml.cs">
+      <DependentUpon>Menu.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Telas\UCSelecaoCliente.xaml.cs">
       <DependentUpon>UCSelecaoCliente.xaml</DependentUpon>
     </Compile>
     <Compile Include="Telas\UCSelecaoProduto.xaml.cs">
       <DependentUpon>UCSelecaoProduto.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Telas\UCSelecaoVencimento.xaml.cs">
+      <DependentUpon>UCSelecaoVencimento.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -179,6 +189,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Telas\Clientes\Menu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Telas\Configurar\Configurar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Telas\Estoque\Consulta.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -202,11 +220,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Telas\Produtos.xaml">
+    <Page Include="MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainPage.xaml">
+    <Page Include="Telas\Relatorios\Menu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -215,6 +233,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Telas\UCSelecaoProduto.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Telas\UCSelecaoVencimento.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -243,17 +265,17 @@
     <None Include="Service References\TCCWS\TCCWP.TCCWS.Atualizacao.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\TCCWS\TCCWS1.wsdl" />
-    <None Include="Service References\TCCWS\TCCWS4.xsd">
+    <None Include="Service References\TCCWS\TCCWS.wsdl" />
+    <None Include="Service References\TCCWS\TCCWS.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\TCCWS\TCCWS41.xsd">
+    <None Include="Service References\TCCWS\TCCWS1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\TCCWS\TCCWS42.xsd">
+    <None Include="Service References\TCCWS\TCCWS2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\TCCWS\TCCWS43.xsd">
+    <None Include="Service References\TCCWS\TCCWS3.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>

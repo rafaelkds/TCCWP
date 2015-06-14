@@ -18,36 +18,46 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Text="MY APPLICATION" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock Text="page name" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock Text="TCCWP" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock Text="Anotações" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
 
         <Button x:Name="btNova" Content="Nova" Grid.Row="1" Margin="12,0,12,0" Click="btNova_Click"/>
 
-        <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="2" Margin="12,0,12,0">
-            <ListBox Name="listAnotacoes" ScrollViewer.HorizontalScrollBarVisibility="Auto">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding Data}"
-						TextWrapping="Wrap" FontSize="25" />
-
-                            <TextBlock Text="{Binding Texto}"
-						TextWrapping="Wrap" FontSize="25" />
-                        </StackPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+        <Grid Width="450" Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Criada" FontSize="25" Grid.Column="0" TextAlignment="Center"/>
+            <TextBlock Text="Alterada" FontSize="25" Grid.Column="1" TextAlignment="Center"/>
         </Grid>
 
-        <Button x:Name="btVisualizar" Content="Visualizar" Grid.Row="3" Click="btVisualizar_Click"/>
+        <!--ContentPanel - place additional content here-->
+        <ListBox Name="listAnotacoes" Grid.Row="3" Margin="12,0,12,0" ScrollViewer.HorizontalScrollBarVisibility="Auto">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Width="450">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding DataFormatada}" FontSize="25" Grid.Column="0" TextAlignment="Center"/>
+                        <TextBlock Text="{Binding DataUltimaAlteracaoFormatada}" FontSize="25" Grid.Column="1" TextAlignment="Center"/>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        
+
+        <Button x:Name="btVisualizar" Content="Visualizar" Grid.Row="4" Click="btVisualizar_Click"/>
     </Grid>
 
 </phone:PhoneApplicationPage>

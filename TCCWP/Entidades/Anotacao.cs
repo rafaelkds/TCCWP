@@ -14,5 +14,10 @@ namespace TCCWP
         public DateTime Data { get; set; }
         public DateTime DataUltimaAlteracao { get; set; }
         public string Texto { get; set; }
+
+        [SQLite.Ignore]
+        public string DataFormatada { get { return Data.ToString("dd/MM/yyyy"); } }
+        [SQLite.Ignore]
+        public string DataUltimaAlteracaoFormatada { get { return DataUltimaAlteracao.ToString("dd/MM/yyyy"); } }
     }
 }

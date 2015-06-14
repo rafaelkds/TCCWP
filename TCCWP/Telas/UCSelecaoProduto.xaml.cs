@@ -15,7 +15,20 @@ namespace TCCWP
         public UCSelecaoProduto()
         {
             InitializeComponent();
-            listProdutos.ItemsSource = BancoDeDados.ListAllProduto();
+        }
+
+        private void tbBusca_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(tbBusca.Text))
+            {
+                listProdutos.ItemsSource = null;
+            }
+            else
+            {
+                ControleProduto cpr = new ControleProduto();
+                listProdutos.ItemsSource = null;
+                listProdutos.ItemsSource = cpr.buscar(tbBusca.Text);
+            }
         }
     }
 }

@@ -12,6 +12,9 @@ namespace TCCWP
         {
             string query = string.Format("select Pedido.* from Pedido, Cliente where Pedido.IdCliente = Cliente.Id and (Pedido.Numero like '{0}%' or Cliente.Nome like '{1}%' or Cliente.Cpf like '{2}%')", busca, busca, busca);
             List<Pedido> lista = BancoDeDados.Query<Pedido>(query);
+            ControleCliente cc = new ControleCliente();
+            foreach (Pedido pedido in lista)
+                pedido.Cliente = cc.buscarPorId(pedido.IdCliente);
             return lista;
         }
 
@@ -57,8 +60,8 @@ namespace TCCWP
                 + "$$" + objeto.IdVendedor + "$$,"
                 + "$$" + objeto.IdCliente + "$$,"
                 + "$$" + objeto.Valor + "$$,"
-                + "$$" + objeto.DataEmissao.ToString("dd/M/yyyy") + "$$,"
-                + "$$" + objeto.DataPagamento.ToString("dd/M/yyyy") + "$$,"
+                + "$$" + objeto.DataEmissao.ToString("dd/MM/yyyy") + "$$,"
+                + "$$" + objeto.DataPagamento.ToString("dd/MM/yyyy") + "$$,"
                 + "$$" + objeto.Observacoes + "$$)";
 
             string sql = "insert into Pedido "

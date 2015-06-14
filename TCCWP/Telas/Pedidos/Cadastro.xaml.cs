@@ -90,18 +90,17 @@ namespace TCCWP.Telas.Pedidos
                             novoProdutoPedido.IdProduto = (ucsp.listProdutos.SelectedItem as Produto).Id;
                             novoProdutoPedido.Quantidade = Convert.ToDecimal(ucsp.tbQuantidade.Text);
                             novoProdutoPedido.Valor = Convert.ToDecimal(ucsp.tbValor.Text);
+                            novoProdutoPedido.Produto = ucsp.listProdutos.SelectedItem as Produto;
                             novoPedido.Produtos.Add(novoProdutoPedido);
 
                             listProdutos.ItemsSource = null;
                             listProdutos.ItemsSource = novoPedido.Produtos;
 
-                            decimal tQtde = 0, tValor = 0;
+                            decimal tValor = 0;
                             foreach (ProdutoPedido item in novoPedido.Produtos)
                             {
-                                tQtde += item.Quantidade;
-                                tValor += item.Valor;
+                                tValor += item.Valor * item.Quantidade;
                             }
-                            tbTotalQuantidade.Text = tQtde.ToString("0.00");
                             tbTotalValor.Text = tValor.ToString("0.00");
                         }
                         break;
@@ -115,17 +114,53 @@ namespace TCCWP.Telas.Pedidos
             novoPedido.Produtos.Remove(listProdutos.SelectedItem as ProdutoPedido);
             listProdutos.ItemsSource = null;
             listProdutos.ItemsSource = novoPedido.Produtos;
+            decimal tValor = 0;
+            foreach (ProdutoPedido item in novoPedido.Produtos)
+            {
+                tValor += item.Valor * item.Quantidade;
+            }
+            tbTotalValor.Text = tValor.ToString("0.00");
         }
 
         private void btAdicionarVencimento_Click(object sender, RoutedEventArgs e)
         {
-            Receber novoReceber = new Receber();
-            novoReceber.Vencimento = dpData.Value ?? new DateTime();
-            novoReceber.Valor = Convert.ToDecimal(tbValor.Text);
-            novoPedido.Receber.Add(novoReceber);
+            
+            UCSelecaoVencimento ucsv = new UCSelecaoVencimento();
+            CustomMessageBox cmb = new CustomMessageBox()
+            {
+                Content = ucsv,
+                LeftButtonContent = "Adicionar",
+                RightButtonContent = "Cancelar"
+            };
+            cmb.Dismissing += (s1, e1) =>
+            {
+                switch (e1.Result)
+                {
+                    case CustomMessageBoxResult.LeftButton:
+                        if (ucsv.dpData.Value != null)
+                        {
+                            Receber novoReceber = new Receber();
+                            novoReceber.Vencimento = ucsv.dpData.Value ?? new DateTime();
+                            novoReceber.Valor = Convert.ToDecimal(ucsv.tbValor.Text);
+                            novoPedido.Receber.Add(novoReceber);
 
-            listVencimentos.ItemsSource = null;
-            listVencimentos.ItemsSource = novoPedido.Receber;
+                            listVencimentos.ItemsSource = null;
+                            listVencimentos.ItemsSource = novoPedido.Receber;
+
+                            decimal tValor = 0;
+                            foreach (ProdutoPedido item in novoPedido.Produtos)
+                            {
+                                tValor += item.Valor * item.Quantidade;
+                            }
+                            tbTotalValor.Text = tValor.ToString("0.00");
+                        }
+                        break;
+                    case CustomMessageBoxResult.None:
+                        
+                        break;
+                }
+            };
+            cmb.Show();
         }
 
         private void btRemoverVencimento_Click(object sender, RoutedEventArgs e)
@@ -166,8 +201,6 @@ namespace TCCWP.Telas.Pedidos
                 btRemoverProduto.IsEnabled = false;
                 listProdutos.IsEnabled = false;
 
-                dpData.IsEnabled = false;
-                tbValor.IsEnabled = false;
                 btAdicionarVencimento.IsEnabled = false;
                 btRemoverVencimento.IsEnabled = false;
 

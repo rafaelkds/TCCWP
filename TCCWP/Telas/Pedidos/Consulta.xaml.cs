@@ -30,9 +30,9 @@ namespace TCCWP.Telas.Pedidos
             }
             else
             {
-                ControlePedido cc = new ControlePedido();
+                ControlePedido cp = new ControlePedido();
                 listPedidos.ItemsSource = null;
-                listPedidos.ItemsSource = cc.buscar(tbBusca.Text);
+                listPedidos.ItemsSource = cp.buscar(tbBusca.Text);
             }
         }
     }

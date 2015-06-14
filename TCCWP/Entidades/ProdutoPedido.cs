@@ -19,5 +19,9 @@ namespace TCCWP
 
         [SQLite.Ignore]
         public Produto Produto { get; set; }
+        [SQLite.Ignore]
+        public String ValorFormatado { get { return Valor.ToString("0.00"); } }
+        [SQLite.Ignore]
+        public String ValorTotalFormatado { get { return (Valor * Quantidade).ToString("0.00"); } }
     }
 }

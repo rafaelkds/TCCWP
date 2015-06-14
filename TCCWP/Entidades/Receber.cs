@@ -15,5 +15,8 @@ namespace TCCWP
         public decimal Valor { get; set; }
         public DateTime Vencimento { get; set; }
         public DateTime Pagamento { get; set; }
+
+        [SQLite.Ignore]
+        public string VencimentoFormatado { get { return Vencimento.ToString("dd/MM/yyyy"); } }
     }
 }

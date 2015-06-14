@@ -25,8 +25,8 @@ namespace TCCWP
                 string values = "("
                     + "$$" + objeto.Id + "$$,"
                     + "$$" + objeto.IdPedido + "$$,"
-                    + "$$" + objeto.Data.ToString("dd/M/yyyy") + "$$,"
-                    + "$$" + objeto.DataUltimaAlteracao.ToString("dd/M/yyyy") + "$$,"
+                    + "$$" + objeto.Data.ToString("dd/MM/yyyy") + "$$,"
+                    + "$$" + objeto.DataUltimaAlteracao.ToString("dd/MM/yyyy") + "$$,"
                     + "$$" + objeto.Texto + "$$)";
 
                 string sql = "insert into Anotacao "
@@ -39,7 +39,7 @@ namespace TCCWP
             else
             {
                 string sql = "update Anotacao set "
-                    + "Data_ultima_alteracao = $$" + objeto.DataUltimaAlteracao.ToString("dd/M/yyyy") + "$$,"
+                    + "Data_ultima_alteracao = $$" + objeto.DataUltimaAlteracao.ToString("dd/MM/yyyy") + "$$,"
                     + "Texto = $$" + objeto.Texto + "$$"
                     + " where Id = $$" + objeto.Id + "$$";
                 Log log = new Log();

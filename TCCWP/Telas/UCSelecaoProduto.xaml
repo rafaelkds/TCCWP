@@ -11,29 +11,32 @@
 
     <Grid x:Name="LayoutRoot" Background="{StaticResource PhoneChromeBrush}">
         <StackPanel>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*" />
-                    <ColumnDefinition Width="1*" />
-                </Grid.ColumnDefinitions>
-                <TextBox Name="tbQuantidade" Height="80" HorizontalAlignment="Stretch" Grid.Column="0"/>
-                <TextBox Name="tbValor" HorizontalAlignment="Stretch" Grid.Column="1"/>
-            </Grid>
-            <ListBox Name="listProdutos" Height="585" ScrollViewer.HorizontalScrollBarVisibility="Auto">
+            <StackPanel  Margin="12,0,12,0" Orientation="Horizontal">
+                <TextBlock Text="Qtde:"/>
+                <TextBox Name="tbQuantidade" InputScope="Number" Width="170"/>
+                <TextBlock Text="Preço:"/>
+                <TextBox Name="tbValor" InputScope="Number" Width="170"/>
+            </StackPanel>
+            <TextBlock Text="Produto:" Margin="12,0,12,0"/>
+            <TextBox x:Name="tbBusca" Margin="12,0,12,0" TextChanged="tbBusca_TextChanged"/>
+            <ListBox Name="listProdutos" Height="500" ScrollViewer.HorizontalScrollBarVisibility="Auto">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding Id}"
-						    TextWrapping="Wrap" FontSize="25" />
-
-                            <TextBlock Text="{Binding Nome}"
-						    TextWrapping="Wrap" FontSize="25" />
-
-                            <TextBlock Text="{Binding Valor}"
-						    TextWrapping="Wrap" FontSize="25" />
-
-                            <TextBlock Text="{Binding Estoque}"
-						    TextWrapping="Wrap" FontSize="25" />
+                        <StackPanel Width="450">
+                            <TextBlock Text="{Binding Nome}" FontSize="25" />
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1.5*" />
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="1*" />
+                                    <ColumnDefinition Width="2*" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="Estoque:" Grid.Column="0" />
+                                <TextBlock Text="{Binding Estoque}" Grid.Column="1" TextAlignment="Right"/>
+                                <TextBlock Text="Preço:" Grid.Column="3" />
+                                <TextBlock Text="{Binding ValorFormatado}" Grid.Column="4" TextAlignment="Right"/>
+                            </Grid>
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

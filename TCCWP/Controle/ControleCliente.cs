@@ -11,7 +11,7 @@ namespace TCCWP
     {
         public List<Cliente> buscar(string busca)
         {
-            string query = string.Format("select * from Cliente where Nome like '{0}%' or Cpf like '{1}%'", busca, busca);
+            string query = string.Format("select * from Cliente where Nome like '{0}%' or Cpf like '{1}%' order by Nome", busca, busca);
             List<Cliente> lista = BancoDeDados.Query<Cliente>(query);
             return lista;
         }

@@ -11,7 +11,7 @@ namespace TCCWPTaskAgent.Sincronizacao
     {
         public bool concluiu;
         private List<Log> atualizacoes;
-        public async void Sincronizar()
+        public void Sincronizar()
         {
             concluiu = false;
             List<Sinc> ls = BancoDeDados.Query<Sinc>("select * from Sinc");
@@ -26,11 +26,6 @@ namespace TCCWPTaskAgent.Sincronizacao
             TCCWSClient client = new TCCWSClient();
             client.SincronizarCompleted += SincronizarCompleted;
             client.SincronizarAsync(lista, ultSinc.getUltimaSinc(), Windows.Phone.System.Analytics.HostInformation.PublisherHostId);
-
-            while (!concluiu)
-            {
-                await Task.Delay(TimeSpan.FromSeconds(5));
-            }
         }
 
         void SincronizarCompleted(object sender, SincronizarCompletedEventArgs e)
@@ -195,7 +190,6 @@ namespace TCCWPTaskAgent.Sincronizacao
                 BancoDeDados.UltSinc(s);
                 BancoDeDados.CommitTransaction();
                 concluiu = true;
-                System.Windows.MessageBox.Show("Sincronizado");
             }
         }
     }

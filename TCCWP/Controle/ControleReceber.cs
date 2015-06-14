@@ -21,8 +21,8 @@ namespace TCCWP
                 + "$$" + objeto.IdPedido + "$$,"
                 + "$$" + objeto.Ordem + "$$,"
                 + "$$" + objeto.Valor + "$$,"
-                + "$$" + objeto.Vencimento.ToString("dd/M/yyyy") + "$$,"
-                + "$$" + objeto.Pagamento.ToString("dd/M/yyyy") + "$$)";
+                + "$$" + objeto.Vencimento.ToString("dd/MM/yyyy") + "$$,"
+                + "$$" + objeto.Pagamento.ToString("dd/MM/yyyy") + "$$)";
             
             string sql = "insert into Receber "
                 + "(Id, Id_pedido, Ordem, Valor, Vencimento, Pagamento) "
@@ -44,8 +44,8 @@ namespace TCCWP
                     + "$$" + receber.IdPedido + "$$,"
                     + "$$" + receber.Ordem + "$$,"
                     + "$$" + receber.Valor + "$$,"
-                    + "$$" + receber.Vencimento.ToString("dd/M/yyyy") + "$$,"
-                    + "$$" + receber.Pagamento.ToString("dd/M/yyyy") + "$$)";
+                    + "$$" + receber.Vencimento.ToString("dd/MM/yyyy") + "$$,"
+                    + "$$" + receber.Pagamento.ToString("dd/MM/yyyy") + "$$)";
             }
             string sql = "insert into Receber "
                 + "(Id, Id_pedido, Ordem, Valor, Vencimento, Pagamento) "

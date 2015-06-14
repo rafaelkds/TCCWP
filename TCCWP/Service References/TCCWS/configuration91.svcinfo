@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="4rrlIcSzxtNWUb6YgWPghQs2Pyc=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="49C9xJBeMVde2IIviOv392fVDBs=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpBinding_ITCCWS">
       <properties>
@@ -112,10 +112,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="BasicHttpBinding_ITCCWS" contract="TCCWS.ITCCWS" bindingType="basicHttpBinding" address="http://tccws.ddns.net:12115/TCCWS.svc" bindingConfiguration="BasicHttpBinding_ITCCWS">
+    <endpoint name="BasicHttpBinding_ITCCWS" contract="TCCWS.ITCCWS" bindingType="basicHttpBinding" address="http://localhost:12115/TCCWS.svc" bindingConfiguration="BasicHttpBinding_ITCCWS">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://tccws.ddns.net:12115/TCCWS.svc</serializedValue>
+          <serializedValue>http://localhost:12115/TCCWS.svc</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

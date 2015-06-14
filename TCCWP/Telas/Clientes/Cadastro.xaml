@@ -19,9 +19,9 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         
-        <phone:Pivot Title="MY APPLICATION" Grid.Row="0">
+        <phone:Pivot Title="TCCWP" Grid.Row="0">
             
-            <phone:PivotItem Header="item1">
+            <phone:PivotItem Header="Cliente">
                 <StackPanel Margin="12,0,12,0" ScrollViewer.VerticalScrollBarVisibility="Auto">
                     <TextBlock Text="Nome:"/>
                     <TextBox x:Name="tbNome"/>
@@ -34,7 +34,7 @@
                 </StackPanel>
             </phone:PivotItem>
 
-            <phone:PivotItem Header="item2">
+            <phone:PivotItem Header="Endereço">
                 <StackPanel Margin="12,0,12,0" ScrollViewer.VerticalScrollBarVisibility="Auto">
                     <TextBlock Text="Rua:"/>
                     <TextBox x:Name="tbRua"/>
@@ -45,15 +45,19 @@
                     <TextBlock Text="Cidade:"/>
                     <TextBox x:Name="tbCidade"/>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="UF:"/>
-                        <TextBox x:Name="tbUf" Width="100"/>
-                        <TextBlock Text="CEP:"/>
-                        <TextBox x:Name="tbCep" Width="265"/>
+                        <StackPanel>
+                            <TextBlock Text="UF:"/>
+                            <TextBox x:Name="tbUf" Width="100"/>
+                        </StackPanel>
+                        <StackPanel>
+                            <TextBlock Text="CEP:"/>
+                            <TextBox x:Name="tbCep" Width="330"/>
+                        </StackPanel>
                     </StackPanel>
                 </StackPanel>
             </phone:PivotItem>
 
-            <phone:PivotItem Header="item3">
+            <phone:PivotItem Header="Complemento">
                 <StackPanel Margin="12,0,12,0" ScrollViewer.VerticalScrollBarVisibility="Auto">
                     <TextBlock Text="Complemento:"/>
                     <TextBox x:Name="tbComplemento" AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" Height="400"/>

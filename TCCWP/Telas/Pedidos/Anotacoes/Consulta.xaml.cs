@@ -74,6 +74,8 @@ namespace TCCWP.Telas.Pedidos.Anotacoes
 
                             ControleAnotacao ca = new ControleAnotacao();
                             ca.gravar(anotacao);
+                            listAnotacoes.ItemsSource = null;
+                            listAnotacoes.ItemsSource = ca.buscar(idPedido);
                         }
                         break;
                 }

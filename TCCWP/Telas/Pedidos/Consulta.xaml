@@ -25,11 +25,11 @@
 
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Text="MY APPLICATION" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock Text="page name" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock Text="TCCWP" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock Text="Pedidos" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
 
-        <TextBlock Text="Nome/CPF/Pedido:" Grid.Row="1" Margin="12,0,12,0"/>
+        <TextBlock Text="Nome/CPF/Numero:" Grid.Row="1" Margin="12,0,12,0"/>
 
         <TextBox x:Name="tbBusca" Grid.Row="2" Margin="12,0,12,0" TextChanged="tbBusca_TextChanged"/>
 
@@ -39,11 +39,9 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding Id}"
-						TextWrapping="Wrap" FontSize="25" />
+                            <TextBlock Text="{Binding Id}" FontSize="25"/>
 
-                            <TextBlock Text="{Binding Numero}"
-						TextWrapping="Wrap" FontSize="25" />
+                            <TextBlock Text="{Binding Cliente.Nome}" FontSize="25" Margin="20,0,0,0"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
