@@ -36,14 +36,14 @@ namespace TCCWP
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Pdf.Pdf p = new Pdf.Pdf();
-            List<Produto> prod = BancoDeDados.Query<Produto>("Select * from Produto where Ativo = 1");
+            List<Produto> prod = BancoDeDados.Query<Produto>("Select * from Produto where Ativo = 1 order by nome");
             List<string> tit = new List<string>();
             tit.Add("Produto");
-            tit.Add("Quantidade");
+            //tit.Add("Quantidade");
             tit.Add("Preco");
+            /*tit.Add("Preco");
             tit.Add("Preco");
-            tit.Add("Preco");
-            tit.Add("Preco");
+            tit.Add("Preco");*/
 
             List<List<string>> col = new List<List<string>>(2);
             List<string> a = new List<string>(prod.Count);
@@ -53,14 +53,14 @@ namespace TCCWP
             {
                 a.Add(pr.Nome);
                 b.Add(pr.Estoque.ToString());
-                c.Add(pr.Valor.ToString());
+                c.Add(pr.ValorFormatado.ToString());
             }
             col.Add(a);
-            col.Add(b);
+            //col.Add(b);
             col.Add(c);
-            col.Add(c); col.Add(c); col.Add(c); 
+            //col.Add(c); col.Add(c); col.Add(c); 
 
-            p.criar("Estoque de Produtos", tit, col);
+            p.criar("Tabela de precos", tit, col);
         }
 
         private void btRelatorios_Click(object sender, RoutedEventArgs e)

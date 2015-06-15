@@ -31,7 +31,7 @@ namespace TCCWP.Telas.Pedidos
             ControlePedido cp = new ControlePedido();
             novoPedido = cp.buscarPorId(id);
 
-            tbNumero.Text = novoPedido.Numero;
+            tbNumero.Text = novoPedido.Id;
             dpEmissao.Value = novoPedido.DataEmissao;
             listVendedores.SelectedIndex = (new List<Vendedor>(listVendedores.ItemsSource.Cast<Vendedor>())).FindIndex(x => x.Id == novoPedido.IdVendedor);
 

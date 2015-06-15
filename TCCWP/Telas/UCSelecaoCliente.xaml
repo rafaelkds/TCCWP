@@ -10,18 +10,24 @@
     d:DesignHeight="768" d:DesignWidth="480">
 
     <Grid x:Name="LayoutRoot" Background="{StaticResource PhoneChromeBrush}">
-        <ListBox Name="listClientes" Height="720" ScrollViewer.HorizontalScrollBarVisibility="Auto">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding Id}"
-						TextWrapping="Wrap" FontSize="25" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/> 
+        </Grid.RowDefinitions>
 
-                        <TextBlock Text="{Binding Nome}"
-						TextWrapping="Wrap" FontSize="25" />
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+        <TextBlock Text="Nome/CPF:" Grid.Row="0" Margin="12,0,12,0"/>
+
+        <TextBox x:Name="tbBusca" Grid.Row="1" Margin="12,0,12,0" TextChanged="tbBusca_TextChanged"/>
+
+        <Grid x:Name="ContentPanel" Grid.Row="2" Margin="12,0,12,0">
+            <ListBox Name="listClientes" ScrollViewer.HorizontalScrollBarVisibility="Auto" Height="572">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Nome}" FontSize="25"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
     </Grid>
 </UserControl>

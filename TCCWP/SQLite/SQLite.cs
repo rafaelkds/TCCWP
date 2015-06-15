@@ -1,7 +1,7 @@
 //
 // Copyright (c) 2009-2012 Krueger Systems, Inc.
 // 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
+// Permission is hereby granted, free of charge, to any person obtaining atualizacao copy
 // of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
@@ -113,7 +113,7 @@ namespace SQLite
     public enum CreateFlags
     {
         None = 0,
-        ImplicitPK = 1,    // create a primary key for field called 'Id' (Orm.ImplicitPkName)
+        ImplicitPK = 1,    // create atualizacao primary key for field called 'Id' (Orm.ImplicitPkName)
         ImplicitIndex = 2, // create an index for fields ending in 'Id' (Orm.ImplicitIndexSuffix)
         AllImplicit = 3,   // do both above
 
@@ -121,7 +121,7 @@ namespace SQLite
     }
 
 	/// <summary>
-	/// Represents an open connection to a SQLite database.
+	/// Represents an open connection to atualizacao SQLite database.
 	/// </summary>
 	public partial class SQLiteConnection : IDisposable
 	{
@@ -147,7 +147,7 @@ namespace SQLite
 		public bool StoreDateTimeAsTicks { get; private set; }
 
 		/// <summary>
-		/// Constructs a new SQLiteConnection and opens a SQLite database specified by databasePath.
+		/// Constructs atualizacao new SQLiteConnection and opens atualizacao SQLite database specified by databasePath.
 		/// </summary>
 		/// <param name="databasePath">
 		/// Specifies the path to the database file.
@@ -155,7 +155,7 @@ namespace SQLite
 		/// <param name="storeDateTimeAsTicks">
 		/// Specifies whether to store DateTime properties as ticks (true) or strings (false). You
 		/// absolutely do want to store them as Ticks in all new projects. The default of false is
-		/// only here for backwards compatibility. There is a *significant* speed advantage, with no
+		/// only here for backwards compatibility. There is atualizacao *significant* speed advantage, with no
 		/// down sides, when setting storeDateTimeAsTicks = true.
 		/// </param>
 		public SQLiteConnection (string databasePath, bool storeDateTimeAsTicks = false)
@@ -164,7 +164,7 @@ namespace SQLite
 		}
 
 		/// <summary>
-		/// Constructs a new SQLiteConnection and opens a SQLite database specified by databasePath.
+		/// Constructs atualizacao new SQLiteConnection and opens atualizacao SQLite database specified by databasePath.
 		/// </summary>
 		/// <param name="databasePath">
 		/// Specifies the path to the database file.
@@ -172,7 +172,7 @@ namespace SQLite
 		/// <param name="storeDateTimeAsTicks">
 		/// Specifies whether to store DateTime properties as ticks (true) or strings (false). You
 		/// absolutely do want to store them as Ticks in all new projects. The default of false is
-		/// only here for backwards compatibility. There is a *significant* speed advantage, with no
+		/// only here for backwards compatibility. There is atualizacao *significant* speed advantage, with no
 		/// down sides, when setting storeDateTimeAsTicks = true.
 		/// </param>
 		public SQLiteConnection (string databasePath, SQLiteOpenFlags openFlags, bool storeDateTimeAsTicks = false)
@@ -241,8 +241,8 @@ namespace SQLite
 		static bool _preserveDuringLinkMagic;
 
 		/// <summary>
-		/// Sets a busy handler to sleep the specified amount of time when a table is locked.
-		/// The handler will sleep multiple times until a total time of <see cref="BusyTimeout"/> has accumulated.
+		/// Sets atualizacao busy handler to sleep the specified amount of time when atualizacao table is locked.
+		/// The handler will sleep multiple times until atualizacao total time of <see cref="BusyTimeout"/> has accumulated.
 		/// </summary>
 		public TimeSpan BusyTimeout {
 			get { return _busyTimeout; }
@@ -317,7 +317,7 @@ namespace SQLite
 		}
 
 		/// <summary>
-		/// Executes a "drop table" on the database.  This is non-recoverable.
+		/// Executes atualizacao "drop table" on the database.  This is non-recoverable.
 		/// </summary>
 		public int DropTable<T>()
 		{
@@ -329,9 +329,9 @@ namespace SQLite
 		}
 		
 		/// <summary>
-		/// Executes a "create table if not exists" on the database. It also
+		/// Executes atualizacao "create table if not exists" on the database. It also
 		/// creates any specified indexes on the columns of the table. It uses
-		/// a schema automatically generated from the specified type. You can
+		/// atualizacao schema automatically generated from the specified type. You can
 		/// later access this schema by calling GetMapping.
 		/// </summary>
 		/// <returns>
@@ -343,12 +343,12 @@ namespace SQLite
 		}
 
 		/// <summary>
-		/// Executes a "create table if not exists" on the database. It also
+		/// Executes atualizacao "create table if not exists" on the database. It also
 		/// creates any specified indexes on the columns of the table. It uses
-		/// a schema automatically generated from the specified type. You can
+		/// atualizacao schema automatically generated from the specified type. You can
 		/// later access this schema by calling GetMapping.
 		/// </summary>
-		/// <param name="ty">Type to reflect to a database table.</param>
+		/// <param name="ty">Type to reflect to atualizacao database table.</param>
         /// <param name="createFlags">Optional flags allowing implicit PK and indexes based on naming conventions.</param>  
 		/// <returns>
 		/// The number of entries added to the database schema.
@@ -463,7 +463,7 @@ namespace SQLite
         /// Creates an index for the specified object property.
         /// e.g. CreateIndex<Client>(c => c.Name);
         /// </summary>
-        /// <typeparam name="T">Type to reflect to a database table.</typeparam>
+        /// <typeparam name="T">Type to reflect to atualizacao database table.</typeparam>
         /// <param name="property">Property to index</param>
         /// <param name="unique">Whether the index should be unique</param>
         public void CreateIndex<T>(Expression<Func<T, object>> property, bool unique = false)
@@ -544,7 +544,7 @@ namespace SQLite
 		}
 
 		/// <summary>
-		/// Creates a new SQLiteCommand. Can be overridden to provide a sub-class.
+		/// Creates atualizacao new SQLiteCommand. Can be overridden to provide atualizacao sub-class.
 		/// </summary>
 		/// <seealso cref="SQLiteCommand.OnInstanceCreated"/>
 		protected virtual SQLiteCommand NewCommand ()
@@ -553,7 +553,7 @@ namespace SQLite
 		}
 
 		/// <summary>
-		/// Creates a new SQLiteCommand given the command text with arguments. Place a '?'
+		/// Creates atualizacao new SQLiteCommand given the command text with arguments. Place atualizacao '?'
 		/// in the command text for each of the arguments.
 		/// </summary>
 		/// <param name="cmdText">
@@ -579,7 +579,7 @@ namespace SQLite
 		}
 
 		/// <summary>
-		/// Creates a SQLiteCommand given the command text (SQL) with arguments. Place a '?'
+		/// Creates atualizacao SQLiteCommand given the command text (SQL) with arguments. Place atualizacao '?'
 		/// in the command text for each of the arguments and then executes that command.
 		/// Use this method instead of Query when you don't expect rows back. Such cases include
 		/// INSERTs, UPDATEs, and DELETEs.
@@ -593,7 +593,7 @@ namespace SQLite
 		/// Arguments to substitute for the occurences of '?' in the query.
 		/// </param>
 		/// <returns>
-		/// The number of rows modified in the database as a result of this execution.
+		/// The number of rows modified in the database as atualizacao result of this execution.
 		/// </returns>
 		public int Execute (string query, params object[] args)
 		{
@@ -642,7 +642,7 @@ namespace SQLite
 		}
 
 		/// <summary>
-		/// Creates a SQLiteCommand given the command text (SQL) with arguments. Place a '?'
+		/// Creates atualizacao SQLiteCommand given the command text (SQL) with arguments. Place atualizacao '?'
 		/// in the command text for each of the arguments and then executes that command.
 		/// It returns each row of the result using the mapping automatically generated for
 		/// the given type.
@@ -663,7 +663,7 @@ namespace SQLite
 		}
 
 		/// <summary>
-		/// Creates a SQLiteCommand given the command text (SQL) with arguments. Place a '?'
+		/// Creates atualizacao SQLiteCommand given the command text (SQL) with arguments. Place atualizacao '?'
 		/// in the command text for each of the arguments and then executes that command.
 		/// It returns each row of the result using the mapping automatically generated for
 		/// the given type.
@@ -686,7 +686,7 @@ namespace SQLite
 		}
 
 		/// <summary>
-		/// Creates a SQLiteCommand given the command text (SQL) with arguments. Place a '?'
+		/// Creates atualizacao SQLiteCommand given the command text (SQL) with arguments. Place atualizacao '?'
 		/// in the command text for each of the arguments and then executes that command.
 		/// It returns each row of the result using the specified mapping. This function is
 		/// only used by libraries in order to query the database via introspection. It is
@@ -712,7 +712,7 @@ namespace SQLite
 		}
 
 		/// <summary>
-		/// Creates a SQLiteCommand given the command text (SQL) with arguments. Place a '?'
+		/// Creates atualizacao SQLiteCommand given the command text (SQL) with arguments. Place atualizacao '?'
 		/// in the command text for each of the arguments and then executes that command.
 		/// It returns each row of the result using the specified mapping. This function is
 		/// only used by libraries in order to query the database via introspection. It is
@@ -740,7 +740,7 @@ namespace SQLite
 		}
 
 		/// <summary>
-		/// Returns a queryable interface to the table represented by the given type.
+		/// Returns atualizacao queryable interface to the table represented by the given type.
 		/// </summary>
 		/// <returns>
 		/// A queryable object that is able to translate Where, OrderBy, and Take
@@ -754,13 +754,13 @@ namespace SQLite
 		/// <summary>
 		/// Attempts to retrieve an object with the given primary key from the table
 		/// associated with the specified type. Use of this method requires that
-		/// the given type have a designated PrimaryKey (using the PrimaryKeyAttribute).
+		/// the given type have atualizacao designated PrimaryKey (using the PrimaryKeyAttribute).
 		/// </summary>
 		/// <param name="pk">
 		/// The primary key.
 		/// </param>
 		/// <returns>
-		/// The object with the given primary key. Throws a not found exception
+		/// The object with the given primary key. Throws atualizacao not found exception
 		/// if the object is not found.
 		/// </returns>
 		public T Get<T> (object pk) where T : new()
@@ -777,7 +777,7 @@ namespace SQLite
         /// A predicate for which object to find.
         /// </param>
         /// <returns>
-        /// The object that matches the given predicate. Throws a not found exception
+        /// The object that matches the given predicate. Throws atualizacao not found exception
         /// if the object is not found.
         /// </returns>
         public T Get<T> (Expression<Func<T, bool>> predicate) where T : new()
@@ -788,7 +788,7 @@ namespace SQLite
 		/// <summary>
 		/// Attempts to retrieve an object with the given primary key from the table
 		/// associated with the specified type. Use of this method requires that
-		/// the given type have a designated PrimaryKey (using the PrimaryKeyAttribute).
+		/// the given type have atualizacao designated PrimaryKey (using the PrimaryKeyAttribute).
 		/// </summary>
 		/// <param name="pk">
 		/// The primary key.
@@ -806,7 +806,7 @@ namespace SQLite
 		/// <summary>
 		/// Attempts to retrieve an object with the given primary key from the table
 		/// associated with the specified type. Use of this method requires that
-		/// the given type have a designated PrimaryKey (using the PrimaryKeyAttribute).
+		/// the given type have atualizacao designated PrimaryKey (using the PrimaryKeyAttribute).
 		/// </summary>
 		/// <param name="pk">
 		/// The primary key.
@@ -840,16 +840,16 @@ namespace SQLite
         }
 
 		/// <summary>
-		/// Whether <see cref="BeginTransaction"/> has been called and the database is waiting for a <see cref="Commit"/>.
+		/// Whether <see cref="BeginTransaction"/> has been called and the database is waiting for atualizacao <see cref="Commit"/>.
 		/// </summary>
 		public bool IsInTransaction {
 			get { return _transactionDepth > 0; }
 		}
 
 		/// <summary>
-		/// Begins a new transaction. Call <see cref="Commit"/> to end the transaction.
+		/// Begins atualizacao new transaction. Call <see cref="Commit"/> to end the transaction.
 		/// </summary>
-		/// <example cref="System.InvalidOperationException">Throws if a transaction has already begun.</example>
+		/// <example cref="System.InvalidOperationException">Throws if atualizacao transaction has already begun.</example>
 		public void BeginTransaction ()
 		{
 			// The BEGIN command only works if the transaction stack is empty, 
@@ -865,7 +865,7 @@ namespace SQLite
 					var sqlExp = ex as SQLiteException;
 					if (sqlExp != null) {
 						// It is recommended that applications respond to the errors listed below 
-						//    by explicitly issuing a ROLLBACK command.
+						//    by explicitly issuing atualizacao ROLLBACK command.
 						// TODO: This rollback failsafe should be localized to all throw sites.
 						switch (sqlExp.Result) {
 						case SQLite3.Result.IOError:
@@ -878,7 +878,7 @@ namespace SQLite
 						}
 					} else {
 						// Call decrement and not VolatileWrite in case we've already 
-						//    created a transaction point in SaveTransactionPoint since the catch.
+						//    created atualizacao transaction point in SaveTransactionPoint since the catch.
 						Interlocked.Decrement (ref _transactionDepth);
 					}
 
@@ -891,8 +891,8 @@ namespace SQLite
 		}
 
 		/// <summary>
-		/// Creates a savepoint in the database at the current point in the transaction timeline.
-		/// Begins a new transaction if one is not in progress.
+		/// Creates atualizacao savepoint in the database at the current point in the transaction timeline.
+		/// Begins atualizacao new transaction if one is not in progress.
 		/// 
 		/// Call <see cref="RollbackTo"/> to undo transactions since the returned savepoint.
 		/// Call <see cref="Release"/> to commit transactions after the savepoint returned here.
@@ -910,7 +910,7 @@ namespace SQLite
 				var sqlExp = ex as SQLiteException;
 				if (sqlExp != null) {
 					// It is recommended that applications respond to the errors listed below 
-					//    by explicitly issuing a ROLLBACK command.
+					//    by explicitly issuing atualizacao ROLLBACK command.
 					// TODO: This rollback failsafe should be localized to all throw sites.
 					switch (sqlExp.Result) {
 					case SQLite3.Result.IOError:
@@ -942,7 +942,7 @@ namespace SQLite
 		/// <summary>
 		/// Rolls back the savepoint created by <see cref="BeginTransaction"/> or SaveTransactionPoint.
 		/// </summary>
-		/// <param name="savepoint">The name of the savepoint to roll back to, as returned by <see cref="SaveTransactionPoint"/>.  If savepoint is null or empty, this method is equivalent to a call to <see cref="Rollback"/></param>
+		/// <param name="savepoint">The name of the savepoint to roll back to, as returned by <see cref="SaveTransactionPoint"/>.  If savepoint is null or empty, this method is equivalent to atualizacao call to <see cref="Rollback"/></param>
 		public void RollbackTo (string savepoint)
 		{
 			RollbackTo (savepoint, false);
@@ -954,7 +954,7 @@ namespace SQLite
 		/// <param name="noThrow">true to avoid throwing exceptions, false otherwise</param>
 		void RollbackTo (string savepoint, bool noThrow)
 		{
-			// Rolling back without a TO clause rolls backs all transactions 
+			// Rolling back without atualizacao TO clause rolls backs all transactions 
 			//    and leaves the transaction stack empty.   
 			try {
 				if (String.IsNullOrEmpty (savepoint)) {
@@ -973,13 +973,13 @@ namespace SQLite
 		}
 
 		/// <summary>
-		/// Releases a savepoint returned from <see cref="SaveTransactionPoint"/>.  Releasing a savepoint 
+		/// Releases atualizacao savepoint returned from <see cref="SaveTransactionPoint"/>.  Releasing atualizacao savepoint 
 		///    makes changes since that savepoint permanent if the savepoint began the transaction,
-		///    or otherwise the changes are permanent pending a call to <see cref="Commit"/>.
+		///    or otherwise the changes are permanent pending atualizacao call to <see cref="Commit"/>.
 		/// 
-		/// The RELEASE command is like a COMMIT for a SAVEPOINT.
+		/// The RELEASE command is like atualizacao COMMIT for atualizacao SAVEPOINT.
 		/// </summary>
-		/// <param name="savepoint">The name of the savepoint to release.  The string should be the result of a call to <see cref="SaveTransactionPoint"/></param>
+		/// <param name="savepoint">The name of the savepoint to release.  The string should be the result of atualizacao call to <see cref="SaveTransactionPoint"/></param>
 		public void Release (string savepoint)
 		{
 			DoSavePointExecute (savepoint, "release ");
@@ -1018,16 +1018,16 @@ namespace SQLite
 			if (Interlocked.Exchange (ref _transactionDepth, 0) != 0) {
 				Execute ("commit");
 			}
-			// Do nothing on a commit with no open transaction
+			// Do nothing on atualizacao commit with no open transaction
 		}
 
 		/// <summary>
-		/// Executes <param name="action"> within a (possibly nested) transaction by wrapping it in a SAVEPOINT. If an
+		/// Executes <param name="action"> within atualizacao (possibly nested) transaction by wrapping it in atualizacao SAVEPOINT. If an
 		/// exception occurs the whole transaction is rolled back, not just the current savepoint. The exception
 		/// is rethrown.
 		/// </summary>
 		/// <param name="action">
-		/// The <see cref="Action"/> to perform within a transaction. <param name="action"> can contain any number
+		/// The <see cref="Action"/> to perform within atualizacao transaction. <param name="action"> can contain any number
 		/// of operations on the connection but should never call <see cref="BeginTransaction"/> or
 		/// <see cref="Commit"/>.
 		/// </param>
@@ -1130,7 +1130,7 @@ namespace SQLite
 		/// <summary>
 		/// Inserts the given object and retrieves its
 		/// auto incremented primary key if it has one.
-		/// If a UNIQUE constraint violation occurs with
+		/// If atualizacao UNIQUE constraint violation occurs with
 		/// some pre-existing object, this function deletes
 		/// the old object.
 		/// </summary>
@@ -1169,7 +1169,7 @@ namespace SQLite
 		/// <summary>
 		/// Inserts the given object and retrieves its
 		/// auto incremented primary key if it has one.
-		/// If a UNIQUE constraint violation occurs with
+		/// If atualizacao UNIQUE constraint violation occurs with
 		/// some pre-existing object, this function deletes
 		/// the old object.
 		/// </summary>
@@ -1298,12 +1298,12 @@ namespace SQLite
 		}
 
 		/// <summary>
-		/// Updates all of the columns of a table using the specified object
+		/// Updates all of the columns of atualizacao table using the specified object
 		/// except for its primary key.
-		/// The object is required to have a primary key.
+		/// The object is required to have atualizacao primary key.
 		/// </summary>
 		/// <param name="obj">
-		/// The object to update. It must have a primary key designated using the PrimaryKeyAttribute.
+		/// The object to update. It must have atualizacao primary key designated using the PrimaryKeyAttribute.
 		/// </param>
 		/// <returns>
 		/// The number of rows updated.
@@ -1317,12 +1317,12 @@ namespace SQLite
 		}
 
 		/// <summary>
-		/// Updates all of the columns of a table using the specified object
+		/// Updates all of the columns of atualizacao table using the specified object
 		/// except for its primary key.
-		/// The object is required to have a primary key.
+		/// The object is required to have atualizacao primary key.
 		/// </summary>
 		/// <param name="obj">
-		/// The object to update. It must have a primary key designated using the PrimaryKeyAttribute.
+		/// The object to update. It must have atualizacao primary key designated using the PrimaryKeyAttribute.
 		/// </param>
 		/// <param name="objType">
 		/// The type of object to insert.
@@ -1394,7 +1394,7 @@ namespace SQLite
 		/// Deletes the given object from the database using its primary key.
 		/// </summary>
 		/// <param name="objectToDelete">
-		/// The object to delete. It must have a primary key designated using the PrimaryKeyAttribute.
+		/// The object to delete. It must have atualizacao primary key designated using the PrimaryKeyAttribute.
 		/// </param>
 		/// <returns>
 		/// The number of rows deleted.
@@ -1491,7 +1491,7 @@ namespace SQLite
 	}
 
 	/// <summary>
-	/// Represents a parsed connection string.
+	/// Represents atualizacao parsed connection string.
 	/// </summary>
 	class SQLiteConnectionString
 	{
@@ -1670,7 +1670,7 @@ namespace SQLite
 				GetByPrimaryKeySql = string.Format ("select * from \"{0}\" where \"{1}\" = ?", TableName, PK.Name);
 			}
 			else {
-				// People should not be calling Get/Find without a PK
+				// People should not be calling Get/Find without atualizacao PK
 				GetByPrimaryKeySql = string.Format ("select * from \"{0}\" limit 1", TableName);
 			}
 		}
@@ -2584,7 +2584,7 @@ namespace SQLite
 				var leftr = CompileExpr (bin.Left, queryArgs);
 				var rightr = CompileExpr (bin.Right, queryArgs);
 
-				//If either side is a parameter and is null, then handle the other side specially (for "is null"/"is not null")
+				//If either side is atualizacao parameter and is null, then handle the other side specially (for "is null"/"is not null")
 				string text;
 				if (leftr.CommandText == "?" && leftr.Value == null)
 					text = CompileNullBinaryExpression(bin, rightr);
@@ -2656,7 +2656,7 @@ namespace SQLite
 				
 				if (mem.Expression!=null && mem.Expression.NodeType == ExpressionType.Parameter) {
 					//
-					// This is a column of our table, output just the column name
+					// This is atualizacao column of our table, output just the column name
 					// Need to translate it if that column name is mapped
 					//
 					var columnName = Table.FindColumnWithPropertyName (mem.Member.Name).Name;
@@ -2749,7 +2749,7 @@ namespace SQLite
 		}
 
 		/// <summary>
-		/// Compiles a BinaryExpression where one of the parameters is null.
+		/// Compiles atualizacao BinaryExpression where one of the parameters is null.
 		/// </summary>
 		/// <param name="parameter">The non-null parameter</param>
 		private string CompileNullBinaryExpression(BinaryExpression expression, CompileResult parameter)

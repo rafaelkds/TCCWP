@@ -15,7 +15,20 @@ namespace TCCWP
         public UCSelecaoCliente()
         {
             InitializeComponent();
-            listClientes.ItemsSource = BancoDeDados.ListAllCliente();
+        }
+
+        private void tbBusca_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(tbBusca.Text))
+            {
+                listClientes.ItemsSource = null;
+            }
+            else
+            {
+                ControleCliente cc = new ControleCliente();
+                listClientes.ItemsSource = null;
+                listClientes.ItemsSource = cc.buscar(tbBusca.Text);
+            }
         }
     }
 }

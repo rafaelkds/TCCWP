@@ -11,14 +11,13 @@ namespace TCCWP.Controle
     {
         private bool concluiu;
         private bool erro;
-        private List<Log> atualizacoes;
         
         public async void Sincronizar(MainPage pagina)
         {
             concluiu = false;
             List<Sinc> ls = BancoDeDados.Query<Sinc>("select * from Sinc");
             Sinc ultSinc = ls.Count > 0 ? ls[0] : new Sinc();
-            atualizacoes = BancoDeDados.Query<Log>("select * from Log order by Id");
+            List<Log> atualizacoes = BancoDeDados.Query<Log>("select * from Log order by Id");
             List<string> lista = new List<string>();
             foreach(Log log in atualizacoes)
             {
@@ -41,13 +40,13 @@ namespace TCCWP.Controle
             {
                 if (e.Result != null)
                 {
-                    Atualizacao a = e.Result;
+                    Atualizacao atualizacao = e.Result;
                     BancoDeDados.BeginTransaction();
                     BancoDeDados.DeleteAll<Log>();
 
                     #region Cliente
-                    List<Cliente> clientes = new List<Cliente>(a.clientes.Count);
-                    foreach (ClienteWS item in a.clientes)
+                    List<Cliente> clientes = new List<Cliente>(atualizacao.clientes.Count);
+                    foreach (ClienteWS item in atualizacao.clientes)
                     {
                         clientes.Add(new Cliente()
                         {
@@ -71,8 +70,8 @@ namespace TCCWP.Controle
                     #endregion
 
                     #region Produto
-                    List<Produto> produtos = new List<Produto>(a.produtos.Count);
-                    foreach (ProdutoWS item in a.produtos)
+                    List<Produto> produtos = new List<Produto>(atualizacao.produtos.Count);
+                    foreach (ProdutoWS item in atualizacao.produtos)
                     {
                         produtos.Add(new Produto()
                         {
@@ -88,8 +87,8 @@ namespace TCCWP.Controle
                     #endregion
 
                     #region Pedido
-                    List<Pedido> pedidos = new List<Pedido>(a.pedidos.Count);
-                    foreach (PedidoWS item in a.pedidos)
+                    List<Pedido> pedidos = new List<Pedido>(atualizacao.pedidos.Count);
+                    foreach (PedidoWS item in atualizacao.pedidos)
                     {
                         pedidos.Add(new Pedido()
                         {
@@ -108,8 +107,8 @@ namespace TCCWP.Controle
                     #endregion
 
                     #region Produtos Pedido
-                    List<ProdutoPedido> produtospedido = new List<ProdutoPedido>(a.produtospedido.Count);
-                    foreach (ProdutoPedidoWS item in a.produtospedido)
+                    List<ProdutoPedido> produtospedido = new List<ProdutoPedido>(atualizacao.produtospedido.Count);
+                    foreach (ProdutoPedidoWS item in atualizacao.produtospedido)
                     {
                         produtospedido.Add(new ProdutoPedido()
                         {
@@ -126,8 +125,8 @@ namespace TCCWP.Controle
                     #endregion
 
                     #region Receber
-                    List<Receber> receber = new List<Receber>(a.receber.Count);
-                    foreach (ReceberWS item in a.receber)
+                    List<Receber> receber = new List<Receber>(atualizacao.receber.Count);
+                    foreach (ReceberWS item in atualizacao.receber)
                     {
                         receber.Add(new Receber()
                         {
@@ -144,8 +143,8 @@ namespace TCCWP.Controle
                     #endregion
 
                     #region Anotacao
-                    List<Anotacao> anotacoes = new List<Anotacao>(a.anotacoes.Count);
-                    foreach (AnotacaoWS item in a.anotacoes)
+                    List<Anotacao> anotacoes = new List<Anotacao>(atualizacao.anotacoes.Count);
+                    foreach (AnotacaoWS item in atualizacao.anotacoes)
                     {
                         anotacoes.Add(new Anotacao()
                         {
@@ -161,8 +160,8 @@ namespace TCCWP.Controle
                     #endregion
 
                     #region Vendedor
-                    List<Vendedor> vendedores = new List<Vendedor>(a.vendedores.Count);
-                    foreach (VendedorWS item in a.vendedores)
+                    List<Vendedor> vendedores = new List<Vendedor>(atualizacao.vendedores.Count);
+                    foreach (VendedorWS item in atualizacao.vendedores)
                     {
                         vendedores.Add(new Vendedor()
                         {
@@ -174,29 +173,34 @@ namespace TCCWP.Controle
                     BancoDeDados.Atualiza<Vendedor>(vendedores);
                     #endregion
 
-                    if (a.maxIdAnotacao != null || a.maxIdCliente != null || a.maxIdPedido != null || a.maxIdProdutoPedido != null || a.maxIdReceber != null)
+                    if (atualizacao.maxIdAnotacao != null || atualizacao.maxIdCliente != null || atualizacao.maxIdPedido != null || atualizacao.maxIdProdutoPedido != null || atualizacao.maxIdReceber != null)
                     {
                         Id id = new Id()
                         {
-                            Anotacao = a.maxIdAnotacao ?? 0,
-                            Cliente = a.maxIdCliente ?? 0,
-                            Pedido = a.maxIdPedido ?? 0,
-                            ProdutoPedido = a.maxIdProdutoPedido ?? 0,
-                            Receber = a.maxIdReceber ?? 0
+                            Anotacao = atualizacao.maxIdAnotacao ?? 0,
+                            Cliente = atualizacao.maxIdCliente ?? 0,
+                            Pedido = atualizacao.maxIdPedido ?? 0,
+                            ProdutoPedido = atualizacao.maxIdProdutoPedido ?? 0,
+                            Receber = atualizacao.maxIdReceber ?? 0
                         };
                         BancoDeDados.DeleteAll<Id>();
                         BancoDeDados.Insert<Id>(id);
                     }
 
-                    Sinc s = new Sinc();
+                    Sinc sinc = new Sinc();
                     List<Sinc> ls = BancoDeDados.Query<Sinc>("select * from Sinc");
                     if (ls.Count > 0)
-                        s.UltimaSinc = a.dtAtualizado.Ticks > ls[0].UltimaSinc ? a.dtAtualizado.Ticks : ls[0].UltimaSinc;
+                    {
+                        sinc.UltimaSinc = atualizacao.dtAtualizado.Ticks > ls[0].UltimaSinc ? atualizacao.dtAtualizado.Ticks : ls[0].UltimaSinc;
+                    }
                     else
-                        s.UltimaSinc = a.dtAtualizado.Ticks;
-                    s.IdCelular = a.idCelular;
+                    {
+                        sinc.UltimaSinc = atualizacao.dtAtualizado.Ticks;
+                    }
+                    sinc.IdCelular = atualizacao.idCelular;
 
-                    BancoDeDados.UltSinc(s);
+                    BancoDeDados.DeleteAll<Sinc>();
+                    BancoDeDados.Insert<Sinc>(sinc);
                     BancoDeDados.CommitTransaction();
                     erro = false;
                 }

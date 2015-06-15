@@ -45,7 +45,7 @@ namespace TCCWP
                 //Application.Current.Host.Settings.EnableRedrawRegions = true;
 
                 // Enable non-production analysis visualization mode,
-                // which shows areas of a page that are handed off to GPU with a colored overlay.
+                // which shows areas of atualizacao page that are handed off to GPU with atualizacao colored overlay.
                 //Application.Current.Host.Settings.EnableCacheVisualization = true;
 
                 // Prevent the screen from turning off while under the debugger by disabling
@@ -81,7 +81,7 @@ namespace TCCWP
         {
         }
 
-        // Code to execute if a navigation fails
+        // Code to execute if atualizacao navigation fails
         private void RootFrame_NavigationFailed(object sender, NavigationFailedEventArgs e)
         {
             if (Debugger.IsAttached)
@@ -140,7 +140,7 @@ namespace TCCWP
 
         private void CheckForResetNavigation(object sender, NavigationEventArgs e)
         {
-            // If the app has received a 'reset' navigation, then we need to check
+            // If the app has received atualizacao 'reset' navigation, then we need to check
             // on the next navigation to see if the page stack should be reset
             if (e.NavigationMode == NavigationMode.Reset)
                 RootFrame.Navigated += ClearBackStackAfterReset;
@@ -191,7 +191,7 @@ namespace TCCWP
                 // Fall back to the font of the neutral language if the Display
                 // language of the phone is not supported.
                 //
-                // If a compiler error is hit then ResourceLanguage is missing from
+                // If atualizacao compiler error is hit then ResourceLanguage is missing from
                 // the resource file.
                 RootFrame.Language = XmlLanguage.GetLanguage(AppResources.ResourceLanguage);
 
@@ -199,7 +199,7 @@ namespace TCCWP
                 // on the ResourceFlowDirection resource string for each
                 // supported language.
                 //
-                // If a compiler error is hit then ResourceFlowDirection is missing from
+                // If atualizacao compiler error is hit then ResourceFlowDirection is missing from
                 // the resource file.
                 FlowDirection flow = (FlowDirection)Enum.Parse(typeof(FlowDirection), AppResources.ResourceFlowDirection);
                 RootFrame.FlowDirection = flow;
@@ -207,8 +207,8 @@ namespace TCCWP
             catch
             {
                 // If an exception is caught here it is most likely due to either
-                // ResourceLangauge not being correctly set to a supported language
-                // code or ResourceFlowDirection is set to a value other than LeftToRight
+                // ResourceLangauge not being correctly set to atualizacao supported language
+                // code or ResourceFlowDirection is set to atualizacao value other than LeftToRight
                 // or RightToLeft.
 
                 if (Debugger.IsAttached)

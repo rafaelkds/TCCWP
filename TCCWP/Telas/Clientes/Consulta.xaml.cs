@@ -15,7 +15,6 @@ namespace TCCWP.Telas.Clientes
         public Consulta()
         {
             InitializeComponent();
-            listClientes.ItemsSource = BancoDeDados.ListAllCliente();
         }
 
         private void tbBusca_TextChanged(object sender, TextChangedEventArgs e)

@@ -104,13 +104,6 @@ namespace TCCWP
                 Conn.Insert(objeto);
             }
         }
-
-        public static void UltSinc(Sinc ultSinc)///////////remover
-        {
-            Conn.CreateTable<Sinc>();
-            Conn.DeleteAll<Sinc>();
-            Conn.Insert(ultSinc);
-        }
         #endregion
 
 
