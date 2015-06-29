@@ -203,7 +203,7 @@ namespace TCCWP.Pdf
 
         public async void criar(string nomeRelatorio, List<string> titulos, List<List<string>> colunas)
         {
-            file = await Windows.Storage.ApplicationData.Current.LocalFolder.CreateFileAsync("a.pdf", Windows.Storage.CreationCollisionOption.ReplaceExisting);
+            file = await Windows.Storage.ApplicationData.Current.LocalFolder.CreateFileAsync(nomeRelatorio.Replace(" ", "") + ".pdf", Windows.Storage.CreationCollisionOption.ReplaceExisting);
 
             stream = await System.IO.WindowsRuntimeStorageExtensions.OpenStreamForWriteAsync(file);
             writer = new System.IO.StreamWriter(stream, System.Text.Encoding.UTF8);

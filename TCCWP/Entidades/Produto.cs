@@ -17,5 +17,7 @@ namespace TCCWP
 
         [SQLite.Ignore]
         public String ValorFormatado { get { return Valor.ToString("0.00"); } }
+        [SQLite.Ignore]
+        public String EstoqueFormatado { get { return Estoque.ToString("0.00"); } }
     }
 }

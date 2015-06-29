@@ -18,5 +18,7 @@ namespace TCCWP
 
         [SQLite.Ignore]
         public string VencimentoFormatado { get { return Vencimento.ToString("dd/MM/yyyy"); } }
+        [SQLite.Ignore]
+        public String ValorFormatado { get { return Valor.ToString("0.00"); } }
     }
 }

@@ -29,10 +29,10 @@
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <StackPanel>
-                <Button x:Name="btReceber" Content="Contas a receber"/>
-                <Button x:Name="btEstoque" Content="Estoque"/>
-                <Button x:Name="btPrecos" Content="Tabela de preços"/>
-                <Button x:Name="btEntrega" Content="Situação de entrega"/>
+                <Button x:Name="btReceber" Content="Contas a receber" Click="btReceber_Click"/>
+                <Button x:Name="btEstoque" Content="Estoque" Click="btEstoque_Click"/>
+                <Button x:Name="btPrecos" Content="Tabela de preços" Click="btPrecos_Click"/>
+                <Button x:Name="btEntrega" Content="Situação de entrega" Click="btEntrega_Click"/>
             </StackPanel>
         </Grid>
     </Grid>

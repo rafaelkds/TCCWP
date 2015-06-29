@@ -24,6 +24,8 @@ namespace TCCWP.Telas.Pedidos
             
             ControleVendedor cv = new ControleVendedor();
             listVendedores.ItemsSource = cv.buscar("");
+            
+            
         }
 
         private void carregarPedido(string id)
@@ -122,26 +124,25 @@ namespace TCCWP.Telas.Pedidos
             tbTotalValor.Text = tValor.ToString("0.00");
         }
 
-        private void btAdicionarVencimento_Click(object sender, RoutedEventArgs e)
+        private void btAdicionarVencimento_ValueChanged(object sender, DateTimeValueChangedEventArgs e)
         {
-            
-            UCSelecaoVencimento ucsv = new UCSelecaoVencimento();
-            CustomMessageBox cmb = new CustomMessageBox()
+            if (btAdicionarVencimento.Value != null)
             {
-                Content = ucsv,
-                LeftButtonContent = "Adicionar",
-                RightButtonContent = "Cancelar"
-            };
-            cmb.Dismissing += (s1, e1) =>
-            {
-                switch (e1.Result)
+                TextBox tb = new TextBox();
+                CustomMessageBox cmb = new CustomMessageBox()
                 {
-                    case CustomMessageBoxResult.LeftButton:
-                        if (ucsv.dpData.Value != null)
-                        {
+                    Content = tb,
+                    LeftButtonContent = "Adicionar",
+                    RightButtonContent = "Cancelar"
+                };
+                cmb.Dismissing += (s1, e1) =>
+                {
+                    switch (e1.Result)
+                    {
+                        case CustomMessageBoxResult.LeftButton:
                             Receber novoReceber = new Receber();
-                            novoReceber.Vencimento = ucsv.dpData.Value ?? new DateTime();
-                            novoReceber.Valor = Convert.ToDecimal(ucsv.tbValor.Text);
+                            novoReceber.Vencimento = btAdicionarVencimento.Value ?? new DateTime();
+                            novoReceber.Valor = Convert.ToDecimal(tb.Text);
                             novoPedido.Receber.Add(novoReceber);
 
                             listVencimentos.ItemsSource = null;
@@ -153,14 +154,18 @@ namespace TCCWP.Telas.Pedidos
                                 tValor += item.Valor * item.Quantidade;
                             }
                             tbTotalValor.Text = tValor.ToString("0.00");
-                        }
-                        break;
-                    case CustomMessageBoxResult.None:
-                        
-                        break;
-                }
-            };
-            cmb.Show();
+
+                            break;
+                    }
+                };
+
+                cmb.Show();
+            }
+        }
+
+        private void btAdicionarVencimento_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            btAdicionarVencimento.Value = null;
         }
 
         private void btRemoverVencimento_Click(object sender, RoutedEventArgs e)
@@ -174,7 +179,7 @@ namespace TCCWP.Telas.Pedidos
         {
             if (!string.IsNullOrWhiteSpace(tbNumero.Text) && dpEmissao.Value != null)
             {
-                novoPedido.Numero = tbNumero.Text;
+//                novoPedido.Numero = tbNumero.Text;
                 novoPedido.DataEmissao = dpEmissao.Value ?? new DateTime();
                 novoPedido.Observacoes = tbObservacoes.Text;
                 novoPedido.IdVendedor = (listVendedores.SelectedItem as Vendedor).Id;

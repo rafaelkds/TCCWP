@@ -10,13 +10,13 @@ namespace TCCWPTaskAgent.Sincronizacao
     class Sincronizacao
     {
         public bool concluiu;
-        private List<Log> atualizacoes;
+        public bool erro;
         public void Sincronizar()
         {
             concluiu = false;
             List<Sinc> ls = BancoDeDados.Query<Sinc>("select * from Sinc");
             Sinc ultSinc = ls.Count > 0 ? ls[0] : new Sinc();
-            atualizacoes = BancoDeDados.Query<Log>("select * from Log order by Id");
+            List<Log> atualizacoes = BancoDeDados.Query<Log>("select * from Log order by Id");
             List<string> lista = new List<string>();
             foreach (Log log in atualizacoes)
             {
@@ -30,167 +30,178 @@ namespace TCCWPTaskAgent.Sincronizacao
 
         void SincronizarCompleted(object sender, SincronizarCompletedEventArgs e)
         {
-            if (e.Result != null)
+            try
             {
-                Atualizacao a = e.Result;
-                BancoDeDados.BeginTransaction();
-                BancoDeDados.DeleteAll<Log>();
-
-                #region Cliente
-                List<Cliente> clientes = new List<Cliente>(a.clientes.Count);
-                foreach (ClienteWS item in a.clientes)
+                if (e.Result != null)
                 {
-                    clientes.Add(new Cliente()
+                    Atualizacao a = e.Result;
+                    BancoDeDados.BeginTransaction();
+                    BancoDeDados.DeleteAll<Log>();
+
+                    #region Cliente
+                    List<Cliente> clientes = new List<Cliente>(a.clientes.Count);
+                    foreach (ClienteWS item in a.clientes)
                     {
-                        Id = item.Id,
-                        Nome = item.Nome,
-                        Cpf = item.Cpf,
-                        Rua = item.Rua,
-                        Numero = item.Numero,
-                        Bairro = item.Bairro,
-                        Cidade = item.Cidade,
-                        Uf = item.Uf,
-                        Cep = item.Cep,
-                        Complemento = item.Complemento,
-                        Telefone = item.Telefone,
-                        Email = item.Email,
-                        Ativo = item.Ativo
-                    });
-                }
+                        clientes.Add(new Cliente()
+                        {
+                            Id = item.Id,
+                            Nome = item.Nome,
+                            Cpf = item.Cpf,
+                            Rua = item.Rua,
+                            Numero = item.Numero,
+                            Bairro = item.Bairro,
+                            Cidade = item.Cidade,
+                            Uf = item.Uf,
+                            Cep = item.Cep,
+                            Complemento = item.Complemento,
+                            Telefone = item.Telefone,
+                            Email = item.Email,
+                            Ativo = item.Ativo
+                        });
+                    }
 
-                BancoDeDados.Atualiza<Cliente>(clientes);
-                #endregion
+                    BancoDeDados.Atualiza<Cliente>(clientes);
+                    #endregion
 
-                #region Produto
-                List<Produto> produtos = new List<Produto>(a.produtos.Count);
-                foreach (ProdutoWS item in a.produtos)
-                {
-                    produtos.Add(new Produto()
+                    #region Produto
+                    List<Produto> produtos = new List<Produto>(a.produtos.Count);
+                    foreach (ProdutoWS item in a.produtos)
                     {
-                        Id = item.Id,
-                        Nome = item.Nome,
-                        Estoque = item.Estoque,
-                        Valor = item.Valor,
-                        Ativo = item.Ativo
-                    });
-                }
+                        produtos.Add(new Produto()
+                        {
+                            Id = item.Id,
+                            Nome = item.Nome,
+                            Estoque = item.Estoque,
+                            Valor = item.Valor,
+                            Ativo = item.Ativo
+                        });
+                    }
 
-                BancoDeDados.Atualiza<Produto>(produtos);
-                #endregion
+                    BancoDeDados.Atualiza<Produto>(produtos);
+                    #endregion
 
-                #region Pedido
-                List<Pedido> pedidos = new List<Pedido>(a.pedidos.Count);
-                foreach (PedidoWS item in a.pedidos)
-                {
-                    pedidos.Add(new Pedido()
+                    #region Pedido
+                    List<Pedido> pedidos = new List<Pedido>(a.pedidos.Count);
+                    foreach (PedidoWS item in a.pedidos)
                     {
-                        Id = item.Id,
-                        Numero = item.Numero,
-                        IdCliente = item.IdCliente,
-                        IdVendedor = item.IdVendedor,
-                        Valor = item.Valor,
-                        DataEmissao = item.DataEmissao,
-                        DataPagamento = item.DataPagamento,
-                        Observacoes = item.Observacoes
-                    });
-                }
+                        pedidos.Add(new Pedido()
+                        {
+                            Id = item.Id,
+                            Numero = item.Numero,
+                            IdCliente = item.IdCliente,
+                            IdVendedor = item.IdVendedor,
+                            Valor = item.Valor,
+                            DataEmissao = item.DataEmissao,
+                            DataPagamento = item.DataPagamento,
+                            Observacoes = item.Observacoes
+                        });
+                    }
 
-                BancoDeDados.Atualiza<Pedido>(pedidos);
-                #endregion
+                    BancoDeDados.Atualiza<Pedido>(pedidos);
+                    #endregion
 
-                #region Produtos Pedido
-                List<ProdutoPedido> produtospedido = new List<ProdutoPedido>(a.produtospedido.Count);
-                foreach (ProdutoPedidoWS item in a.produtospedido)
-                {
-                    produtospedido.Add(new ProdutoPedido()
+                    #region Produtos Pedido
+                    List<ProdutoPedido> produtospedido = new List<ProdutoPedido>(a.produtospedido.Count);
+                    foreach (ProdutoPedidoWS item in a.produtospedido)
                     {
-                        Id = item.Id,
-                        IdPedido = item.IdPedido,
-                        IdProduto = item.IdProduto,
-                        Valor = item.Valor,
-                        Quantidade = item.Quantidade,
-                        QuantidadeEntregue = item.QuantidadeEntregue
-                    });
-                }
+                        produtospedido.Add(new ProdutoPedido()
+                        {
+                            Id = item.Id,
+                            IdPedido = item.IdPedido,
+                            IdProduto = item.IdProduto,
+                            Valor = item.Valor,
+                            Quantidade = item.Quantidade,
+                            QuantidadeEntregue = item.QuantidadeEntregue
+                        });
+                    }
 
-                BancoDeDados.Atualiza<ProdutoPedido>(produtospedido);
-                #endregion
+                    BancoDeDados.Atualiza<ProdutoPedido>(produtospedido);
+                    #endregion
 
-                #region Receber
-                List<Receber> receber = new List<Receber>(a.receber.Count);
-                foreach (ReceberWS item in a.receber)
-                {
-                    receber.Add(new Receber()
+                    #region Receber
+                    List<Receber> receber = new List<Receber>(a.receber.Count);
+                    foreach (ReceberWS item in a.receber)
                     {
-                        Id = item.Id,
-                        IdPedido = item.IdPedido,
-                        Ordem = item.Ordem,
-                        Valor = item.Valor,
-                        Vencimento = item.Vencimento,
-                        Pagamento = item.Pagamento
-                    });
-                }
+                        receber.Add(new Receber()
+                        {
+                            Id = item.Id,
+                            IdPedido = item.IdPedido,
+                            Ordem = item.Ordem,
+                            Valor = item.Valor,
+                            Vencimento = item.Vencimento,
+                            Pagamento = item.Pagamento
+                        });
+                    }
 
-                BancoDeDados.Atualiza<Receber>(receber);
-                #endregion
+                    BancoDeDados.Atualiza<Receber>(receber);
+                    #endregion
 
-                #region Anotacao
-                List<Anotacao> anotacoes = new List<Anotacao>(a.anotacoes.Count);
-                foreach (AnotacaoWS item in a.anotacoes)
-                {
-                    anotacoes.Add(new Anotacao()
+                    #region Anotacao
+                    List<Anotacao> anotacoes = new List<Anotacao>(a.anotacoes.Count);
+                    foreach (AnotacaoWS item in a.anotacoes)
                     {
-                        Id = item.Id,
-                        IdPedido = item.IdPedido,
-                        Data = item.Data,
-                        DataUltimaAlteracao = item.DataUltimaAlteracao,
-                        Texto = item.Texto
-                    });
-                }
+                        anotacoes.Add(new Anotacao()
+                        {
+                            Id = item.Id,
+                            IdPedido = item.IdPedido,
+                            Data = item.Data,
+                            DataUltimaAlteracao = item.DataUltimaAlteracao,
+                            Texto = item.Texto
+                        });
+                    }
 
-                BancoDeDados.Atualiza<Anotacao>(anotacoes);
-                #endregion
+                    BancoDeDados.Atualiza<Anotacao>(anotacoes);
+                    #endregion
 
-                #region Vendedor
-                List<Vendedor> vendedores = new List<Vendedor>(a.vendedores.Count);
-                foreach (VendedorWS item in a.vendedores)
-                {
-                    vendedores.Add(new Vendedor()
+                    #region Vendedor
+                    List<Vendedor> vendedores = new List<Vendedor>(a.vendedores.Count);
+                    foreach (VendedorWS item in a.vendedores)
                     {
-                        Id = item.Id,
-                        Nome = item.Nome
-                    });
-                }
+                        vendedores.Add(new Vendedor()
+                        {
+                            Id = item.Id,
+                            Nome = item.Nome
+                        });
+                    }
 
-                BancoDeDados.Atualiza<Vendedor>(vendedores);
-                #endregion
+                    BancoDeDados.Atualiza<Vendedor>(vendedores);
+                    #endregion
 
-                if (a.maxIdAnotacao != null || a.maxIdCliente != null || a.maxIdPedido != null || a.maxIdProdutoPedido != null || a.maxIdReceber != null)
-                {
-                    Id id = new Id()
+                    if (a.maxIdAnotacao != null || a.maxIdCliente != null || a.maxIdPedido != null || a.maxIdProdutoPedido != null || a.maxIdReceber != null)
                     {
-                        Anotacao = a.maxIdAnotacao ?? 0,
-                        Cliente = a.maxIdCliente ?? 0,
-                        Pedido = a.maxIdPedido ?? 0,
-                        ProdutoPedido = a.maxIdProdutoPedido ?? 0,
-                        Receber = a.maxIdReceber ?? 0
-                    };
-                    BancoDeDados.DeleteAll<Id>();
-                    BancoDeDados.Insert<Id>(id);
-                }
+                        Id id = new Id()
+                        {
+                            Anotacao = a.maxIdAnotacao ?? 0,
+                            Cliente = a.maxIdCliente ?? 0,
+                            Pedido = a.maxIdPedido ?? 0,
+                            ProdutoPedido = a.maxIdProdutoPedido ?? 0,
+                            Receber = a.maxIdReceber ?? 0
+                        };
+                        BancoDeDados.DeleteAll<Id>();
+                        BancoDeDados.Insert<Id>(id);
+                    }
 
-                Sinc s = new Sinc();
-                List<Sinc> ls = BancoDeDados.Query<Sinc>("select * from Sinc");
-                if (ls.Count > 0)
-                    s.UltimaSinc = a.dtAtualizado.Ticks > ls[0].UltimaSinc ? a.dtAtualizado.Ticks : ls[0].UltimaSinc;
+                    Sinc s = new Sinc();
+                    List<Sinc> ls = BancoDeDados.Query<Sinc>("select * from Sinc");
+                    if (ls.Count > 0)
+                        s.UltimaSinc = a.dtAtualizado.Ticks > ls[0].UltimaSinc ? a.dtAtualizado.Ticks : ls[0].UltimaSinc;
+                    else
+                        s.UltimaSinc = a.dtAtualizado.Ticks;
+                    s.IdCelular = a.idCelular;
+
+                    BancoDeDados.UltSinc(s);
+                    BancoDeDados.CommitTransaction();
+                    concluiu = true;
+                }
                 else
-                    s.UltimaSinc = a.dtAtualizado.Ticks;
-                s.IdCelular = a.idCelular;
-
-                BancoDeDados.UltSinc(s);
-                BancoDeDados.CommitTransaction();
-                concluiu = true;
+                { erro = true; }
             }
+            catch (Exception)
+            {
+                erro = true;
+                BancoDeDados.RollbackTransaction();
+            }
+            concluiu = true;
         }
     }
 }

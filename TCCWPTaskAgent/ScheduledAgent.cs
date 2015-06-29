@@ -1,4 +1,4 @@
-﻿//#define DEBUG_AGENT
+﻿#define DEBUG_AGENT
 using System.Diagnostics;
 using System.Windows;
 using Microsoft.Phone.Scheduler;
@@ -41,6 +41,7 @@ namespace TCCWPTaskAgent
         /// </remarks>
         protected override void OnInvoke(ScheduledTask task)
         {
+
             Sincronizacao.Sincronizacao sinc = new Sincronizacao.Sincronizacao();
             sinc.Sincronizar();
             while (sinc.concluiu == false) { }

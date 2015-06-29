@@ -23,5 +23,9 @@ namespace TCCWP
         public String ValorFormatado { get { return Valor.ToString("0.00"); } }
         [SQLite.Ignore]
         public String ValorTotalFormatado { get { return (Valor * Quantidade).ToString("0.00"); } }
+        [SQLite.Ignore]
+        public String QuantidadeFormatada { get { return Quantidade.ToString("0.00"); } }
+        [SQLite.Ignore]
+        public String QuantidadeEntregueFormatada { get { return QuantidadeEntregue.ToString("0.00"); } }
     }
 }

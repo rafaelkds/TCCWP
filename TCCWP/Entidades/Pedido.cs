@@ -10,7 +10,7 @@ namespace TCCWP
     {
         [SQLite.PrimaryKey]
         public string Id { get; set; }
-        public string Numero { get; set; }
+        //public string Numero { get; set; }
         public string IdCliente { get; set; }
         public int IdVendedor { get; set; }
         public decimal Valor { get; set; }
@@ -25,5 +25,7 @@ namespace TCCWP
         public List<ProdutoPedido> Produtos { get; set; }
         [SQLite.Ignore]
         public List<Receber> Receber { get; set; }
+        [SQLite.Ignore]
+        public string DataEmissaoFormatado { get { return DataEmissao.ToString("dd/MM/yyyy"); } }
     }
 }

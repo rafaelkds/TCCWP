@@ -56,7 +56,7 @@ namespace TCCWP
 
             string values = "("
                 + "$$" + objeto.Id + "$$,"
-                + "$$" + objeto.Numero + "$$,"
+//                + "$$" + objeto.Numero + "$$,"
                 + "$$" + objeto.IdVendedor + "$$,"
                 + "$$" + objeto.IdCliente + "$$,"
                 + "$$" + objeto.Valor + "$$,"

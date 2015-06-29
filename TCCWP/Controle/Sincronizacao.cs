@@ -93,7 +93,7 @@ namespace TCCWP.Controle
                         pedidos.Add(new Pedido()
                         {
                             Id = item.Id,
-                            Numero = item.Numero,
+//                            Numero = item.Numero,
                             IdCliente = item.IdCliente,
                             IdVendedor = item.IdVendedor,
                             Valor = item.Valor,

@@ -96,7 +96,8 @@
                             <ColumnDefinition />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
-                        <Button x:Name="btAdicionarVencimento" Content="Adicionar" HorizontalAlignment="Stretch" Grid.Column="0" Click="btAdicionarVencimento_Click"/>
+                        <!--Button x:Name="btAdicionarVencimento" Content="Adicionar" HorizontalAlignment="Stretch" Grid.Column="0" Click="btAdicionarVencimento_Click"/-->
+                        <toolkit:DatePicker Name="btAdicionarVencimento" ValueStringFormat="Adicionar" HorizontalContentAlignment="Center" ValueChanged="btAdicionarVencimento_ValueChanged" Tap="btAdicionarVencimento_Tap"/>
                         <Button x:Name="btRemoverVencimento" Content="Remover" HorizontalAlignment="Stretch" Grid.Column="1" Click="btRemoverVencimento_Click"/>
                     </Grid>
 

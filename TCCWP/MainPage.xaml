@@ -31,7 +31,6 @@
             <Button x:Name="btPedidos" Content="Pedidos" Click="btPedidos_Click"/>
             <Button x:Name="btEstoque" Content="Estoque" Click="btEstoque_Click"/>
             <Button x:Name="btRelatorios" Content="Relatórios" Click="btRelatorios_Click"/>
-            <Button Content="Button" Click="Button_Click"/>
         </StackPanel>
 
         <StackPanel Grid.Row="2" Margin="12,0,12,0">
