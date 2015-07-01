@@ -49,12 +49,14 @@ namespace TCCWP
         private void btSincronizar_Click(object sender, RoutedEventArgs e)
         {
             this.IsEnabled = false;
+            btSincronizar.Content = "Sincronizando";
             Controle.Sincronizacao sinc = new Controle.Sincronizacao();
             sinc.Sincronizar(this);
         }
 
         public void mensagemSincronizacao(string mensagem)
         {
+            btSincronizar.Content = "Sincronizar";
             this.IsEnabled = true;
             MessageBox.Show(mensagem);
         }

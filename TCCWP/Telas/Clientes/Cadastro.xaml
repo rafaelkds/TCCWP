@@ -24,34 +24,34 @@
             <phone:PivotItem Header="Cliente">
                 <StackPanel Margin="12,0,12,0" ScrollViewer.VerticalScrollBarVisibility="Auto">
                     <TextBlock Text="Nome:"/>
-                    <TextBox x:Name="tbNome"/>
+                    <TextBox x:Name="tbNome" KeyUp="tbNome_KeyUp"/>
                     <TextBlock Text="CPF:"/>
-                    <TextBox x:Name="tbCpf"/>
+                    <TextBox x:Name="tbCpf" InputScope="TelephoneAreaCode" MaxLength="18"/>
                     <TextBlock Text="Telefone:"/>
-                    <TextBox x:Name="tbTelefone"/>
+                    <TextBox x:Name="tbTelefone" InputScope="TelephoneAreaCode"/>
                     <TextBlock Text="Email:"/>
-                    <TextBox x:Name="tbEmail"/>
+                    <TextBox x:Name="tbEmail" InputScope="EmailSmtpAddress" KeyUp="tbEmail_KeyUp"/>
                 </StackPanel>
             </phone:PivotItem>
 
             <phone:PivotItem Header="Endereço">
                 <StackPanel Margin="12,0,12,0" ScrollViewer.VerticalScrollBarVisibility="Auto">
                     <TextBlock Text="Rua:"/>
-                    <TextBox x:Name="tbRua"/>
+                    <TextBox x:Name="tbRua" KeyUp="tbRua_KeyUp"/>
                     <TextBlock Text="Numero:"/>
-                    <TextBox x:Name="tbNumero"/>
+                    <TextBox x:Name="tbNumero" InputScope="PostalCode" KeyUp="tbNumero_KeyUp"/>
                     <TextBlock Text="Bairro:"/>
-                    <TextBox x:Name="tbBairro"/>
+                    <TextBox x:Name="tbBairro" KeyUp="tbBairro_KeyUp"/>
                     <TextBlock Text="Cidade:"/>
-                    <TextBox x:Name="tbCidade"/>
+                    <TextBox x:Name="tbCidade" KeyUp="tbCidade_KeyUp"/>
                     <StackPanel Orientation="Horizontal">
                         <StackPanel>
                             <TextBlock Text="UF:"/>
-                            <TextBox x:Name="tbUf" Width="100"/>
+                            <TextBox x:Name="tbUf" Width="100" MaxLength="2" KeyUp="tbUf_KeyUp"/>
                         </StackPanel>
                         <StackPanel>
                             <TextBlock Text="CEP:"/>
-                            <TextBox x:Name="tbCep" Width="330"/>
+                            <TextBox x:Name="tbCep" Width="330" InputScope="TelephoneNumber" MaxLength="9"/>
                         </StackPanel>
                     </StackPanel>
                 </StackPanel>

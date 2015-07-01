@@ -39,6 +39,12 @@ namespace TCCWP.Telas.Clientes
 
         private void btGravar_Click(object sender, RoutedEventArgs e)
         {
+            string retorno = verificaCampos();
+            if(!string.IsNullOrWhiteSpace(retorno))
+            {
+                MessageBox.Show(retorno);
+                return;
+            }
             try
             {
                 Cliente c = new Cliente();
@@ -59,6 +65,7 @@ namespace TCCWP.Telas.Clientes
 
                 ControleCliente cc = new ControleCliente();
                 cc.gravar(c);
+                MessageBox.Show("Cliente gravado");
             }
             catch (Exception ex)
             {
@@ -66,7 +73,7 @@ namespace TCCWP.Telas.Clientes
             }
             finally
             {
-                tbNome.Text = tbCpf.Text = tbTelefone.Text = tbEmail.Text = tbRua.Text = tbNumero.Text = tbBairro.Text = tbCidade.Text = tbCep.Text = tbComplemento.Text = "";
+                tbNome.Text = tbCpf.Text = tbTelefone.Text = tbEmail.Text = tbRua.Text = tbNumero.Text = tbBairro.Text = tbCidade.Text = tbUf.Text = tbCep.Text = tbComplemento.Text = "";
                 id = "";
             }
         }
@@ -75,6 +82,69 @@ namespace TCCWP.Telas.Clientes
         {
             if (NavigationContext.QueryString.TryGetValue("id", out id))
                 carregarCliente();
+        }
+
+        private string verificaCampos()
+        {
+            if (string.IsNullOrWhiteSpace(tbNome.Text))
+                return "Campo \"Nome\" é obrigatório";
+            if (string.IsNullOrWhiteSpace(tbCpf.Text))
+                return "Campo \"CPF\" é obrigatório";
+            if (string.IsNullOrWhiteSpace(tbRua.Text))
+                return "Campo \"Rua\" é obrigatório";
+            if (string.IsNullOrWhiteSpace(tbNumero.Text))
+                return "Campo \"Numero\" é obrigatório";
+            if (string.IsNullOrWhiteSpace(tbBairro.Text))
+                return "Campo \"Bairro\" é obrigatório";
+            if (string.IsNullOrWhiteSpace(tbCidade.Text))
+                return "Campo \"Cidade\" é obrigatório";
+            if (string.IsNullOrWhiteSpace(tbUf.Text) || tbUf.Text.Length < 2)
+                return "Campo \"UF\" é obrigatório";
+            if (string.IsNullOrWhiteSpace(tbCep.Text))
+                return "Campo \"CEP\" é obrigatório";
+            return "";
+        }
+
+        private void tbNome_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            tbNome.Text = Util.Texto.removerAcentuacao(tbNome.Text).ToUpper();
+            tbNome.SelectionStart = tbNome.Text.Length;
+        }
+
+        private void tbEmail_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            tbEmail.Text = Util.Texto.removerAcentuacao(tbEmail.Text).ToLower();
+            tbEmail.SelectionStart = tbEmail.Text.Length;
+        }
+
+        private void tbRua_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            tbRua.Text = Util.Texto.removerAcentuacao(tbRua.Text).ToUpper();
+            tbRua.SelectionStart = tbRua.Text.Length;
+        }
+
+        private void tbNumero_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            tbNumero.Text = Util.Texto.removerAcentuacao(tbNumero.Text).ToUpper();
+            tbNumero.SelectionStart = tbNumero.Text.Length;
+        }
+
+        private void tbBairro_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            tbBairro.Text = Util.Texto.removerAcentuacao(tbBairro.Text).ToUpper();
+            tbBairro.SelectionStart = tbBairro.Text.Length;
+        }
+
+        private void tbCidade_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            tbCidade.Text = Util.Texto.removerAcentuacao(tbCidade.Text).ToUpper();
+            tbCidade.SelectionStart = tbCidade.Text.Length;
+        }
+
+        private void tbUf_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            tbUf.Text = Util.Texto.removerAcentuacao(tbUf.Text).ToUpper();
+            tbUf.SelectionStart = tbUf.Text.Length;
         }
     }
 }

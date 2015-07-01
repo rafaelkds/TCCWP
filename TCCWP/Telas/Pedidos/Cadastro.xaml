@@ -83,7 +83,7 @@
                             <ColumnDefinition Width="2*" />
                         </Grid.ColumnDefinitions>
                         <TextBlock Text="Total:" HorizontalAlignment="Stretch" Grid.Column="0" FontSize="30"/>
-                        <TextBlock Name="tbTotalValor" HorizontalAlignment="Stretch" Grid.Column="1" TextAlignment="Right" FontSize="30"/>
+                        <TextBlock Name="tbTotalValor" Text="0,00" HorizontalAlignment="Stretch" Grid.Column="1" TextAlignment="Right" FontSize="30"/>
                     </Grid>
                 </StackPanel>
             </phone:PivotItem>
@@ -96,7 +96,6 @@
                             <ColumnDefinition />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
-                        <!--Button x:Name="btAdicionarVencimento" Content="Adicionar" HorizontalAlignment="Stretch" Grid.Column="0" Click="btAdicionarVencimento_Click"/-->
                         <toolkit:DatePicker Name="btAdicionarVencimento" ValueStringFormat="Adicionar" HorizontalContentAlignment="Center" ValueChanged="btAdicionarVencimento_ValueChanged" Tap="btAdicionarVencimento_Tap"/>
                         <Button x:Name="btRemoverVencimento" Content="Remover" HorizontalAlignment="Stretch" Grid.Column="1" Click="btRemoverVencimento_Click"/>
                     </Grid>
@@ -110,23 +109,23 @@
                                         <ColumnDefinition Width="216" />
                                     </Grid.ColumnDefinitions>
                                     <TextBlock Text="{Binding VencimentoFormatado}" TextWrapping="Wrap" FontSize="25" Grid.Column="0"/>
-                                    <TextBlock Text="{Binding Valor}" TextWrapping="Wrap" FontSize="25" Grid.Column="1" TextAlignment="Right"/>
+                                    <TextBlock Text="{Binding ValorFormatado}" TextWrapping="Wrap" FontSize="25" Grid.Column="1" TextAlignment="Right"/>
                                 </Grid>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
 
-                    <Grid Margin="0,0,12,0">
+                    <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="1.25*" />
-                            <ColumnDefinition Width="1*" />
-                            <ColumnDefinition Width="0.75*" />
-                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1.01*" />
+                            <ColumnDefinition Width="1.1*" />
+                            <ColumnDefinition Width="0.63*" />
+                            <ColumnDefinition Width="1.1*" />
                         </Grid.ColumnDefinitions>
                         <TextBlock Text="Restante:" HorizontalAlignment="Stretch" Grid.Column="0" FontSize="30"/>
-                        <TextBlock Name="tbTotalRestante" HorizontalAlignment="Stretch" Grid.Column="1" FontSize="30"/>
-                        <TextBlock Text="Total:" HorizontalAlignment="Stretch" Grid.Column="2" FontSize="30"/>
-                        <TextBlock Name="tbTotalReceber" HorizontalAlignment="Stretch" Grid.Column="3" FontSize="30"/>
+                        <TextBlock Name="tbTotalRestante" Text="0,00" HorizontalAlignment="Stretch" Grid.Column="1" FontSize="30" TextAlignment="Right"/>
+                        <TextBlock Text="Total:" HorizontalAlignment="Stretch" Grid.Column="2" FontSize="30" Margin="7,0,0,0"/>
+                        <TextBlock Name="tbTotalReceber" Text="0,00" HorizontalAlignment="Stretch" Grid.Column="3" FontSize="30" TextAlignment="Right"/>
                     </Grid>
                 </StackPanel>
             </phone:PivotItem>

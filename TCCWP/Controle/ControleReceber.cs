@@ -35,8 +35,12 @@ namespace TCCWP
         public void gravarLista(List<Receber> lista)
         {
             string values = "";
+            lista = lista.OrderBy(x => x.Vencimento).ToList();
+            int ordem = 0;
             foreach (Receber receber in lista)
             {
+                ordem++;
+                receber.Ordem = ordem;
                 if (string.IsNullOrWhiteSpace(receber.Id)) receber.Id = BancoDeDados.GetIdReceber();
                 if (values.Length > 0) values += ", ";
                 values += "("

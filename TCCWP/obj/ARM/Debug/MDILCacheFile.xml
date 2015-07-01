@@ -1,5 +1,5 @@
-﻿<xapCache source="D:\Visual Studio 2013\Projects\TCCWP\TCCWP\Bin\ARM\Debug\TCCWP_Debug_ARM.xap" wasSigned="False" wasTritonized="False" certificateThumbprint="" TimeStampUrl="" signKeyFile="" signKeyPassword="" lastWriteTime="6/28/2015 11:44:43 PM">
-  <file source="D:\Visual Studio 2013\Projects\TCCWP\TCCWP\obj\ARM\Debug\TCCWP.dll" archivePath="TCCWP.dll" lastWriteTime="6/28/2015 11:44:42 PM" />
+﻿<xapCache source="D:\Visual Studio 2013\Projects\TCCWP\TCCWP\Bin\ARM\Debug\TCCWP_Debug_ARM.xap" wasSigned="False" wasTritonized="False" certificateThumbprint="" TimeStampUrl="" signKeyFile="" signKeyPassword="" lastWriteTime="6/30/2015 11:27:10 PM">
+  <file source="D:\Visual Studio 2013\Projects\TCCWP\TCCWP\obj\ARM\Debug\TCCWP.dll" archivePath="TCCWP.dll" lastWriteTime="6/30/2015 11:27:07 PM" />
   <file source="D:\Visual Studio 2013\Projects\TCCWP\TCCWP\README_FIRST.txt" archivePath="README_FIRST.txt" lastWriteTime="5/24/2015 9:33:08 PM" />
   <file source="D:\Visual Studio 2013\Projects\TCCWP\TCCWP\Toolkit.Content\ApplicationBar.Add.png" archivePath="Toolkit.Content\ApplicationBar.Add.png" lastWriteTime="5/24/2015 9:33:08 PM" />
   <file source="D:\Visual Studio 2013\Projects\TCCWP\TCCWP\Toolkit.Content\ApplicationBar.Cancel.png" archivePath="Toolkit.Content\ApplicationBar.Cancel.png" lastWriteTime="5/24/2015 9:33:08 PM" />
@@ -18,9 +18,9 @@
   <file source="C:\Program Files (x86)\Microsoft SDKs\Windows Phone\v8.0\Libraries\Microsoft.Phone.Controls.dll" archivePath="Microsoft.Phone.Controls.dll" lastWriteTime="1/1/2013 6:57:00 PM" />
   <file source="D:\Visual Studio 2013\Projects\TCCWP\packages\WPtoolkit.4.2013.08.16\lib\wp8\Microsoft.Phone.Controls.Toolkit.dll" archivePath="Microsoft.Phone.Controls.Toolkit.dll" lastWriteTime="5/24/2015 9:33:07 PM" />
   <file source="D:\Visual Studio 2013\Projects\TCCWP\packages\sqlite-net-wp8.3.8.5\build\windowsphone8\ARM\Sqlite.winmd" archivePath="Sqlite.winmd" lastWriteTime="5/9/2015 10:15:20 PM" />
-  <file source="D:\Visual Studio 2013\Projects\TCCWP\TCCWPTaskAgent\Bin\ARM\Debug\TCCWPTaskAgent.dll" archivePath="TCCWPTaskAgent.dll" lastWriteTime="6/16/2015 9:28:12 PM" />
+  <file source="D:\Visual Studio 2013\Projects\TCCWP\TCCWPTaskAgent\Bin\ARM\Debug\TCCWPTaskAgent.dll" archivePath="TCCWPTaskAgent.dll" lastWriteTime="6/29/2015 11:05:24 PM" />
   <file source="D:\Visual Studio 2013\Projects\TCCWP\packages\sqlite-net-wp8.3.8.5\build\windowsphone8\ARM\Sqlite.dll" archivePath="Sqlite.dll" lastWriteTime="5/9/2015 10:15:20 PM" />
   <file source="C:\Program Files (x86)\Microsoft SDKs\Windows Phone\v8.0\ExtensionSDKs\SQLite.WP80\3.8.9\Redist\Debug\ARM\sqlite3.dll" archivePath="sqlite3.dll" lastWriteTime="5/5/2015 8:36:32 PM" />
-  <file source="D:\Visual Studio 2013\Projects\TCCWP\TCCWPTaskAgent\ServiceReferences.ClientConfig" archivePath="ServiceReferences.ClientConfig" lastWriteTime="6/14/2015 4:20:03 AM" />
+  <file source="D:\Visual Studio 2013\Projects\TCCWP\TCCWPTaskAgent\ServiceReferences.ClientConfig" archivePath="ServiceReferences.ClientConfig" lastWriteTime="6/29/2015 11:05:15 PM" />
   <file source="D:\Visual Studio 2013\Projects\TCCWP\TCCWP\Bin\ARM\Debug\Properties\WMAppManifest.xml" archivePath="WMAppManifest.xml" lastWriteTime="6/14/2015 4:00:48 AM" />
 </xapCache>

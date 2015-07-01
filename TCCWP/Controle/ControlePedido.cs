@@ -10,7 +10,7 @@ namespace TCCWP
     {
         public List<Pedido> buscar(string busca)
         {
-            string query = string.Format("select Pedido.* from Pedido, Cliente where Pedido.IdCliente = Cliente.Id and (Pedido.Numero like '{0}%' or Cliente.Nome like '{1}%' or Cliente.Cpf like '{2}%')", busca, busca, busca);
+            string query = string.Format("select Pedido.* from Pedido, Cliente where Pedido.IdCliente = Cliente.Id and (Pedido.Id like '{0}%' or Cliente.Nome like '{1}%' or Cliente.Cpf like '{2}%')", busca, busca, busca);
             List<Pedido> lista = BancoDeDados.Query<Pedido>(query);
             ControleCliente cc = new ControleCliente();
             foreach (Pedido pedido in lista)
@@ -56,7 +56,6 @@ namespace TCCWP
 
             string values = "("
                 + "$$" + objeto.Id + "$$,"
-//                + "$$" + objeto.Numero + "$$,"
                 + "$$" + objeto.IdVendedor + "$$,"
                 + "$$" + objeto.IdCliente + "$$,"
                 + "$$" + objeto.Valor + "$$,"
@@ -65,7 +64,7 @@ namespace TCCWP
                 + "$$" + objeto.Observacoes + "$$)";
 
             string sql = "insert into Pedido "
-                + "(Id, Numero, Id_vendedor, Id_cliente, Valor, Data_emissao, Data_pagamento, Observacoes) "
+                + "(Id, Id_vendedor, Id_cliente, Valor, Data_emissao, Data_pagamento, Observacoes) "
                 + "values " + values;
             Log log = new Log();
             log.Sql = sql;

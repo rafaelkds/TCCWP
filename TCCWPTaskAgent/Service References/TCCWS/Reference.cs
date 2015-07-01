@@ -555,8 +555,6 @@ namespace TCCWPTaskAgent.TCCWS {
         
         private int IdVendedorField;
         
-        private string NumeroField;
-        
         private string ObservacoesField;
         
         private decimal ValorField;
@@ -622,19 +620,6 @@ namespace TCCWPTaskAgent.TCCWS {
                 if ((this.IdVendedorField.Equals(value) != true)) {
                     this.IdVendedorField = value;
                     this.RaisePropertyChanged("IdVendedor");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Numero {
-            get {
-                return this.NumeroField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NumeroField, value) != true)) {
-                    this.NumeroField = value;
-                    this.RaisePropertyChanged("Numero");
                 }
             }
         }

@@ -78,7 +78,6 @@ D:\Visual Studio 2013\Projects\TCCWP\TCCWP\obj\ARM\Debug\MainPage.g.cs
 D:\Visual Studio 2013\Projects\TCCWP\TCCWP\obj\ARM\Debug\Telas\Relatorios\Menu.g.cs
 D:\Visual Studio 2013\Projects\TCCWP\TCCWP\obj\ARM\Debug\Telas\UCSelecaoCliente.g.cs
 D:\Visual Studio 2013\Projects\TCCWP\TCCWP\obj\ARM\Debug\Telas\UCSelecaoProduto.g.cs
-D:\Visual Studio 2013\Projects\TCCWP\TCCWP\obj\ARM\Debug\Telas\UCSelecaoVencimento.g.cs
 D:\Visual Studio 2013\Projects\TCCWP\TCCWP\obj\ARM\Debug\TCCWP.g.resources
 D:\Visual Studio 2013\Projects\TCCWP\TCCWP\obj\ARM\Debug\TCCWP.Resources.AppResources.resources
 D:\Visual Studio 2013\Projects\TCCWP\TCCWP\obj\ARM\Debug\TCCWP.csproj.GenerateResource.Cache

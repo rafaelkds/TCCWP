@@ -10,7 +10,6 @@ namespace TCCWP
     {
         [SQLite.PrimaryKey]
         public string Id { get; set; }
-        //public string Numero { get; set; }
         public string IdCliente { get; set; }
         public int IdVendedor { get; set; }
         public decimal Valor { get; set; }

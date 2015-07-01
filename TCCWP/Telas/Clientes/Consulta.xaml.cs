@@ -33,7 +33,8 @@ namespace TCCWP.Telas.Clientes
 
         private void btVisualizar_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/Telas/Clientes/Cadastro.xaml?id="+(listClientes.SelectedItem as Cliente).Id, UriKind.Relative));
+            if (listClientes.SelectedItem != null)
+                NavigationService.Navigate(new Uri("/Telas/Clientes/Cadastro.xaml?id="+(listClientes.SelectedItem as Cliente).Id, UriKind.Relative));
         }
     }
 }

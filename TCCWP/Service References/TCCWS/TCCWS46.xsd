@@ -72,7 +72,6 @@
       <xs:element minOccurs="0" name="Id" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="IdCliente" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="IdVendedor" type="xs:int" />
-      <xs:element minOccurs="0" name="Numero" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Observacoes" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Valor" type="xs:decimal" />
     </xs:sequence>
