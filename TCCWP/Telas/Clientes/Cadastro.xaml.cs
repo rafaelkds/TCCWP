@@ -66,6 +66,8 @@ namespace TCCWP.Telas.Clientes
                 ControleCliente cc = new ControleCliente();
                 cc.gravar(c);
                 MessageBox.Show("Cliente gravado");
+
+                limpar();
             }
             catch (Exception ex)
             {
@@ -103,6 +105,22 @@ namespace TCCWP.Telas.Clientes
             if (string.IsNullOrWhiteSpace(tbCep.Text))
                 return "Campo \"CEP\" é obrigatório";
             return "";
+        }
+
+        private void limpar()
+        {
+            id = "";
+            tbNome.Text = "";
+            tbCpf.Text = "";
+            tbTelefone.Text = "";
+            tbEmail.Text = "";
+            tbRua.Text = "";
+            tbNumero.Text = "";
+            tbBairro.Text = "";
+            tbCidade.Text = "";
+            tbUf.Text = "";
+            tbCep.Text = "";
+            tbComplemento.Text = "";
         }
 
         private void tbNome_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)

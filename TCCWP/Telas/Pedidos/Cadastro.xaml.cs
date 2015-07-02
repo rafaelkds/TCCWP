@@ -241,6 +241,9 @@ namespace TCCWP.Telas.Pedidos
 
             ControlePedido cp = new ControlePedido();
             cp.gravar(novoPedido);
+            MessageBox.Show("Pedido gravado");
+            
+            limpar();
         }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
@@ -286,6 +289,21 @@ namespace TCCWP.Telas.Pedidos
             if (tbTotalRestante.Text != "0,00")
                 return "Valor total dos vencimentos está diferente do total dos produtos";
             return "";
+        }
+
+        private void limpar()
+        {
+            novoPedido = new Pedido();
+            tbNumero.Text = "";
+            dpEmissao.Value = DateTime.Today;
+            btSelecionarCliente.Content = "Selecionar";
+            listVendedores.SelectedIndex = 0;
+            listProdutos.ItemsSource = null;
+            tbTotalValor.Text = "0,00";
+            listVencimentos.ItemsSource = null;
+            tbTotalReceber.Text = "0,00";
+            tbTotalRestante.Text = "0,00";
+            tbObservacoes.Text = "";
         }
     }
 }
