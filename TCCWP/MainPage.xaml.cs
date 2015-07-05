@@ -18,7 +18,6 @@ namespace TCCWP
         public MainPage()
         {
             InitializeComponent();
-            BancoDeDados.teste();
         }
 
         private void btClientes_Click(object sender, RoutedEventArgs e)

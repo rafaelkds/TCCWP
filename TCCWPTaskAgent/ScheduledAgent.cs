@@ -3,6 +3,8 @@ using System.Diagnostics;
 using System.Windows;
 using Microsoft.Phone.Scheduler;
 using Microsoft.Phone.Shell;
+using System;
+using System.IO;
 
 namespace TCCWPTaskAgent
 {
@@ -41,17 +43,18 @@ namespace TCCWPTaskAgent
         /// </remarks>
         protected override void OnInvoke(ScheduledTask task)
         {
+            if (!System.IO.File.Exists(Path.Combine(Windows.Storage.ApplicationData.Current.LocalFolder.Path, "flag")))
+            {
+                Sincronizacao.Sincronizacao sinc = new Sincronizacao.Sincronizacao();
+                sinc.Sincronizar();
+                while (sinc.concluiu == false) { }
 
-            Sincronizacao.Sincronizacao sinc = new Sincronizacao.Sincronizacao();
-            sinc.Sincronizar();
-            while (sinc.concluiu == false) { }
-            
 
-            ShellToast toast = new ShellToast();
-            toast.Title = "TCCWP";
-            toast.Content = "Sincronizou";
-            toast.Show();
-            
+                ShellToast toast = new ShellToast();
+                toast.Title = "TCCWP";
+                toast.Content = "Sincronizou";
+                toast.Show();
+            }
 #if DEBUG_AGENT
   ScheduledActionService.LaunchForTest(task.Name, System.TimeSpan.FromSeconds(60));
 #endif
@@ -59,7 +62,5 @@ namespace TCCWPTaskAgent
             
             NotifyComplete();
         }
-
-
     }
 }

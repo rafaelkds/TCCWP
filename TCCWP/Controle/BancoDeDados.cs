@@ -85,12 +85,14 @@ namespace TCCWP
 
         public static void DeleteAll<T>()
         {
+            Conn.CreateTable<T>();
             Conn.DeleteAll<T>();
         }
 
         public static void Update(object objeto, Log log)
         {
             Conn.Update(objeto);
+            Conn.CreateTable<Log>();
             Conn.Insert(log);
         }
 
@@ -220,52 +222,5 @@ namespace TCCWP
             return id;
         }
         #endregion
-
-        
-        
-        /// //////////////SO TESTE///////////
-        
-        public static void teste()
-        {
-            //System.IO.IsolatedStorage.IsolatedStorageFile storage = System.IO.IsolatedStorage.IsolatedStorageFile.GetUserStoreForApplication();
-            //System.Windows.MessageBox.Show(storage.FileExists("teste.sqlite").ToString());
-            //storage.DeleteFile("teste.sqlite");
-            //System.Windows.MessageBox.Show(storage.FileExists("teste.sqlite").ToString());
-            using (var dbConn = new SQLiteConnection(caminhoDB))
-            {
-                dbConn.RunInTransaction(() =>
-                {
-                    dbConn.CreateTable<Id>();
-                    dbConn.CreateTable<Log>();
-                    dbConn.CreateTable<Sinc>();
-                    dbConn.CreateTable<Cliente>();
-                    dbConn.CreateTable<Pedido>();
-                    dbConn.CreateTable<ProdutoPedido>();
-                    dbConn.CreateTable<Receber>();
-                    dbConn.CreateTable<Produto>();
-                    dbConn.CreateTable<Anotacao>();
-                    dbConn.CreateTable<Vendedor>();
-                });
-            }
-            //System.Windows.MessageBox.Show(storage.FileExists("teste.sqlite").ToString());        
-        }
-
-        public static List<Cliente> ListAllCliente()
-        {
-            using (var dbConn = new SQLiteConnection(caminhoDB))
-            {
-                dbConn.CreateTable<Cliente>();
-                return dbConn.Table<Cliente>().ToList();
-            }
-        }
-
-        public static List<Produto> ListAllProduto()
-        {
-            using (var dbConn = new SQLiteConnection(caminhoDB))
-            {
-                dbConn.CreateTable<Produto>();
-                return dbConn.Table<Produto>().ToList();
-            }
-        }
     }
 }
