@@ -17,37 +17,46 @@ namespace TCCWP
 
         public void gravar(Anotacao objeto)
         {
-            BancoDeDados.BeginTransaction();
-
-            if (string.IsNullOrWhiteSpace(objeto.Id))
+            try
             {
-                objeto.Id = BancoDeDados.GetIdAnotacao();
-                string values = "("
-                    + "$$" + objeto.Id + "$$,"
-                    + "$$" + objeto.IdPedido + "$$,"
-                    + "$$" + objeto.Data.ToString("dd/MM/yyyy") + "$$,"
-                    + "$$" + objeto.DataUltimaAlteracao.ToString("dd/MM/yyyy") + "$$,"
-                    + "$$" + objeto.Texto + "$$)";
+                BancoDeDados.BeginTransaction();
 
-                string sql = "insert into Anotacao "
-                    + "(Id, Id_pedido, Data, Data_ultima_alteracao, Texto) "
-                    + "values " + values;
-                Log log = new Log();
-                log.Sql = sql;
-                BancoDeDados.Insert(objeto, log);
+                if (string.IsNullOrWhiteSpace(objeto.Id))
+                {
+                    objeto.Id = BancoDeDados.GetIdAnotacao();
+                    string values = "("
+                        + "$$" + objeto.Id + "$$,"
+                        + "$$" + objeto.IdPedido + "$$,"
+                        + "$$" + objeto.Data.ToString("dd/MM/yyyy") + "$$,"
+                        + "$$" + objeto.DataUltimaAlteracao.ToString("dd/MM/yyyy") + "$$,"
+                        + "$$" + objeto.Texto + "$$)";
+
+                    string sql = "insert into Anotacao "
+                        + "(Id, Id_pedido, Data, Data_ultima_alteracao, Texto) "
+                        + "values " + values;
+                    Log log = new Log();
+                    log.Sql = sql;
+                    BancoDeDados.Insert(objeto, log);
+                }
+                else
+                {
+                    string sql = "update Anotacao set "
+                        + "Data_ultima_alteracao = $$" + objeto.DataUltimaAlteracao.ToString("dd/MM/yyyy") + "$$,"
+                        + "Texto = $$" + objeto.Texto + "$$,"
+                        + "Alteracao = Now()"
+                        + " where Id = $$" + objeto.Id + "$$";
+                    Log log = new Log();
+                    log.Sql = sql;
+                    BancoDeDados.Update(objeto, log);
+                }
+
+                BancoDeDados.CommitTransaction();
             }
-            else
+            catch(Exception)
             {
-                string sql = "update Anotacao set "
-                    + "Data_ultima_alteracao = $$" + objeto.DataUltimaAlteracao.ToString("dd/MM/yyyy") + "$$,"
-                    + "Texto = $$" + objeto.Texto + "$$"
-                    + " where Id = $$" + objeto.Id + "$$";
-                Log log = new Log();
-                log.Sql = sql;
-                BancoDeDados.Update(objeto, log);
+                BancoDeDados.RollbackTransaction();
+                throw new Exception("Erro ao gravar anotação");
             }
-
-            BancoDeDados.CommitTransaction();
         }
     }
 }

@@ -1,0 +1,6 @@
+D:\Visual Studio 2013\Projects\TCCWP\TCCWPTaskAgent\Bin\ARM\Release\TCCWPTaskAgent.dll
+D:\Visual Studio 2013\Projects\TCCWP\TCCWPTaskAgent\Bin\ARM\Release\TCCWPTaskAgent.pdb
+D:\Visual Studio 2013\Projects\TCCWP\TCCWPTaskAgent\Bin\ARM\Release\Sqlite.winmd
+D:\Visual Studio 2013\Projects\TCCWP\TCCWPTaskAgent\Bin\ARM\Release\Sqlite.dll
+D:\Visual Studio 2013\Projects\TCCWP\TCCWPTaskAgent\obj\ARM\Release\TCCWPTaskAgent.dll
+D:\Visual Studio 2013\Projects\TCCWP\TCCWPTaskAgent\obj\ARM\Release\TCCWPTaskAgent.pdb

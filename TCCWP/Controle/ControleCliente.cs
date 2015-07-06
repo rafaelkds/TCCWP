@@ -25,55 +25,64 @@ namespace TCCWP
 
         public void gravar(Cliente objeto)
         {
-            BancoDeDados.BeginTransaction();
-            if (string.IsNullOrWhiteSpace(objeto.Id))
+            try
             {
-                objeto.Id = BancoDeDados.GetIdCliente();
-                objeto.Ativo = true;
-                string values = "("
-                    + "$$" + objeto.Id + "$$,"
-                    + "$$" + objeto.Nome + "$$,"
-                    + "$$" + objeto.Cpf + "$$,"
-                    + "$$" + objeto.Rua + "$$,"
-                    + "$$" + objeto.Numero + "$$,"
-                    + "$$" + objeto.Bairro + "$$,"
-                    + "$$" + objeto.Cidade + "$$,"
-                    + "$$" + objeto.Uf + "$$,"
-                    + "$$" + objeto.Cep + "$$,"
-                    + "$$" + objeto.Complemento + "$$,"
-                    + "$$" + objeto.Telefone + "$$,"
-                    + "$$" + objeto.Email + "$$)";
+                BancoDeDados.BeginTransaction();
+                if (string.IsNullOrWhiteSpace(objeto.Id))
+                {
+                    objeto.Id = BancoDeDados.GetIdCliente();
+                    objeto.Ativo = true;
+                    string values = "("
+                        + "$$" + objeto.Id + "$$,"
+                        + "$$" + objeto.Nome + "$$,"
+                        + "$$" + objeto.Cpf + "$$,"
+                        + "$$" + objeto.Rua + "$$,"
+                        + "$$" + objeto.Numero + "$$,"
+                        + "$$" + objeto.Bairro + "$$,"
+                        + "$$" + objeto.Cidade + "$$,"
+                        + "$$" + objeto.Uf + "$$,"
+                        + "$$" + objeto.Cep + "$$,"
+                        + "$$" + objeto.Complemento + "$$,"
+                        + "$$" + objeto.Telefone + "$$,"
+                        + "$$" + objeto.Email + "$$)";
 
-                string sql = "insert into Cliente "
-                    + "(Id, Nome, Cpf, Rua, Numero, Bairro, Cidade, Uf, Cep, Complemento, Telefone, Email) "
-                    + "values " + values;
-                Log log = new Log();
-                log.Sql = sql;
+                    string sql = "insert into Cliente "
+                        + "(Id, Nome, Cpf, Rua, Numero, Bairro, Cidade, Uf, Cep, Complemento, Telefone, Email) "
+                        + "values " + values;
+                    Log log = new Log();
+                    log.Sql = sql;
 
-                BancoDeDados.Insert(objeto, log);
+                    BancoDeDados.Insert(objeto, log);
+                }
+                else
+                {
+                    string sql = "update Cliente set "
+                        + "Nome = $$" + objeto.Nome + "$$,"
+                        + "Cpf = $$" + objeto.Cpf + "$$,"
+                        + "Rua = $$" + objeto.Rua + "$$,"
+                        + "Numero = $$" + objeto.Numero + "$$,"
+                        + "Bairro = $$" + objeto.Bairro + "$$,"
+                        + "Cidade = $$" + objeto.Cidade + "$$,"
+                        + "Uf = $$" + objeto.Uf + "$$,"
+                        + "Cep = $$" + objeto.Cep + "$$,"
+                        + "Complemento = $$" + objeto.Complemento + "$$,"
+                        + "Telefone = $$" + objeto.Telefone + "$$,"
+                        + "Email = $$" + objeto.Email + "$$,"
+                        + "Alteracao = Now()"
+                        + " where Id = $$" + objeto.Id + "$$";
+
+                    Log log = new Log();
+                    log.Sql = sql;
+
+                    BancoDeDados.Update(objeto, log);
+                }
+                BancoDeDados.CommitTransaction();
             }
-            else
+            catch(Exception)
             {
-                string sql = "update Cliente set "
-                    + "Nome = $$" + objeto.Nome + "$$,"
-                    + "Cpf = $$" + objeto.Cpf + "$$,"
-                    + "Rua = $$" + objeto.Rua + "$$,"
-                    + "Numero = $$" + objeto.Numero + "$$,"
-                    + "Bairro = $$" + objeto.Bairro + "$$,"
-                    + "Cidade = $$" + objeto.Cidade + "$$,"
-                    + "Uf = $$" + objeto.Uf + "$$,"
-                    + "Cep = $$" + objeto.Cep + "$$,"
-                    + "Complemento = $$" + objeto.Complemento + "$$,"
-                    + "Telefone = $$" + objeto.Telefone + "$$,"
-                    + "Email = $$" + objeto.Email + "$$"
-                    + " where Id = $$" + objeto.Id + "$$";
-
-                Log log = new Log();
-                log.Sql = sql;
-
-                BancoDeDados.Update(objeto, log);
+                BancoDeDados.RollbackTransaction();
+                throw new Exception("Erro ao gravar cliente");
             }
-            BancoDeDados.CommitTransaction();
         }
     }
 }

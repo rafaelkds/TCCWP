@@ -37,47 +37,55 @@ namespace TCCWP
         
         public void gravar(Pedido objeto)
         {
-            BancoDeDados.BeginTransaction();
-
-            if (string.IsNullOrWhiteSpace(objeto.Id)) objeto.Id = BancoDeDados.GetIdPedido();
-
-            decimal total = 0;
-            foreach (ProdutoPedido item in objeto.Produtos)
+            try
             {
-                item.IdPedido = objeto.Id;
-                total += item.Quantidade * item.Valor;
-            }
-            objeto.Valor = total;
+                BancoDeDados.BeginTransaction();
 
-            foreach (Receber item in objeto.Receber)
+                if (string.IsNullOrWhiteSpace(objeto.Id)) objeto.Id = BancoDeDados.GetIdPedido();
+
+                decimal total = 0;
+                foreach (ProdutoPedido item in objeto.Produtos)
+                {
+                    item.IdPedido = objeto.Id;
+                    total += item.Quantidade * item.Valor;
+                }
+                objeto.Valor = total;
+
+                foreach (Receber item in objeto.Receber)
+                {
+                    item.IdPedido = objeto.Id;
+                }
+
+                string values = "("
+                    + "$$" + objeto.Id + "$$,"
+                    + "$$" + objeto.IdVendedor + "$$,"
+                    + "$$" + objeto.IdCliente + "$$,"
+                    + "$$" + objeto.Valor + "$$,"
+                    + "$$" + objeto.DataEmissao.ToString("dd/MM/yyyy") + "$$,"
+                    + "$$" + objeto.DataPagamento.ToString("dd/MM/yyyy") + "$$,"
+                    + "$$" + objeto.Observacoes + "$$)";
+
+                string sql = "insert into Pedido "
+                    + "(Id, Id_vendedor, Id_cliente, Valor, Data_emissao, Data_pagamento, Observacoes) "
+                    + "values " + values;
+                Log log = new Log();
+                log.Sql = sql;
+                BancoDeDados.Insert(objeto, log);
+
+
+                ControleProdutoPedido cpp = new ControleProdutoPedido();
+                cpp.gravarLista(objeto.Produtos);
+
+                ControleReceber cr = new ControleReceber();
+                cr.gravarLista(objeto.Receber);
+
+                BancoDeDados.CommitTransaction();
+            }
+            catch(Exception)
             {
-                item.IdPedido = objeto.Id;
+                BancoDeDados.RollbackTransaction();
+                throw new Exception("Erro ao gravar pedido");
             }
-
-            string values = "("
-                + "$$" + objeto.Id + "$$,"
-                + "$$" + objeto.IdVendedor + "$$,"
-                + "$$" + objeto.IdCliente + "$$,"
-                + "$$" + objeto.Valor + "$$,"
-                + "$$" + objeto.DataEmissao.ToString("dd/MM/yyyy") + "$$,"
-                + "$$" + objeto.DataPagamento.ToString("dd/MM/yyyy") + "$$,"
-                + "$$" + objeto.Observacoes + "$$)";
-
-            string sql = "insert into Pedido "
-                + "(Id, Id_vendedor, Id_cliente, Valor, Data_emissao, Data_pagamento, Observacoes) "
-                + "values " + values;
-            Log log = new Log();
-            log.Sql = sql;
-            BancoDeDados.Insert(objeto, log);
-            
-
-            ControleProdutoPedido cpp = new ControleProdutoPedido();
-            cpp.gravarLista(objeto.Produtos);
-
-            ControleReceber cr = new ControleReceber();
-            cr.gravarLista(objeto.Receber);
-
-            BancoDeDados.CommitTransaction();
         }
         
     }

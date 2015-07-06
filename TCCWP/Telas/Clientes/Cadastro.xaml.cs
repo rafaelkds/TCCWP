@@ -66,17 +66,11 @@ namespace TCCWP.Telas.Clientes
                 ControleCliente cc = new ControleCliente();
                 cc.gravar(c);
                 MessageBox.Show("Cliente gravado");
-
                 limpar();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                tbNome.Text = tbCpf.Text = tbTelefone.Text = tbEmail.Text = tbRua.Text = tbNumero.Text = tbBairro.Text = tbCidade.Text = tbUf.Text = tbCep.Text = tbComplemento.Text = "";
-                id = "";
             }
         }
 

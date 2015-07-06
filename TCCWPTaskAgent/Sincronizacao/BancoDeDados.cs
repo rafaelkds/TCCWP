@@ -10,7 +10,7 @@ namespace TCCWPTaskAgent.Sincronizacao
 {
     class BancoDeDados
     {
-        private static string caminhoDB = Path.Combine(Windows.Storage.ApplicationData.Current.LocalFolder.Path, "teste.sqlite");
+        private static string caminhoDB = Path.Combine(Windows.Storage.ApplicationData.Current.LocalFolder.Path, "bd.sqlite");
         private static int identificacao;
         private static int Identificacao
         {
@@ -84,12 +84,14 @@ namespace TCCWPTaskAgent.Sincronizacao
 
         public static void DeleteAll<T>()
         {
+            Conn.CreateTable<T>();
             Conn.DeleteAll<T>();
         }
 
         public static void Update(object objeto, Log log)
         {
             Conn.Update(objeto);
+            Conn.CreateTable<Log>();
             Conn.Insert(log);
         }
 
@@ -102,13 +104,6 @@ namespace TCCWPTaskAgent.Sincronizacao
                 Conn.Delete(objeto);
                 Conn.Insert(objeto);
             }
-        }
-
-        public static void UltSinc(Sinc ultSinc)///////////remover
-        {
-            Conn.CreateTable<Sinc>();
-            Conn.DeleteAll<Sinc>();
-            Conn.Insert(ultSinc);
         }
         #endregion
 

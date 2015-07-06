@@ -39,12 +39,12 @@ namespace TCCWP.Telas.Pedidos
             Cliente cliente = cc.buscarPorId(novoPedido.IdCliente);
             btSelecionarCliente.Content = cliente.Nome;
 
-            listProdutos.ItemsSource = novoPedido.Produtos;
-            listVencimentos.ItemsSource = novoPedido.Receber;
+            ControleProduto cpr = new ControleProduto();
 
             decimal tValor = 0;
             foreach (ProdutoPedido item in novoPedido.Produtos)
             {
+                item.Produto = cpr.buscarPorId(item.IdProduto.ToString());
                 tValor += item.Valor * item.Quantidade;
             }
             tbTotalValor.Text = tValor.ToString("0.00");
@@ -59,6 +59,9 @@ namespace TCCWP.Telas.Pedidos
             tbTotalReceber.Text = tValor.ToString("0.00");
             tbTotalRestante.Text = ((string.IsNullOrWhiteSpace(tbTotalValor.Text)
                 ? 0 : Convert.ToDecimal(tbTotalValor.Text)) - tValor).ToString("0.00");
+
+            listProdutos.ItemsSource = novoPedido.Produtos;
+            listVencimentos.ItemsSource = novoPedido.Receber;
 
             tbObservacoes.Text = novoPedido.Observacoes;
         }
@@ -104,28 +107,36 @@ namespace TCCWP.Telas.Pedidos
                 switch (e1.Result)
                 {
                     case CustomMessageBoxResult.LeftButton:
-                        if (ucsp.listProdutos.SelectedItem == null || string.IsNullOrWhiteSpace(ucsp.tbQuantidade.Text) || string.IsNullOrWhiteSpace(ucsp.tbValor.Text))
-                            e1.Cancel = true;
-                        if (ucsp.listProdutos.SelectedItem != null && !string.IsNullOrWhiteSpace(ucsp.tbQuantidade.Text) && !string.IsNullOrWhiteSpace(ucsp.tbValor.Text))
+                        try
                         {
-                            ProdutoPedido novoProdutoPedido = new ProdutoPedido();
-                            novoProdutoPedido.IdProduto = (ucsp.listProdutos.SelectedItem as Produto).Id;
-                            novoProdutoPedido.Quantidade = Convert.ToDecimal(ucsp.tbQuantidade.Text);
-                            novoProdutoPedido.Valor = Convert.ToDecimal(ucsp.tbValor.Text);
-                            novoProdutoPedido.Produto = ucsp.listProdutos.SelectedItem as Produto;
-                            novoPedido.Produtos.Add(novoProdutoPedido);
-
-                            listProdutos.ItemsSource = null;
-                            listProdutos.ItemsSource = novoPedido.Produtos;
-
-                            decimal tValor = 0;
-                            foreach (ProdutoPedido item in novoPedido.Produtos)
+                            if (ucsp.listProdutos.SelectedItem == null || string.IsNullOrWhiteSpace(ucsp.tbQuantidade.Text) || string.IsNullOrWhiteSpace(ucsp.tbValor.Text)
+                                || Convert.ToDecimal(ucsp.tbQuantidade.Text) == 0 || Convert.ToDecimal(ucsp.tbValor.Text) == 0)
+                                e1.Cancel = true;
+                            else if (ucsp.listProdutos.SelectedItem != null && !string.IsNullOrWhiteSpace(ucsp.tbQuantidade.Text) && !string.IsNullOrWhiteSpace(ucsp.tbValor.Text))
                             {
-                                tValor += item.Valor * item.Quantidade;
+                                ProdutoPedido novoProdutoPedido = new ProdutoPedido();
+                                novoProdutoPedido.IdProduto = (ucsp.listProdutos.SelectedItem as Produto).Id;
+                                novoProdutoPedido.Quantidade = Convert.ToDecimal(ucsp.tbQuantidade.Text);
+                                novoProdutoPedido.Valor = Convert.ToDecimal(ucsp.tbValor.Text);
+                                novoProdutoPedido.Produto = ucsp.listProdutos.SelectedItem as Produto;
+                                novoPedido.Produtos.Add(novoProdutoPedido);
+
+                                listProdutos.ItemsSource = null;
+                                listProdutos.ItemsSource = novoPedido.Produtos;
+
+                                decimal tValor = 0;
+                                foreach (ProdutoPedido item in novoPedido.Produtos)
+                                {
+                                    tValor += item.Valor * item.Quantidade;
+                                }
+                                tbTotalValor.Text = tValor.ToString("0.00");
+                                tbTotalRestante.Text = (tValor - (string.IsNullOrWhiteSpace(tbTotalReceber.Text)
+                                    ? 0 : Convert.ToDecimal(tbTotalReceber.Text))).ToString("0.00");
                             }
-                            tbTotalValor.Text = tValor.ToString("0.00");
-                            tbTotalRestante.Text = (tValor - (string.IsNullOrWhiteSpace(tbTotalReceber.Text)
-                                ? 0 : Convert.ToDecimal(tbTotalReceber.Text))).ToString("0.00");
+                        }
+                        catch(FormatException)
+                        {
+                            e1.Cancel = true;
                         }
                         break;
                 }
@@ -157,6 +168,18 @@ namespace TCCWP.Telas.Pedidos
                 TextBlock text = new TextBlock();
                 text.Text = "Valor:";
                 TextBox tb = new TextBox();
+                tb.KeyUp += (s1, e1) =>
+                    {
+                        tb.Text = tb.Text.Replace(".", ",");
+                        tb.SelectionStart = tb.Text.Length;
+                    };
+                tb.KeyDown += (s1, e1) =>
+                    {
+                        if (e1.Key == System.Windows.Input.Key.Unknown && tb.Text.Contains(","))
+                        {
+                            e1.Handled = true;
+                        }
+                    };
 
                 System.Windows.Input.InputScope scope = new System.Windows.Input.InputScope();
                 System.Windows.Input.InputScopeName scopeName = new System.Windows.Input.InputScopeName();
@@ -178,26 +201,33 @@ namespace TCCWP.Telas.Pedidos
                     switch (e1.Result)
                     {
                         case CustomMessageBoxResult.LeftButton:
-                            if (string.IsNullOrWhiteSpace(tb.Text))
-                                e1.Cancel = true;
-                            if (!string.IsNullOrWhiteSpace(tb.Text))
+                            try
                             {
-                                Receber novoReceber = new Receber();
-                                novoReceber.Vencimento = btAdicionarVencimento.Value ?? new DateTime();
-                                novoReceber.Valor = Convert.ToDecimal(tb.Text);
-                                novoPedido.Receber.Add(novoReceber);
-
-                                listVencimentos.ItemsSource = null;
-                                listVencimentos.ItemsSource = novoPedido.Receber;
-
-                                decimal tValor = 0;
-                                foreach (Receber item in novoPedido.Receber)
+                                if (string.IsNullOrWhiteSpace(tb.Text) || Convert.ToDecimal(tb.Text) == 0)
+                                    e1.Cancel = true;
+                                else if (!string.IsNullOrWhiteSpace(tb.Text))
                                 {
-                                    tValor += item.Valor;
+                                    Receber novoReceber = new Receber();
+                                    novoReceber.Vencimento = btAdicionarVencimento.Value ?? new DateTime();
+                                    novoReceber.Valor = Convert.ToDecimal(tb.Text);
+                                    novoPedido.Receber.Add(novoReceber);
+
+                                    listVencimentos.ItemsSource = null;
+                                    listVencimentos.ItemsSource = novoPedido.Receber;
+
+                                    decimal tValor = 0;
+                                    foreach (Receber item in novoPedido.Receber)
+                                    {
+                                        tValor += item.Valor;
+                                    }
+                                    tbTotalReceber.Text = tValor.ToString("0.00");
+                                    tbTotalRestante.Text = ((string.IsNullOrWhiteSpace(tbTotalValor.Text)
+                                        ? 0 : Convert.ToDecimal(tbTotalValor.Text)) - tValor).ToString("0.00");
                                 }
-                                tbTotalReceber.Text = tValor.ToString("0.00");
-                                tbTotalRestante.Text = ((string.IsNullOrWhiteSpace(tbTotalValor.Text)
-                                    ? 0 : Convert.ToDecimal(tbTotalValor.Text)) - tValor).ToString("0.00");
+                            }
+                            catch(FormatException)
+                            {
+                                e1.Cancel = true;
                             }
                             break;
                     }
@@ -235,15 +265,21 @@ namespace TCCWP.Telas.Pedidos
                 MessageBox.Show(retorno);
                 return;
             }
-            novoPedido.DataEmissao = dpEmissao.Value ?? new DateTime();
-            novoPedido.Observacoes = tbObservacoes.Text;
-            novoPedido.IdVendedor = (listVendedores.SelectedItem as Vendedor).Id;
+            try
+            {
+                novoPedido.DataEmissao = dpEmissao.Value ?? new DateTime();
+                novoPedido.Observacoes = tbObservacoes.Text;
+                novoPedido.IdVendedor = (listVendedores.SelectedItem as Vendedor).Id;
 
-            ControlePedido cp = new ControlePedido();
-            cp.gravar(novoPedido);
-            MessageBox.Show("Pedido gravado");
-            
-            limpar();
+                ControlePedido cp = new ControlePedido();
+                cp.gravar(novoPedido);
+                MessageBox.Show("Pedido gravado");
+                limpar();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)

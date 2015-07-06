@@ -47,7 +47,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>Bin\x86\Debug</OutputPath>
-    <DefineConstants>DEBUG;TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;SILVERLIGHT;WINDOWS_PHONE;USE_WP8_NATIVE_SQLITE</DefineConstants>
     <NoStdLib>true</NoStdLib>
     <NoConfig>true</NoConfig>
     <ErrorReport>prompt</ErrorReport>
@@ -57,7 +57,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>Bin\x86\Release</OutputPath>
-    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE;USE_WP8_NATIVE_SQLITE</DefineConstants>
     <NoStdLib>true</NoStdLib>
     <NoConfig>true</NoConfig>
     <ErrorReport>prompt</ErrorReport>
@@ -78,7 +78,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>Bin\ARM\Release</OutputPath>
-    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE;USE_WP8_NATIVE_SQLITE</DefineConstants>
     <NoStdLib>true</NoStdLib>
     <NoConfig>true</NoConfig>
     <ErrorReport>prompt</ErrorReport>
@@ -119,17 +119,17 @@
     <None Include="Service References\TCCWS\TCCWPTaskAgent.TCCWS.Atualizacao.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\TCCWS\TCCWS11.wsdl" />
-    <None Include="Service References\TCCWS\TCCWS44.xsd">
+    <None Include="Service References\TCCWS\TCCWS.wsdl" />
+    <None Include="Service References\TCCWS\TCCWS.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\TCCWS\TCCWS45.xsd">
+    <None Include="Service References\TCCWS\TCCWS1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\TCCWS\TCCWS46.xsd">
+    <None Include="Service References\TCCWS\TCCWS2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\TCCWS\TCCWS47.xsd">
+    <None Include="Service References\TCCWS\TCCWS3.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>

@@ -11,7 +11,7 @@ namespace TCCWP
 {
     class BancoDeDados
     {
-        private static string caminhoDB = Path.Combine(Windows.Storage.ApplicationData.Current.LocalFolder.Path, "teste.sqlite");
+        private static string caminhoDB = Path.Combine(Windows.Storage.ApplicationData.Current.LocalFolder.Path, "bd.sqlite");
         private static int identificacao;
         private static int Identificacao
         {

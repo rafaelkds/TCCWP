@@ -33,17 +33,25 @@ namespace TCCWP.Telas.Pedidos.Anotacoes
                 switch (e1.Result)
                 {
                     case CustomMessageBoxResult.LeftButton:
-                        if (!string.IsNullOrWhiteSpace(uct.tbTexto.Text))
+                        try
                         {
-                            Anotacao anotacao = new Anotacao();
-                            anotacao.IdPedido = idPedido;
-                            anotacao.Data = anotacao.DataUltimaAlteracao = DateTime.Now;
-                            anotacao.Texto = uct.tbTexto.Text;
+                            if (!string.IsNullOrWhiteSpace(uct.tbTexto.Text))
+                            {
+                                Anotacao anotacao = new Anotacao();
+                                anotacao.IdPedido = idPedido;
+                                anotacao.Data = anotacao.DataUltimaAlteracao = DateTime.Now;
+                                anotacao.Texto = uct.tbTexto.Text;
 
-                            ControleAnotacao ca = new ControleAnotacao();
-                            ca.gravar(anotacao);
-                            listAnotacoes.ItemsSource = null;
-                            listAnotacoes.ItemsSource = ca.buscar(idPedido);
+                                ControleAnotacao ca = new ControleAnotacao();
+                                ca.gravar(anotacao);
+                                listAnotacoes.ItemsSource = null;
+                                listAnotacoes.ItemsSource = ca.buscar(idPedido);
+                            }
+                        }
+                        catch(Exception ex)
+                        {
+                            e1.Cancel = true;
+                            MessageBox.Show(ex.Message);
                         }
                         break;
                 }
@@ -67,15 +75,23 @@ namespace TCCWP.Telas.Pedidos.Anotacoes
                 switch (e1.Result)
                 {
                     case CustomMessageBoxResult.LeftButton:
-                        if (!string.IsNullOrWhiteSpace(uct.tbTexto.Text))
+                        try
                         {
-                            anotacao.DataUltimaAlteracao = DateTime.Now;
-                            anotacao.Texto = uct.tbTexto.Text;
+                            if (!string.IsNullOrWhiteSpace(uct.tbTexto.Text))
+                            {
+                                anotacao.DataUltimaAlteracao = DateTime.Now;
+                                anotacao.Texto = uct.tbTexto.Text;
 
-                            ControleAnotacao ca = new ControleAnotacao();
-                            ca.gravar(anotacao);
-                            listAnotacoes.ItemsSource = null;
-                            listAnotacoes.ItemsSource = ca.buscar(idPedido);
+                                ControleAnotacao ca = new ControleAnotacao();
+                                ca.gravar(anotacao);
+                                listAnotacoes.ItemsSource = null;
+                                listAnotacoes.ItemsSource = ca.buscar(idPedido);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            e1.Cancel = true;
+                            MessageBox.Show(ex.Message);
                         }
                         break;
                 }

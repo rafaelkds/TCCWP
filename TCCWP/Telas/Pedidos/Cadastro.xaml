@@ -68,7 +68,7 @@
                                             <ColumnDefinition Width="1.5*" />
                                         </Grid.ColumnDefinitions>
                                         <TextBlock Text="Qtde:" Grid.Column="0" />
-                                        <TextBlock Text="{Binding Quantidade}" FontSize="25" Grid.Column="1" TextAlignment="Right"/>
+                                        <TextBlock Text="{Binding QuantidadeFormatada}" FontSize="25" Grid.Column="1" TextAlignment="Right"/>
                                         <TextBlock Text="Preço:" Grid.Column="3" />
                                         <TextBlock Text="{Binding ValorFormatado}" FontSize="25" Grid.Column="4" TextAlignment="Right"/>
                                         <TextBlock Text="{Binding ValorTotalFormatado}" FontSize="25" Grid.Column="5" TextAlignment="Right"/>

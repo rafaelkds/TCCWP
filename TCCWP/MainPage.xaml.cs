@@ -14,10 +14,21 @@ namespace TCCWP
 {
     public partial class MainPage : PhoneApplicationPage
     {
-        
+        private bool primeiraSincronizacao = false;
         public MainPage()
         {
             InitializeComponent();
+            //if (!System.IO.File.Exists(System.IO.Path.Combine(Windows.Storage.ApplicationData.Current.LocalFolder.Path, "bd.sqlite")))
+            if(BancoDeDados.Query<Sinc>("select * from Sinc").Count == 0)
+            {
+                btClientes.IsEnabled = false;
+                btPedidos.IsEnabled = false;
+                btEstoque.IsEnabled =  false;
+                btRelatorios.IsEnabled = false;
+                btConfigurar.IsEnabled = false;
+                primeiraSincronizacao = true;
+                MessageBox.Show("Antes de começar a usar você deve sincronizar");
+            }
         }
 
         private void btClientes_Click(object sender, RoutedEventArgs e)
@@ -57,6 +68,14 @@ namespace TCCWP
         {
             btSincronizar.Content = "Sincronizar";
             this.IsEnabled = true;
+            if (primeiraSincronizacao && mensagem.Contains("sucesso"))
+            {
+                btClientes.IsEnabled = true;
+                btPedidos.IsEnabled = true;
+                btEstoque.IsEnabled = true;
+                btRelatorios.IsEnabled = true;
+                btConfigurar.IsEnabled = true;
+            }
             MessageBox.Show(mensagem);
         }
     }

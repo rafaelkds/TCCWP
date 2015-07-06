@@ -188,9 +188,10 @@ namespace TCCWPTaskAgent.Sincronizacao
                         s.UltimaSinc = a.dtAtualizado.Ticks;
                     s.IdCelular = a.idCelular;
 
-                    BancoDeDados.UltSinc(s);
+                    BancoDeDados.DeleteAll<Sinc>();
+                    BancoDeDados.Insert<Sinc>(s);
                     BancoDeDados.CommitTransaction();
-                    concluiu = true;
+                    erro = false;
                 }
                 else
                 { erro = true; }

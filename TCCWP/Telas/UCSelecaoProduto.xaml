@@ -13,9 +13,9 @@
         <StackPanel>
             <StackPanel  Margin="12,0,12,0" Orientation="Horizontal">
                 <TextBlock Text="Qtde:"/>
-                <TextBox Name="tbQuantidade" InputScope="Number" Width="170"/>
+                <TextBox Name="tbQuantidade" InputScope="Number" Width="170" KeyUp="tbQuantidade_KeyUp" KeyDown="tbQuantidade_KeyDown"/>
                 <TextBlock Text="Preço:"/>
-                <TextBox Name="tbValor" InputScope="Number" Width="170"/>
+                <TextBox Name="tbValor" InputScope="Number" Width="170" KeyUp="tbValor_KeyUp" KeyDown="tbValor_KeyDown"/>
             </StackPanel>
             <TextBlock Text="Produto:" Margin="12,0,12,0"/>
             <TextBox x:Name="tbBusca" Margin="12,0,12,0" TextChanged="tbBusca_TextChanged"/>

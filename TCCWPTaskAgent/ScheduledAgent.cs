@@ -49,11 +49,13 @@ namespace TCCWPTaskAgent
                 sinc.Sincronizar();
                 while (sinc.concluiu == false) { }
 
-
-                ShellToast toast = new ShellToast();
-                toast.Title = "TCCWP";
-                toast.Content = "Sincronizou";
-                toast.Show();
+                if (!sinc.erro)
+                {
+                    ShellToast toast = new ShellToast();
+                    toast.Title = "TCCWP";
+                    toast.Content = "Sincronizou";
+                    toast.Show();
+                }
             }
 #if DEBUG_AGENT
   ScheduledActionService.LaunchForTest(task.Name, System.TimeSpan.FromSeconds(60));
