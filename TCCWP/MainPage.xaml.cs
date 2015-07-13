@@ -18,7 +18,6 @@ namespace TCCWP
         public MainPage()
         {
             InitializeComponent();
-            //if (!System.IO.File.Exists(System.IO.Path.Combine(Windows.Storage.ApplicationData.Current.LocalFolder.Path, "bd.sqlite")))
             if(BancoDeDados.Query<Sinc>("select * from Sinc").Count == 0)
             {
                 btClientes.IsEnabled = false;

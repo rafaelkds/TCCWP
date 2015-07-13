@@ -236,7 +236,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="README_FIRST.txt" />
     <None Include="Service References\TCCWS\configuration91.svcinfo" />
     <None Include="Service References\TCCWS\configuration.svcinfo" />
     <None Include="Service References\TCCWS\Reference.svcmap">
@@ -259,17 +258,17 @@
     <None Include="Service References\TCCWS\TCCWP.TCCWS.Atualizacao.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\TCCWS\TCCWS.wsdl" />
-    <None Include="Service References\TCCWS\TCCWS.xsd">
+    <None Include="Service References\TCCWS\TCCWS11.wsdl" />
+    <None Include="Service References\TCCWS\TCCWS44.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\TCCWS\TCCWS1.xsd">
+    <None Include="Service References\TCCWS\TCCWS45.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\TCCWS\TCCWS2.xsd">
+    <None Include="Service References\TCCWS\TCCWS46.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\TCCWS\TCCWS3.xsd">
+    <None Include="Service References\TCCWS\TCCWS47.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>

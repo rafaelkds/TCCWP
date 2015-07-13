@@ -20,14 +20,14 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://192.168.1.100:12115/TCCWS.svc?wsdl" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://10.1.1.100:12115/TCCWS.svc?wsdl" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="TCCWS.xsd" MetadataType="Schema" ID="8c973136-554c-41cd-a5f5-f4b8541ff5ea" SourceId="1" SourceUrl="http://192.168.1.100:12115/TCCWS.svc?xsd=xsd2" />
-    <MetadataFile FileName="TCCWS1.xsd" MetadataType="Schema" ID="d96de506-a95f-42a3-ab27-96f7a1df1ad8" SourceId="1" SourceUrl="http://192.168.1.100:12115/TCCWS.svc?xsd=xsd3" />
-    <MetadataFile FileName="TCCWS2.xsd" MetadataType="Schema" ID="e35b42ea-d1bc-4e6f-ab30-108e2c88d240" SourceId="1" SourceUrl="http://192.168.1.100:12115/TCCWS.svc?xsd=xsd0" />
-    <MetadataFile FileName="TCCWS3.xsd" MetadataType="Schema" ID="7fc7b0fb-f701-441e-b811-45108c5df562" SourceId="1" SourceUrl="http://192.168.1.100:12115/TCCWS.svc?xsd=xsd1" />
-    <MetadataFile FileName="TCCWS.wsdl" MetadataType="Wsdl" ID="c4f15880-aacf-4ad5-bec0-72f011b869b6" SourceId="1" SourceUrl="http://192.168.1.100:12115/TCCWS.svc?wsdl" />
+    <MetadataFile FileName="TCCWS44.xsd" MetadataType="Schema" ID="a9262ca1-04c4-420b-99a9-4738e424bc9f" SourceId="1" SourceUrl="http://10.1.1.100:12115/TCCWS.svc?xsd=xsd1" />
+    <MetadataFile FileName="TCCWS45.xsd" MetadataType="Schema" ID="f477d273-e0aa-4886-91ab-867e9928498f" SourceId="1" SourceUrl="http://10.1.1.100:12115/TCCWS.svc?xsd=xsd0" />
+    <MetadataFile FileName="TCCWS46.xsd" MetadataType="Schema" ID="52a5f86f-b73c-4751-9699-6af48ec612ae" SourceId="1" SourceUrl="http://10.1.1.100:12115/TCCWS.svc?xsd=xsd3" />
+    <MetadataFile FileName="TCCWS47.xsd" MetadataType="Schema" ID="36391338-1408-41ad-bb85-ec794f94cd1d" SourceId="1" SourceUrl="http://10.1.1.100:12115/TCCWS.svc?xsd=xsd2" />
+    <MetadataFile FileName="TCCWS11.wsdl" MetadataType="Wsdl" ID="dcf4a855-9eb7-45b6-877b-57cf3520612b" SourceId="1" SourceUrl="http://10.1.1.100:12115/TCCWS.svc?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
